@@ -24,6 +24,7 @@ export function SheetContent({
   className,
   side = 'right',
   hideClose = false,
+  bodyClassName,
   ...props
 }: SheetContentProps) {
   return (
@@ -32,6 +33,7 @@ export function SheetContent({
       data-side={side}
       className={cx('vui-sheet', className)}
       showCloseButton={!hideClose}
+      bodyClassName={cx('vui-sheet-body', bodyClassName)}
       {...props}
     />
   );

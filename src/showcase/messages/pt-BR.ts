@@ -88,7 +88,7 @@ const ptBR = {
   principles: {
     description: 'Uma interface clara com molduras decorativas opcionais.',
     interaction:
-      'O ciano indica interação e seleção. Reserve as cores de alerta para informações relevantes.',
+      'A cor de destaque indica interação e seleção. Reserve as cores de alerta para informações relevantes.',
     readability:
       'Use cantos recortados, grades finas e superfícies translúcidas para emoldurar o conteúdo. Mantenha textos e indicadores de foco legíveis.',
     density:
