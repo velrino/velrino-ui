@@ -27,6 +27,7 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm run validate
+      - run: pnpm run test:package
       - run: pnpm run demo:build
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm run test:browser

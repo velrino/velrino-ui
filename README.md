@@ -1,6 +1,6 @@
 # Velrino UI
 
-Accessible, themeable React components with optional sci-fi surfaces. Initial consumers: [HackUniverse](https://github.com/velrino/hackuniverse) and [Velrino Portfolio](https://github.com/velrino/portfolio-front).
+Accessible, themeable React components with optional sci-fi surfaces. Built for independent React applications.
 
 The starting point is HackUniverse's evolved gallery, dialog frame, accessible primitives and globe loader. Applications keep their own colors, fonts, brand, localization and business logic.
 
@@ -29,7 +29,7 @@ examples/           # Standalone visual verification host
 docs/               # Architecture, adoption and release guidance
 ```
 
-See [architecture](docs/architecture.md), [contributing](CONTRIBUTING.md) and [issues #1–#6](https://github.com/velrino/velrino-ui/issues).
+See [architecture](docs/architecture.md), [adoption](docs/adoption.md), [releases](docs/releases/0.0.1.md), [contributing](CONTRIBUTING.md) and [issues #1–#6](https://github.com/velrino/velrino-ui/issues).
 
 ## Components
 

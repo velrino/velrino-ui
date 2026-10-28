@@ -1,0 +1,36 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      RELEASE_TAG: ${{ github.ref_name }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.29.3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: node scripts/verify-release.mjs
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run validate
+      - run: pnpm run test:package
+      - name: Publish tested GitHub artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          PACKAGE_FILE=$(node -p "JSON.parse(require('node:fs').readFileSync('.local/artifacts/release.json','utf8')).filename")
+          gh release create "$RELEASE_TAG" ".local/artifacts/$PACKAGE_FILE" ".local/artifacts/$PACKAGE_FILE.sha256" --verify-tag --title "Velrino UI $RELEASE_TAG" --notes-file "docs/releases/${RELEASE_TAG#v}.md"
