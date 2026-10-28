@@ -5,6 +5,7 @@ import * as Primitive from '@radix-ui/react-dialog';
 import { cx } from '../../lib/classes.js';
 import { Button } from '../button/index.js';
 import { DialogFrame } from './dialog-frame.js';
+import { useSurfaceAppearance, type SurfaceAppearance } from '../../provider/ui-provider.js';
 
 export function Dialog(props: ComponentProps<typeof Primitive.Root>) {
   return <Primitive.Root {...props} />;
@@ -28,6 +29,7 @@ export function DialogOverlay({ className, ...props }: ComponentProps<typeof Pri
 }
 
 export type DialogContentProps = ComponentProps<typeof Primitive.Content> & {
+  appearance?: SurfaceAppearance;
   showCloseButton?: boolean;
   closeLabel?: string;
   fullScreen?: boolean;
@@ -47,13 +49,16 @@ export function DialogContent({
   portalContainer,
   overlayClassName,
   bodyClassName,
+  appearance,
   ...props
 }: DialogContentProps) {
+  const resolvedAppearance = useSurfaceAppearance(appearance);
   const content = (
     <>
       <DialogOverlay className={overlayClassName} />
       <Primitive.Content
         data-slot="dialog-content"
+        data-appearance={resolvedAppearance}
         className={cx(
           'vui-panel',
           'vui-panel--dialog',
@@ -63,7 +68,7 @@ export function DialogContent({
         )}
         {...props}
       >
-        <DialogFrame />
+        {resolvedAppearance === 'sci-fi' && <DialogFrame />}
         <div data-slot="dialog-body" className={cx('vui-dialog-body', bodyClassName)}>
           {children}
         </div>
