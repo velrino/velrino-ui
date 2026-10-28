@@ -1,0 +1,19 @@
+/* Defaults declare only namespaced tokens; applications own their global theme. */
+:root {
+  --vui-accent: var(--primary, #42e8f4);
+  --vui-on-accent: var(--primary-foreground, #021015);
+  --vui-background: var(--background, #020a10);
+  --vui-surface: var(--card, #06131e);
+  --vui-text: var(--foreground, #e5fbff);
+  --vui-muted: var(--muted-foreground, #88aeb9);
+  --vui-secondary: var(--secondary, #0b2531);
+  --vui-danger: var(--destructive, #ff767e);
+  --vui-line: color-mix(in srgb, var(--vui-accent) 30%, transparent);
+  --vui-overlay: rgb(0 0 0 / 65%);
+  --vui-shadow: rgb(0 0 0 / 65%);
+  --vui-font: var(--font-interface, var(--font-sans, system-ui));
+  --vui-radius: 0.25rem;
+  --vui-cut: 18px;
+  --vui-dialog-cut: 24px;
+  --vui-layer: 50;
+}
