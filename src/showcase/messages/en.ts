@@ -1,0 +1,171 @@
+const en = {
+  panels: {
+    description: 'The same decorative sci-fi frame, with content and focus rings kept clear.',
+    title: 'Ready for your next idea',
+    body: 'Colors and fonts belong to the application. The shared frame adapts to them.',
+  },
+  tabs: {
+    description:
+      'Accessible section switching with arrow-key navigation and explicit disabled states.',
+    first: 'Overview',
+    second: 'Details',
+    disabled: 'Unavailable',
+    firstBody: 'This is the overview panel.',
+    secondBody: 'The selected tab owns this details panel.',
+  },
+  accordion: {
+    description: 'Expandable content with keyboard interaction and clear headings.',
+    question: 'What is shared between the projects?',
+    answer: 'Component implementations, accessible interactions and the semantic theme contract.',
+    secondQuestion: 'Can each application keep its palette?',
+    secondAnswer: 'Yes. Application theme variables control every accent, surface and glow.',
+  },
+  menus: {
+    description: 'A real dropdown menu with actions, checkbox, radio selection and a submenu.',
+    open: 'Open example menu',
+    label: 'Preview controls',
+    action: 'Run example action',
+    disabled: 'Unavailable action',
+    setting: 'Show interface hints',
+    submenu: 'More options',
+    nested: 'Nested example action',
+    selection: 'Appearance',
+    first: 'Compact',
+    second: 'Comfortable',
+    feedback: 'Action completed locally.',
+  },
+  sheets: {
+    description: 'The shared dialog behavior and frame, positioned at a viewport edge.',
+    open: 'Open sheet',
+    title: 'A little more space',
+    body: 'Use a sheet for supporting controls. Escape closes it and returns focus to its trigger.',
+    close: 'Close sheet',
+    sides: { left: 'Left', right: 'Right', top: 'Top', bottom: 'Bottom' },
+  },
+  sliders: {
+    description: 'Keyboard-accessible values and ranges, with a generous touch target.',
+    label: 'Example volume',
+    range: 'Example range',
+    lower: 'Lower bound',
+    upper: 'Upper bound',
+    disabled: 'Disabled slider',
+  },
+  typewriter: {
+    description:
+      'Animated text reserves its final layout, preserves full graphemes and respects reduced motion.',
+    text: 'Build once. Explore a universe of possibilities. 👩🏽‍🚀',
+    replay: 'Replay animation',
+    motion: 'Enable animation',
+  },
+  eyebrow: 'Interface foundations',
+  title: 'Design system',
+  description:
+    'A shared visual language for your applications. Real components, live states and reusable defaults.',
+  navigation: 'Design system sections',
+  viewMode: { label: 'Catalog view', page: 'Single page', tabs: 'Tabs' },
+  sections: {
+    panels: 'Panels',
+    tabs: 'Tabs',
+    accordion: 'Accordion',
+    menus: 'Menus',
+    sheets: 'Sheets',
+    sliders: 'Sliders',
+    typewriter: 'Animated text',
+    principles: 'Principles',
+    colors: 'Colors',
+    typography: 'Typography',
+    buttons: 'Buttons',
+    inputs: 'Inputs',
+    dialogs: 'Dialogs',
+    loading: 'Loading screen',
+    brand: 'Brand',
+  },
+  principles: {
+    description: 'A clear interface with a restrained science-fiction frame.',
+    interaction:
+      'The accent color marks interaction and selection. Reserve alert colors for meaningful feedback.',
+    readability:
+      'Use cut corners, fine grids and translucent surfaces to frame content. Keep text and focus indicators clear.',
+    density:
+      'Give controls room to breathe. Decoration must not imply data or activity that does not exist.',
+  },
+  colors: {
+    description:
+      'These swatches read the shared CSS variables directly. Change a token once to update every consumer.',
+    accent: 'Interaction',
+    surface: 'Panel surface',
+    background: 'Application background',
+    text: 'Primary text',
+    muted: 'Secondary text',
+    line: 'Frame and border',
+    secondary: 'Secondary surface',
+    destructive: 'Destructive action',
+  },
+  typography: {
+    description: 'Strong sans-serif headings, readable body text and compact technical labels.',
+    headingLabel: 'Heading',
+    headingSample: 'A universe of possibilities.',
+    bodyLabel: 'Body',
+    bodySample:
+      'Write short, direct interface text. Let the frame support the task and keep the next action clear.',
+    kickerLabel: 'Section label',
+    kickerSample: 'Interface / 01',
+    monoLabel: 'Technical text',
+  },
+  buttons: {
+    description:
+      'Shared Button variants and sizes. Activate a sample to inspect its feedback; the link jumps to typography.',
+    variantsLabel: 'Variants',
+    sizesLabel: 'Sizes',
+    statesLabel: 'States',
+    normal: 'Normal',
+    selected: 'Selected',
+    disabled: 'Disabled',
+    loading: 'Loading',
+    iconLabel: 'Activate icon example',
+    interactionHint: 'Try a button. The selected control toggles on and off.',
+    feedback: 'Activated: {variant}',
+  },
+  inputs: {
+    description:
+      'Native inputs share the HUD treatment. Labels, helpful feedback and disabled states remain explicit.',
+    normalLabel: 'Normal input',
+    placeholder: 'Write something…',
+    normalHint: 'Your input stays here when the interface language changes.',
+    errorLabel: 'Validation example',
+    errorHint: 'Enter at least three characters.',
+    validHint: "The value meets this example's requirement.",
+    disabledLabel: 'Disabled input',
+    disabledValue: 'Unavailable in this state',
+  },
+  dialogs: {
+    description:
+      'A shared modal with a real trigger, keyboard focus management and an explicit action.',
+    open: 'Open example dialog',
+    title: 'A focused decision',
+    body: 'Dialogs ask for attention when a task needs a clear choice. This example performs no remote operation.',
+    confirm: 'Confirm example',
+    cancel: 'Cancel',
+    confirmed: 'Example confirmed. No data was sent.',
+    languageTitle: 'Language selection',
+    languageDescription:
+      'This is the same language control used in the header. It changes the entire interface without a refresh.',
+  },
+  loading: {
+    description:
+      'A full-screen planet loading component. This five-second preview simulates progress; it is not a real import or network request.',
+    open: 'Preview loading screen',
+    label: 'Loading screen demo',
+    detail: 'Simulated progress. No website is being imported.',
+    cancel: 'Stop preview',
+    complete: 'Loading preview complete.',
+  },
+  brand: {
+    description:
+      'The approved galaxy mark follows the shared interface palette. Keep its artwork consistent with the source.',
+    wordmark: 'Application brand mark',
+    rule: "Keep the logo's proportions and give it space. Do not recolor it to match status or selection.",
+  },
+};
+
+export default en;

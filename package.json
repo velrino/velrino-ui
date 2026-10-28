@@ -12,7 +12,16 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./styles.css": "./dist/styles.css"
+    "./styles.css": "./dist/styles.css",
+    "./showcase": {
+      "types": "./dist/showcase/index.d.ts",
+      "import": "./dist/showcase/index.js"
+    },
+    "./messages": {
+      "types": "./dist/showcase/messages/index.d.ts",
+      "import": "./dist/showcase/messages/index.js"
+    },
+    "./showcase.css": "./dist/showcase.css"
   },
   "files": [
     "dist",
@@ -39,20 +48,27 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "node scripts/test.mjs",
-    "validate": "pnpm run format:check && pnpm run lint && pnpm run typecheck && pnpm test && pnpm run build"
+    "validate": "pnpm run format:check && pnpm run lint && pnpm run typecheck && pnpm test && pnpm run build",
+    "demo:dev": "vite examples/showcase --host 127.0.0.1 --port 4321 --strictPort",
+    "demo:build": "vite build examples/showcase",
+    "test:browser": "playwright test"
   },
   "peerDependencies": {
     "react": ">=19.1.0 <20",
     "react-dom": ">=19.1.0 <20"
   },
   "dependencies": {
+    "@base-ui/react": "1.8.0",
+    "@radix-ui/react-accordion": "1.2.12",
     "@radix-ui/react-dialog": "1.1.15",
+    "@radix-ui/react-dropdown-menu": "2.1.16",
     "@radix-ui/react-slot": "1.2.3",
     "@radix-ui/react-tabs": "1.2.1",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1"
   },
   "devDependencies": {
+    "@playwright/test": "1.64.1",
     "@testing-library/react": "16.3.3",
     "@testing-library/user-event": "14.6.8",
     "@types/jsdom": "27.0.0",
@@ -68,6 +84,7 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "tsx": "4.23.13",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vite": "8.3.5"
   }
 }

@@ -1,0 +1,61 @@
+.vui-sheet {
+  max-width: 100%;
+  max-height: 100dvh;
+  translate: none;
+  --vui-sheet-offset: 100%;
+}
+.vui-sheet[data-side='right'] {
+  inset: 0 0 0 auto;
+  width: min(85vw, 24rem);
+  height: 100dvh;
+}
+.vui-sheet[data-side='left'] {
+  inset: 0 auto 0 0;
+  width: min(85vw, 24rem);
+  height: 100dvh;
+  --vui-sheet-offset: -100%;
+}
+.vui-sheet[data-side='top'] {
+  inset: 0 0 auto;
+  width: 100%;
+  --vui-sheet-offset: -100%;
+}
+.vui-sheet[data-side='bottom'] {
+  inset: auto 0 0;
+  width: 100%;
+}
+.vui-sheet[data-state='open'] {
+  animation: vui-sheet-x 200ms ease-out;
+}
+.vui-sheet[data-side='top'][data-state='open'],
+.vui-sheet[data-side='bottom'][data-state='open'] {
+  animation-name: vui-sheet-y;
+}
+.vui-sheet[data-state='closed'] {
+  animation: vui-sheet-x 150ms ease-in reverse;
+}
+.vui-sheet[data-side='top'][data-state='closed'],
+.vui-sheet[data-side='bottom'][data-state='closed'] {
+  animation-name: vui-sheet-y;
+}
+@keyframes vui-sheet-x {
+  from {
+    transform: translateX(var(--vui-sheet-offset));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes vui-sheet-y {
+  from {
+    transform: translateY(var(--vui-sheet-offset));
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vui-sheet[data-state] {
+    animation: none;
+  }
+}

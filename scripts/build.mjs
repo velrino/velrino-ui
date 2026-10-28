@@ -15,8 +15,8 @@ if (result.status !== 0) process.exit(result.status ?? 1);
 
 await build({
   absWorkingDir: root,
-  entryPoints: ['src/styles/index.css'],
-  outfile: 'dist/styles.css',
+  entryPoints: { styles: 'src/styles/index.css', showcase: 'src/styles/showcase.css' },
+  outdir: 'dist',
   bundle: true,
   minify: true,
   target: ['es2022'],

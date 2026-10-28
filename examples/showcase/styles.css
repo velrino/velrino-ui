@@ -1,0 +1,82 @@
+:root {
+  color-scheme: dark;
+  font-family: system-ui, sans-serif;
+  background: var(--vui-background);
+  color: var(--vui-text);
+}
+body {
+  margin: 0;
+}
+[data-demo-theme='hackuniverse'] {
+  --vui-accent: #42e8f4;
+  --vui-text-accent: #42e8f4;
+  --vui-background: #020a10;
+  --vui-surface: #06131e;
+  --vui-text: #e5fbff;
+  --vui-muted: #88aeb9;
+  --vui-secondary: #0b2531;
+  --vui-on-accent: #021015;
+}
+[data-demo-theme='cyan'] {
+  --vui-accent: #39ccee;
+  --vui-text-accent: #39ccee;
+  --vui-background: #080c10;
+  --vui-surface: #101a22;
+  --vui-text: #edfaff;
+  --vui-muted: #a9bec8;
+  --vui-secondary: #172731;
+  --vui-on-accent: #080c10;
+}
+[data-demo-theme='purple'] {
+  --vui-accent: #5b21b6;
+  --vui-text-accent: #c4b5fd;
+  --vui-background: #0c0914;
+  --vui-surface: #151020;
+  --vui-text: #f3efff;
+  --vui-muted: #bcb3cf;
+  --vui-secondary: #211632;
+  --vui-on-accent: #fff;
+}
+[data-demo-theme='red'] {
+  --vui-accent: #980002;
+  --vui-text-accent: #fff;
+  --vui-background: #100708;
+  --vui-surface: #200d10;
+  --vui-text: #fff;
+  --vui-muted: #eee;
+  --vui-secondary: #301216;
+  --vui-on-accent: #fff;
+}
+.demo-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem clamp(1rem, 4vw, 3rem);
+  border-bottom: 1px solid var(--vui-line);
+}
+.demo-wordmark {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--vui-text);
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.12em;
+}
+.demo-wordmark span {
+  padding: 0.15rem 0.4rem;
+  border: 1px solid var(--vui-line);
+  color: var(--vui-muted);
+  font-size: 0.65rem;
+  letter-spacing: 0;
+}
+.demo-theme-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-inline-start: auto;
+}
+.demo-toolbar [aria-pressed='true'] {
+  border-color: var(--vui-accent);
+}

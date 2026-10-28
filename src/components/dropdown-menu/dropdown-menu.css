@@ -1,0 +1,79 @@
+.vui-menu {
+  z-index: calc(var(--vui-layer) + 10);
+  min-width: 10rem;
+  max-height: var(--radix-dropdown-menu-content-available-height);
+  overflow: auto;
+  padding: 0.375rem;
+  border: 1px solid var(--vui-line);
+  border-radius: var(--vui-radius);
+  background: var(--vui-surface);
+  color: var(--vui-text);
+  font-family: var(--vui-font);
+  box-shadow: 0 12px 30px var(--vui-shadow);
+}
+.vui-menu-item {
+  position: relative;
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--vui-radius);
+  outline: none;
+  font-size: 0.875rem;
+  cursor: pointer;
+  user-select: none;
+}
+.vui-menu-item[data-highlighted] {
+  background: var(--vui-secondary);
+  color: var(--vui-text-accent);
+}
+.vui-menu-item[data-disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.vui-menu-item[data-variant='destructive'] {
+  color: var(--vui-danger);
+}
+.vui-menu-item[data-inset],
+.vui-menu-choice,
+.vui-menu-label[data-inset] {
+  padding-left: 2rem;
+}
+.vui-menu-indicator {
+  position: absolute;
+  left: 0.5rem;
+  display: grid;
+  width: 1rem;
+  height: 1rem;
+  place-items: center;
+}
+.vui-menu svg {
+  width: 1rem;
+  height: 1rem;
+}
+.vui-menu-label {
+  padding: 0.5rem 0.75rem;
+  color: var(--vui-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.vui-menu-separator {
+  height: 1px;
+  margin: 0.25rem -0.375rem;
+  background: var(--vui-line);
+}
+.vui-menu-shortcut,
+.vui-menu-chevron {
+  margin-left: auto;
+  color: var(--vui-muted);
+}
+.vui-menu-shortcut {
+  padding-left: 1rem;
+  font-size: 0.75rem;
+}
+@media (forced-colors: active) {
+  .vui-menu {
+    border-color: CanvasText;
+  }
+}

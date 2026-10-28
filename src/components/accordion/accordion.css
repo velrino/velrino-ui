@@ -1,0 +1,56 @@
+.vui-accordion-item {
+  border-bottom: 1px solid var(--vui-line);
+}
+.vui-accordion-item:last-child {
+  border-bottom: 0;
+}
+.vui-accordion-header {
+  display: flex;
+  margin: 0;
+}
+.vui-accordion-trigger {
+  display: flex;
+  flex: 1;
+  min-height: 2.75rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--vui-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.vui-accordion-trigger svg {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  transition: transform 180ms;
+}
+.vui-accordion-trigger[data-state='open'] svg {
+  transform: rotate(180deg);
+}
+.vui-accordion-trigger:focus-visible {
+  outline: 2px solid var(--vui-accent);
+  outline-offset: 3px;
+}
+.vui-accordion-trigger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.vui-accordion-content {
+  overflow: hidden;
+  color: var(--vui-muted);
+  font-size: 0.875rem;
+  line-height: 1.8;
+}
+.vui-accordion-body {
+  padding-bottom: 1rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  .vui-accordion-trigger svg {
+    transition: none;
+  }
+}

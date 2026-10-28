@@ -9,3 +9,7 @@ export * from './components/tabs/index.js';
 export * from './components/anchor-link/index.js';
 export * from './components/typewriter-text/index.js';
 export * from './components/full-screen-loader/index.js';
+export * from './components/accordion/index.js';
+export * from './components/dropdown-menu/index.js';
+export * from './components/sheet/index.js';
+export * from './components/slider/index.js';
