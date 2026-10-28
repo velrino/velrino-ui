@@ -1,0 +1,30 @@
+.vui-input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 2.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--vui-line);
+  border-radius: var(--vui-radius);
+  background: var(--vui-surface);
+  color: var(--vui-text);
+  font: inherit;
+}
+.vui-input::placeholder {
+  color: var(--vui-muted);
+}
+.vui-input:focus-visible {
+  border-color: var(--vui-accent);
+  outline: 2px solid var(--vui-accent);
+  outline-offset: 3px;
+}
+.vui-input[aria-invalid='true'] {
+  border-color: var(--vui-danger);
+}
+.vui-input[aria-invalid='true']:focus-visible {
+  outline-color: var(--vui-danger);
+}
+.vui-input:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

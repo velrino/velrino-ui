@@ -1,0 +1,372 @@
+.vui-full-screen-loader[data-slot='dialog-content'] {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  width: 100%;
+  max-width: none;
+  height: 100vh;
+  height: 100dvh;
+  max-height: none;
+  place-items: center;
+  align-items: safe center;
+  gap: 0;
+  margin: 0;
+  padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))
+    max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 0;
+  border-radius: 0;
+  background-color: var(--vui-background);
+  background-image:
+    radial-gradient(
+      ellipse at center,
+      color-mix(in srgb, var(--vui-accent) 10%, transparent),
+      transparent 65%
+    ),
+    radial-gradient(color-mix(in srgb, var(--vui-accent) 12%, transparent) 0.6px, transparent 0.8px);
+  background-size:
+    auto,
+    22px 22px;
+  color: var(--vui-text);
+  box-shadow: none;
+  animation: none;
+  transform: none;
+  translate: none;
+}
+
+.vui-full-screen-loader > [data-slot='dialog-body'] {
+  display: contents;
+}
+
+.vui-planet-loader {
+  --vui-loader-graphic-size: min(82vw, 54vh, 28rem);
+  --vui-loader-graphic-size: min(82vw, 54dvh, 28rem);
+  --vui-loader-globe-size: calc(var(--vui-loader-graphic-size) * 0.68);
+  position: relative;
+  display: flex;
+  width: min(100%, 60rem);
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+}
+
+.vui-planet-loader__frame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--vui-line), var(--vui-line)) left top / 38px 1px,
+    linear-gradient(var(--vui-line), var(--vui-line)) left top / 1px 38px,
+    linear-gradient(var(--vui-line), var(--vui-line)) right top / 38px 1px,
+    linear-gradient(var(--vui-line), var(--vui-line)) right top / 1px 38px,
+    linear-gradient(var(--vui-line), var(--vui-line)) left bottom / 38px 1px,
+    linear-gradient(var(--vui-line), var(--vui-line)) left bottom / 1px 38px,
+    linear-gradient(var(--vui-line), var(--vui-line)) right bottom / 38px 1px,
+    linear-gradient(var(--vui-line), var(--vui-line)) right bottom / 1px 38px;
+  background-repeat: no-repeat;
+}
+
+.vui-planet-loader__graphic {
+  position: relative;
+  display: grid;
+  width: var(--vui-loader-graphic-size);
+  height: var(--vui-loader-graphic-size);
+  flex-shrink: 0;
+  place-items: center;
+  color: var(--vui-accent);
+}
+
+.vui-planet-loader__rings {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  stroke: currentColor;
+}
+
+.vui-planet-loader__outer-ring {
+  stroke-opacity: 0.12;
+  stroke-width: 0.6;
+}
+.vui-planet-loader__dashed-ring {
+  stroke-dasharray: 1.5 5;
+  stroke-opacity: 0.28;
+  stroke-width: 0.7;
+}
+.vui-planet-loader__tick {
+  stroke-opacity: 0.26;
+  stroke-width: 0.75;
+}
+.vui-planet-loader__tick-major {
+  stroke-opacity: 0.7;
+  stroke-width: 1;
+}
+.vui-planet-loader__reticle {
+  stroke: var(--vui-text);
+  stroke-opacity: 0.65;
+  stroke-width: 0.8;
+}
+
+.vui-planet-loader__progress-arc {
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  transition: stroke-dasharray 250ms linear;
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--vui-accent) 40%, transparent));
+}
+
+.vui-planet-loader__graphic[data-indeterminate='true'] .vui-planet-loader__progress-arc {
+  transform-origin: center;
+  animation: vui-loader-orbit 8s linear infinite;
+}
+
+.vui-planet-loader__satellite {
+  transform-origin: center;
+  animation: vui-loader-orbit 24s linear infinite;
+  stroke-width: 0.6;
+}
+
+.vui-planet-loader__satellite circle:first-child {
+  fill: currentColor;
+}
+
+.vui-planet-loader__globe {
+  position: relative;
+  width: var(--vui-loader-globe-size);
+  height: var(--vui-loader-globe-size);
+  border: 1px solid color-mix(in srgb, var(--vui-accent) 20%, transparent);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 30%,
+    color-mix(in srgb, var(--vui-accent) 5%, transparent),
+    transparent 65%
+  );
+  perspective: 900px;
+  box-shadow:
+    inset 0 0 35px color-mix(in srgb, var(--vui-accent) 3%, transparent),
+    0 0 45px color-mix(in srgb, var(--vui-accent) 4%, transparent);
+}
+
+.vui-planet-loader__sphere {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  animation: vui-loader-globe 32s linear infinite;
+}
+
+.vui-planet-loader__meridian,
+.vui-planet-loader__latitude {
+  position: absolute;
+  display: block;
+  border: 1px solid color-mix(in srgb, var(--vui-accent) 22%, transparent);
+  border-radius: 50%;
+}
+
+.vui-planet-loader__meridian {
+  inset: 0;
+  transform: rotateY(var(--vui-meridian-angle));
+}
+
+.vui-planet-loader__latitude {
+  top: calc(50% + var(--vui-latitude-y));
+  left: 50%;
+  width: var(--vui-latitude-size);
+  height: var(--vui-latitude-size);
+  transform: translate(-50%, -50%) rotateX(90deg);
+}
+
+.vui-planet-loader__node {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 3px;
+  margin: -1.5px;
+  border-radius: 50%;
+  background: var(--vui-text);
+  box-shadow: 0 0 7px var(--vui-accent);
+  transform: translate3d(
+    calc(var(--vui-node-x) * var(--vui-loader-globe-size)),
+    calc(var(--vui-node-y) * var(--vui-loader-globe-size)),
+    calc(var(--vui-node-z) * var(--vui-loader-globe-size))
+  );
+}
+
+.vui-planet-loader__scan {
+  position: absolute;
+  top: 4%;
+  left: -6%;
+  width: 112%;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--vui-accent) 12%, transparent) 10%,
+    var(--vui-accent) 50%,
+    color-mix(in srgb, var(--vui-accent) 12%, transparent) 90%,
+    transparent
+  );
+  opacity: 0.5;
+  box-shadow: 0 0 10px color-mix(in srgb, var(--vui-accent) 28%, transparent);
+  animation: vui-loader-scan 7s ease-in-out infinite alternate;
+}
+
+.vui-planet-loader__percentage {
+  position: absolute;
+  display: flex;
+  min-width: 7rem;
+  align-items: baseline;
+  justify-content: center;
+  padding: 0.6rem 0.8rem;
+  background: radial-gradient(
+    ellipse,
+    color-mix(in srgb, var(--vui-background) 96%, transparent) 20%,
+    color-mix(in srgb, var(--vui-background) 70%, transparent) 55%,
+    transparent 75%
+  );
+  color: var(--vui-text);
+  font-family: var(--vui-font), sans-serif;
+  font-size: clamp(2.1rem, 7vw, 3.8rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  text-shadow: 0 0 20px color-mix(in srgb, var(--vui-accent) 20%, transparent);
+}
+
+.vui-planet-loader__percent-sign {
+  margin-left: 0.15em;
+  color: var(--vui-accent);
+  font-size: 0.36em;
+  letter-spacing: 0;
+}
+
+.vui-planet-loader__copy {
+  display: grid;
+  width: min(100%, 28rem);
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.vui-planet-loader__label {
+  color: var(--vui-text);
+  font-family: var(--vui-font), sans-serif;
+  font-size: clamp(0.9rem, 2.7vw, 1.1rem);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  text-transform: uppercase;
+}
+
+.vui-planet-loader__detail {
+  color: var(--vui-muted);
+  font-size: 0.8rem;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.vui-planet-loader__track {
+  width: min(50%, 11rem);
+  height: 4px;
+  background: color-mix(in srgb, var(--vui-accent) 10%, transparent);
+  mask-image: repeating-linear-gradient(90deg, black 0 4px, transparent 4px 7px);
+}
+
+.vui-planet-loader__track > span {
+  display: block;
+  width: var(--vui-loader-progress);
+  height: 100%;
+  background: var(--vui-accent);
+  transition: width 250ms linear;
+}
+
+.vui-planet-loader__track[data-indeterminate='true'] > span {
+  opacity: 0.4;
+}
+.vui-planet-loader__cancel {
+  min-height: 44px;
+  margin-top: 0.25rem;
+  padding-inline: 1.5rem;
+}
+
+@keyframes vui-loader-globe {
+  from {
+    transform: rotateX(-14deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(-14deg) rotateY(360deg);
+  }
+}
+
+@keyframes vui-loader-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes vui-loader-scan {
+  from {
+    top: 4%;
+  }
+  to {
+    top: 96%;
+  }
+}
+
+@media (max-height: 540px) {
+  .vui-planet-loader {
+    --vui-loader-graphic-size: min(72vw, 42dvh, 17rem);
+    gap: 0.75rem;
+    padding-block: 0.75rem;
+  }
+  .vui-planet-loader__copy {
+    gap: 0.35rem;
+  }
+  .vui-planet-loader__detail {
+    font-size: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vui-full-screen-loader *,
+  .vui-full-screen-loader *::before,
+  .vui-full-screen-loader *::after {
+    animation: none;
+    transition: none;
+  }
+  .vui-planet-loader__sphere {
+    transform: rotateX(-14deg) rotateY(25deg);
+  }
+  .vui-planet-loader__scan {
+    display: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .vui-planet-loader__percentage {
+    background: Canvas;
+    color: CanvasText;
+  }
+  .vui-planet-loader__label,
+  .vui-planet-loader__detail {
+    color: CanvasText;
+  }
+  .vui-planet-loader__track {
+    background: Canvas;
+    border: 1px solid CanvasText;
+  }
+  .vui-planet-loader__track > span {
+    background: Highlight;
+  }
+}

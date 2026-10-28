@@ -1,0 +1,8 @@
+.vui-anchor-link {
+  color: var(--vui-text-accent);
+  text-underline-offset: 4px;
+}
+.vui-anchor-link:focus-visible {
+  outline: 2px solid var(--vui-accent);
+  outline-offset: 4px;
+}
