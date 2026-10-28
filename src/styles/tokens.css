@@ -8,6 +8,8 @@
   --vui-muted: var(--muted-foreground, #88aeb9);
   --vui-secondary: var(--secondary, #0b2531);
   --vui-danger: var(--destructive, #ff767e);
+  --vui-on-danger: #021015;
+  --vui-text-accent: var(--vui-accent);
   --vui-line: color-mix(in srgb, var(--vui-accent) 30%, transparent);
   --vui-overlay: rgb(0 0 0 / 65%);
   --vui-shadow: rgb(0 0 0 / 65%);

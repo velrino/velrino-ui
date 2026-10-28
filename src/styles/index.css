@@ -1,1 +1,11 @@
-@import './tokens.css';
+@layer base, components;
+@import './tokens.css' layer(base);
+@import './accessibility.css' layer(components);
+@import '../components/button/button.css' layer(components);
+@import '../components/hud-panel/hud-panel.css' layer(components);
+@import '../components/dialog/dialog.css' layer(components);
+@import '../components/input/input.css' layer(components);
+@import '../components/tabs/tabs.css' layer(components);
+@import '../components/anchor-link/anchor-link.css' layer(components);
+@import '../components/typewriter-text/typewriter-text.css' layer(components);
+@import '../components/full-screen-loader/full-screen-loader.css' layer(components);

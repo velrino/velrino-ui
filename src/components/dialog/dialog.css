@@ -1,0 +1,151 @@
+.vui-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--vui-layer);
+  background: var(--vui-overlay);
+}
+.vui-dialog-content {
+  position: fixed;
+  z-index: var(--vui-layer);
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  display: grid;
+  width: calc(100% - 2rem);
+  max-width: 32rem;
+  max-height: calc(100dvh - 2rem);
+  min-height: 0;
+  grid-template-rows: minmax(0, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  font-family: var(--vui-font);
+  outline: none;
+}
+.vui-dialog-content--fullscreen {
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  translate: none;
+}
+.vui-dialog-body {
+  display: grid;
+  min-height: 0;
+  min-width: 0;
+  gap: inherit;
+  padding: 0.5rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.vui-dialog-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-right: 1.75rem;
+}
+.vui-dialog-title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.vui-dialog-description {
+  margin: 0;
+  color: var(--vui-muted);
+  font-size: 0.875rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.vui-dialog-footer {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.5rem;
+}
+.vui-dialog-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 2;
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 0;
+  border-radius: var(--vui-radius);
+  background: transparent;
+  color: var(--vui-text-accent);
+  opacity: 0.8;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.vui-dialog-close:hover {
+  opacity: 1;
+  background: color-mix(in srgb, var(--vui-accent) 10%, transparent);
+}
+.vui-dialog-close:focus-visible {
+  opacity: 1;
+  outline: 2px solid var(--vui-accent);
+  outline-offset: 1px;
+}
+.vui-dialog-content[data-state='open'] {
+  animation: vui-dialog-in 180ms ease-out;
+}
+.vui-dialog-content[data-state='closed'] {
+  animation: vui-dialog-out 120ms ease-in;
+}
+.vui-dialog-overlay[data-state='open'] {
+  animation: vui-overlay-in 180ms ease-out;
+}
+.vui-dialog-overlay[data-state='closed'] {
+  animation: vui-overlay-out 120ms ease-in;
+}
+@keyframes vui-dialog-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes vui-dialog-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+@keyframes vui-overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes vui-overlay-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@media (min-width: 640px) {
+  .vui-dialog-footer {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vui-dialog-content,
+  .vui-dialog-overlay {
+    animation: none;
+  }
+}
