@@ -18,7 +18,7 @@ export function SheetExamples() {
   const [side, setSide] = useState<SheetContentProps['side']>('right');
   const [open, setOpen] = useState(false);
   return (
-    <>
+    <div className="vui-showcase-mobile-actions">
       <div className="vui-showcase-row">
         {(['left', 'right', 'top', 'bottom'] as const).map((value) => (
           <Button
@@ -46,6 +46,6 @@ export function SheetExamples() {
           </SheetFooter>
         </SheetContent>
       </Sheet>
-    </>
+    </div>
   );
 }

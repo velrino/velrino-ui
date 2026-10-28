@@ -154,3 +154,28 @@ test('standard surfaces keep modal behavior without sci-fi decoration', async ({
   await expect(dialog).toBeHidden();
   await expect(trigger).toBeFocused();
 });
+
+test('color values follow the host theme and keep transparency visible', async ({ page }) => {
+  await page.goto('/#colors');
+  const value = (variable: string) =>
+    page
+      .locator(`[data-color-variable="${variable}"]`)
+      .locator('..')
+      .locator('.vui-showcase-color-value');
+  await expect(value('--vui-accent')).toHaveText('#42E8F4');
+  await expect(value('--vui-line')).toHaveText('rgba(66, 232, 244, 0.3)');
+  await page.getByRole('button', { name: 'Open preview settings', exact: true }).click();
+  await page
+    .getByRole('dialog', { name: 'Preview settings', exact: true })
+    .getByRole('button', { name: 'Purple', exact: true })
+    .click();
+  await expect(value('--vui-accent')).toHaveText('#5B21B6');
+  await expect(value('--vui-line')).toHaveText('rgba(91, 33, 182, 0.3)');
+  await page.keyboard.press('Escape');
+  await page
+    .locator('.vui-showcase')
+    .evaluate((element) =>
+      (element as HTMLElement).style.setProperty('--vui-accent', 'rgb(20, 160, 90)'),
+    );
+  await expect(value('--vui-accent')).toHaveText('#14A05A');
+});

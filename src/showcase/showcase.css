@@ -181,12 +181,26 @@
 .vui-showcase-swatches {
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
+}
+.vui-showcase-color {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
 }
 .vui-showcase-swatch {
-  height: 5rem;
-  margin-bottom: 0.75rem;
+  height: 3.5rem;
   border: 1px solid var(--vui-line);
+}
+.vui-showcase-color-details {
+  display: grid;
+  gap: 0.35rem;
+  line-height: 1.6;
+}
+.vui-showcase code.vui-showcase-color-value {
+  color: var(--vui-text);
+  font-weight: 600;
 }
 .vui-showcase code {
   color: var(--vui-muted);
@@ -250,6 +264,19 @@
   }
   .vui-showcase-swatches {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .vui-showcase-color {
+    display: block;
+  }
+  .vui-showcase-swatch {
+    height: 5rem;
+    margin-bottom: 0.75rem;
+  }
+}
+@media (max-width: 639px) {
+  .vui-showcase-mobile-actions .vui-showcase-row {
+    flex-direction: column;
+    align-items: center;
   }
 }
 @media (min-width: 900px) {

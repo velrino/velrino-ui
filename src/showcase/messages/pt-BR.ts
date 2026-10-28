@@ -96,7 +96,7 @@ const ptBR = {
   },
   colors: {
     description:
-      'Estas amostras usam diretamente as variáveis CSS compartilhadas. Altere um token para atualizar todos os seus usos.',
+      'Estas amostras usam o tema ativo. Cores sólidas sRGB exibem HEX; transparências exibem RGBA. Altere um token para atualizar seu valor.',
     accent: 'Interação',
     surface: 'Superfície do painel',
     background: 'Fundo da aplicação',

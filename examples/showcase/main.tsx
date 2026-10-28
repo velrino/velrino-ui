@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
+import packageInfo from '../../package.json';
 import { UIProvider, type SurfaceAppearance } from '../../src/index.js';
 import {
   DesignSystemRoot,
@@ -63,7 +64,7 @@ function App() {
       <UIProvider appearance={appearance}>
         <header className="demo-toolbar">
           <a href="#" className="demo-wordmark">
-            VELRINO UI<span>0.0.1</span>
+            VELRINO UI<span>{packageInfo.version}</span>
           </a>
           <ShowcaseSettings
             theme={theme}
