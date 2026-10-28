@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Move standalone preview controls into a centered, responsive settings dialog with theme, surface and language tabs. Use matching option widths, explicit English/Portuguese selection and local flag icons. Align Portfolio Cyan with the HackUniverse palette.
+
 ## 0.0.1 — 2026-10-28
 
 - Establish the portable React package, semantic token contract, build pipeline and contribution workflow.

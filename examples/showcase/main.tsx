@@ -1,6 +1,6 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Button, UIProvider, type SurfaceAppearance } from '../../src/index.js';
+import { UIProvider, type SurfaceAppearance } from '../../src/index.js';
 import {
   DesignSystemRoot,
   type DesignSystemAdapters,
@@ -10,17 +10,9 @@ import { designSystemEn, designSystemPtBR } from '../../src/showcase/messages/in
 import '../../src/styles/index.css';
 import '../../src/styles/showcase.css';
 import './styles.css';
-
-type Locale = 'en' | 'pt-BR';
-const LocaleContext = createContext({ locale: 'en' as Locale, toggle: () => {} });
-function LanguagePicker() {
-  const { locale, toggle } = useContext(LocaleContext);
-  return (
-    <Button variant="outline" onClick={toggle}>
-      {locale === 'en' ? 'Português' : 'English'}
-    </Button>
-  );
-}
+import { LanguagePicker } from './components/language-picker.js';
+import { LocaleContext, type Locale } from './i18n.js';
+import { ShowcaseSettings, type DemoTheme } from './components/showcase-settings.js';
 function BrandLogo({ size = 96, alt, className }: DesignSystemBrandLogoProps) {
   return (
     <svg
@@ -47,7 +39,7 @@ function BrandLogo({ size = 96, alt, className }: DesignSystemBrandLogoProps) {
 }
 function App() {
   const [locale, setLocale] = useState<Locale>('en');
-  const [theme, setTheme] = useState('hackuniverse');
+  const [theme, setTheme] = useState<DemoTheme>('cyan');
   const [appearance, setAppearance] = useState<SurfaceAppearance>('sci-fi');
   useEffect(() => {
     document.documentElement.dataset.demoTheme = theme;
@@ -67,49 +59,19 @@ function App() {
     [locale],
   );
   return (
-    <LocaleContext
-      value={{ locale, toggle: () => setLocale((value) => (value === 'en' ? 'pt-BR' : 'en')) }}
-    >
-      <header className="demo-toolbar">
-        <a href="#" className="demo-wordmark">
-          VELRINO UI<span>0.0.1</span>
-        </a>
-        <div
-          role="group"
-          aria-label={locale === 'en' ? 'Theme preview' : 'Prévia de tema'}
-          className="demo-theme-controls"
-        >
-          {['hackuniverse', 'cyan', 'purple', 'red'].map((value) => (
-            <Button
-              key={value}
-              size="sm"
-              variant="outline"
-              aria-pressed={theme === value}
-              onClick={() => setTheme(value)}
-            >
-              {value === 'hackuniverse' ? 'HackUniverse' : `Portfolio · ${value}`}
-            </Button>
-          ))}
-        </div>
-        <LanguagePicker />
-      </header>
-      <div className="demo-appearance-controls">
-        <Button
-          variant="outline"
-          aria-pressed={appearance === 'default'}
-          onClick={() => setAppearance('default')}
-        >
-          {locale === 'en' ? 'Standard surfaces' : 'Superfícies padrão'}
-        </Button>
-        <Button
-          variant="outline"
-          aria-pressed={appearance === 'sci-fi'}
-          onClick={() => setAppearance('sci-fi')}
-        >
-          {locale === 'en' ? 'Sci-fi surfaces' : 'Superfícies sci-fi'}
-        </Button>
-      </div>
+    <LocaleContext value={{ locale, setLocale }}>
       <UIProvider appearance={appearance}>
+        <header className="demo-toolbar">
+          <a href="#" className="demo-wordmark">
+            VELRINO UI<span>0.0.1</span>
+          </a>
+          <ShowcaseSettings
+            theme={theme}
+            onThemeChange={setTheme}
+            appearance={appearance}
+            onAppearanceChange={setAppearance}
+          />
+        </header>
         <DesignSystemRoot adapters={adapters} />
       </UIProvider>
     </LocaleContext>

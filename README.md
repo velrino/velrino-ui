@@ -56,7 +56,7 @@ PLAYWRIGHT_SKIP_BROWSER_GC=1 pnpm exec playwright install chromium
 pnpm run test:browser
 ```
 
-The standalone example runs at `http://127.0.0.1:4321` and previews HackUniverse plus the portfolio's cyan, purple and red palettes. Browser checks cover desktop and mobile emulation; they do not establish physical-device performance.
+The standalone example runs at `http://127.0.0.1:4321`. Its menu opens centered settings with theme, surface and language tabs. Options have matching widths, and English/Portuguese selection shows local flag artwork. Portfolio Cyan uses the same palette as HackUniverse; Purple and Red are also available. Browser checks cover desktop and mobile emulation; they do not establish physical-device performance.
 
 ## Distribution
 

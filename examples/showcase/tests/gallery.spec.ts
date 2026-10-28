@@ -24,7 +24,22 @@ test('catalog preserves values across page/tab mode, keyboard dialogs and locali
   await expect(trigger).toBeFocused();
   await page.getByRole('button', { name: 'Single page', exact: true }).click();
   await expect(page.getByLabel('Validation example', { exact: true })).toHaveValue('Orbit');
-  await page.locator('.demo-toolbar').getByRole('button', { name: 'Português' }).click();
+  const languageTrigger = page.getByRole('button', {
+    name: 'Change language: English',
+    exact: true,
+  });
+  await languageTrigger.click();
+  const languages = page.getByRole('dialog', { name: 'Choose your language' });
+  await expect(languages).toBeVisible();
+  await expect(languages.locator('img')).toHaveCount(2);
+  await expect(languages.getByRole('button', { name: 'English', exact: true })).toBeFocused();
+  await expect(page.locator('h1')).toHaveText('Design system');
+  await page.keyboard.press('Escape');
+  await expect(languageTrigger).toBeFocused();
+  await languageTrigger.click();
+  await languages.getByRole('button', { name: 'Português', exact: true }).click();
+  await expect(languages).toBeHidden();
+  await expect(page.locator('#vui-example-validation')).toHaveValue('Orbit');
   await expect(page.getByRole('heading', { name: 'Sistema de design', exact: true })).toBeVisible();
   expect(errors).toEqual([]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
@@ -34,7 +49,28 @@ test('catalog preserves values across page/tab mode, keyboard dialogs and locali
 
 test('dialog, sheet and loading use the selected portfolio theme', async ({ page }, info) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Portfolio · purple', exact: true }).click();
+  await page.getByRole('button', { name: 'Open preview settings', exact: true }).click();
+  const settings = page.getByRole('dialog', { name: 'Preview settings', exact: true });
+  const hackColors = await page.evaluate(() =>
+    ['--vui-accent', '--vui-background', '--vui-surface', '--vui-text', '--vui-muted'].map((key) =>
+      getComputedStyle(document.documentElement).getPropertyValue(key).trim(),
+    ),
+  );
+  await settings.getByRole('button', { name: 'Cyan', exact: true }).click();
+  expect(
+    await page.evaluate(() =>
+      ['--vui-accent', '--vui-background', '--vui-surface', '--vui-text', '--vui-muted'].map(
+        (key) => getComputedStyle(document.documentElement).getPropertyValue(key).trim(),
+      ),
+    ),
+  ).toEqual(hackColors);
+  const widths = await settings
+    .locator('.demo-settings-options > button')
+    .evaluateAll((elements) => elements.map((element) => element.getBoundingClientRect().width));
+  expect(Math.max(...widths) - Math.min(...widths)).toBeLessThan(1);
+  await settings.getByRole('button', { name: 'Purple', exact: true }).click();
+  await page.screenshot({ path: info.outputPath('settings-theme.png'), animations: 'disabled' });
+  await page.keyboard.press('Escape');
   await page.getByRole('button', { name: 'Open example dialog', exact: true }).click();
   const dialog = page.getByRole('dialog', { name: 'A focused decision' });
   await expect(dialog).toBeVisible();
@@ -91,7 +127,22 @@ test('slider keyboard controls and a nested menu remain usable', async ({ page }
 
 test('standard surfaces keep modal behavior without sci-fi decoration', async ({ page }, info) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Standard surfaces', exact: true }).click();
+  await page.getByRole('button', { name: 'Open preview settings', exact: true }).click();
+  const settings = page.getByRole('dialog', { name: 'Preview settings', exact: true });
+  await settings.getByRole('tab', { name: 'Surfaces', exact: true }).click();
+  await settings.getByRole('button', { name: 'Standard surfaces', exact: true }).click();
+  await expect(settings).toHaveAttribute('data-appearance', 'default');
+  await settings.getByRole('tab', { name: 'Language', exact: true }).click();
+  await expect(settings.locator('img')).toHaveCount(2);
+  await settings.getByRole('button', { name: 'Português', exact: true }).click();
+  await expect(
+    page.getByRole('dialog', { name: 'Configurações da prévia', exact: true }),
+  ).toBeVisible();
+  await page
+    .getByRole('dialog', { name: 'Configurações da prévia', exact: true })
+    .getByRole('button', { name: 'English', exact: true })
+    .click();
+  await page.keyboard.press('Escape');
   const trigger = page.getByRole('button', { name: 'Open example dialog', exact: true });
   await trigger.click();
   const dialog = page.getByRole('dialog', { name: 'A focused decision' });
