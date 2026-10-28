@@ -15,6 +15,7 @@ type Navigation = {
 };
 
 export function DesignSystemShell({
+  as: Element = 'main',
   copy,
   mode,
   activeSection,
@@ -23,10 +24,10 @@ export function DesignSystemShell({
   onAnchorClick,
   onTabListMount,
   children,
-}: Navigation & { copy: DesignSystemCopy; children: ReactNode }) {
+}: Navigation & { as?: 'main' | 'section' | 'div'; copy: DesignSystemCopy; children: ReactNode }) {
   const tabbed = mode === 'tabs';
   return (
-    <main className="vui-showcase">
+    <Element className="vui-showcase">
       <header className="vui-showcase-header">
         <p className="vui-showcase-kicker">{copy.eyebrow}</p>
         <h1 className="vui-showcase-title">{copy.title}</h1>
@@ -77,6 +78,6 @@ export function DesignSystemShell({
         </div>
         <div className="vui-showcase-section-list">{children}</div>
       </Tabs>
-    </main>
+    </Element>
   );
 }

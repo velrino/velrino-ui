@@ -4,6 +4,14 @@
   translate: none;
   --vui-sheet-offset: 100%;
 }
+.vui-sheet-body {
+  display: flex;
+  flex-direction: column;
+}
+.vui-sheet-body > [data-slot='dialog-footer'] {
+  margin-top: auto;
+  padding-top: 1rem;
+}
 .vui-sheet[data-side='right'] {
   inset: 0 0 0 auto;
   width: min(85vw, 24rem);

@@ -101,7 +101,7 @@
 .vui-showcase-section,
 .vui-showcase-section-panel {
   min-width: 0;
-  scroll-margin-top: 6rem;
+  scroll-margin-top: var(--vui-anchor-offset, 6rem);
 }
 .vui-showcase-section:focus-visible {
   outline: 2px solid var(--vui-accent);
