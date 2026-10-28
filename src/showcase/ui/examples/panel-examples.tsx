@@ -1,12 +1,18 @@
-import { HudPanel } from '../../../components/hud-panel/index.js';
+import { Panel } from '../../../components/panel/index.js';
 import { useDesignSystemCopy } from '../../adapters/hooks/useDesignSystemAdapters.js';
 
 export function PanelExamples() {
   const { panels: copy } = useDesignSystemCopy();
   return (
-    <HudPanel className="vui-showcase-nested-panel">
-      <h3>{copy.title}</h3>
-      <p>{copy.body}</p>
-    </HudPanel>
+    <div className="vui-showcase-grid">
+      <Panel appearance="default" className="vui-showcase-nested-panel">
+        <h3>{copy.standard}</h3>
+        <p>{copy.body}</p>
+      </Panel>
+      <Panel appearance="sci-fi" className="vui-showcase-nested-panel">
+        <h3>{copy.scifi}</h3>
+        <p>{copy.body}</p>
+      </Panel>
+    </div>
   );
 }

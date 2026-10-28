@@ -1,6 +1,6 @@
 # Velrino UI
 
-Themeable React components and sci-fi interface primitives shared by [HackUniverse](https://github.com/velrino/hackuniverse) and [Velrino Portfolio](https://github.com/velrino/portfolio-front).
+Accessible, themeable React components with optional sci-fi surfaces. Initial consumers: [HackUniverse](https://github.com/velrino/hackuniverse) and [Velrino Portfolio](https://github.com/velrino/portfolio-front).
 
 The starting point is HackUniverse's evolved gallery, dialog frame, accessible primitives and globe loader. Applications keep their own colors, fonts, brand, localization and business logic.
 
@@ -33,16 +33,18 @@ See [architecture](docs/architecture.md), [contributing](CONTRIBUTING.md) and [i
 
 ## Components
 
-| Family     | Public API                                                                                                                                |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| Actions    | `Button`, `buttonVariants`, `AnchorLink`                                                                                                  |
-| Surfaces   | `HudPanel`, `Dialog`, `DialogContent`, `DialogTrigger`, `DialogClose`, `DialogHeader`, `DialogFooter`, `DialogTitle`, `DialogDescription` |
-| Inputs     | `Input`, `Slider`                                                                                                                         |
-| Navigation | `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`, `Accordion`, `DropdownMenu`                                                             |
-| Drawers    | `Sheet`, `SheetTrigger`, `SheetContent`, `SheetClose`, `SheetHeader`, `SheetFooter`, `SheetTitle`, `SheetDescription`                     |
-| Feedback   | `FullScreenLoader`, `TypewriterText`                                                                                                      |
+| Family     | Public API                                                                                                                             |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Actions    | `Button`, `buttonVariants`, `AnchorLink`                                                                                               |
+| Surfaces   | `Panel`, `Dialog`, `DialogContent`, `DialogTrigger`, `DialogClose`, `DialogHeader`, `DialogFooter`, `DialogTitle`, `DialogDescription` |
+| Inputs     | `Input`, `Slider`                                                                                                                      |
+| Navigation | `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`, `Accordion`, `DropdownMenu`                                                          |
+| Drawers    | `Sheet`, `SheetTrigger`, `SheetContent`, `SheetClose`, `SheetHeader`, `SheetFooter`, `SheetTitle`, `SheetDescription`                  |
+| Feedback   | `FullScreenLoader`, `TypewriterText`                                                                                                   |
 
 Dialogs support localized close controls, controlled state, custom portal containers and full-screen content. The loader clamps progress, supports indeterminate work and delegates cancellation to its caller. Typewriter animation preserves complete graphemes, final layout and accessible text.
+
+`Panel` groups content; it is not a modal. `Dialog` owns modal focus, the overlay and dismissal. Both use standard surfaces by default. Choose `appearance="sci-fi"` for one surface, or wrap a tree in `<UIProvider appearance="sci-fi">` to opt into that presentation across panels, dialogs and sheets. Providers compose without adding DOM wrappers; application-owned CSS variables still control all colors and fonts.
 
 ## Interactive gallery
 

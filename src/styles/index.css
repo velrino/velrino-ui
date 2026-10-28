@@ -2,7 +2,7 @@
 @import './tokens.css' layer(base);
 @import './accessibility.css' layer(components);
 @import '../components/button/button.css' layer(components);
-@import '../components/hud-panel/hud-panel.css' layer(components);
+@import '../components/panel/panel.css' layer(components);
 @import '../components/dialog/dialog.css' layer(components);
 @import '../components/input/input.css' layer(components);
 @import '../components/tabs/tabs.css' layer(components);

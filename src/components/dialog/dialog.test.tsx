@@ -16,7 +16,7 @@ test('dialog traps keyboard focus, closes with Escape and restores the trigger',
       <DialogTrigger asChild>
         <Button>Open settings</Button>
       </DialogTrigger>
-      <DialogContent closeLabel="Fechar">
+      <DialogContent closeLabel="Fechar" appearance="sci-fi">
         <DialogTitle>Settings</DialogTitle>
         <DialogDescription>Update your preferences.</DialogDescription>
         <Input aria-label="Display name" />

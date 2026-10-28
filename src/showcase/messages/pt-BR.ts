@@ -2,7 +2,9 @@ import type { DesignSystemCopy } from './types.js';
 
 const ptBR = {
   panels: {
-    description: 'A mesma moldura sci-fi decorativa, preservando conteúdo e indicadores de foco.',
+    standard: 'Superfície padrão',
+    scifi: 'Superfície sci-fi',
+    description: 'Uma superfície para agrupar conteúdo, com moldura padrão ou decorativa opcional.',
     title: 'Pronto para sua próxima ideia',
     body: 'Cores e fontes pertencem à aplicação. A moldura compartilhada se adapta a elas.',
   },
@@ -56,7 +58,7 @@ const ptBR = {
   typewriter: {
     description:
       'O texto animado reserva seu espaço, preserva grafemas completos e respeita a redução de movimento.',
-    text: 'Crie uma vez. Explore um universo de possibilidades. 👩🏽‍🚀',
+    text: 'Crie uma vez. Construa interfaces claras e acessíveis.',
     replay: 'Repetir animação',
     motion: 'Ativar animação',
   },
@@ -84,7 +86,7 @@ const ptBR = {
     brand: 'Marca',
   },
   principles: {
-    description: 'Uma interface clara com uma moldura discreta de ficção científica.',
+    description: 'Uma interface clara com molduras decorativas opcionais.',
     interaction:
       'O ciano indica interação e seleção. Reserve as cores de alerta para informações relevantes.',
     readability:
@@ -107,7 +109,7 @@ const ptBR = {
   typography: {
     description: 'Títulos marcantes sem serifa, texto legível e rótulos técnicos compactos.',
     headingLabel: 'Título',
-    headingSample: 'Um universo de possibilidades.',
+    headingSample: 'Interfaces que funcionam juntas.',
     bodyLabel: 'Texto',
     bodySample:
       'Escreva textos curtos e diretos. A moldura deve apoiar a tarefa e deixar clara a próxima ação.',
@@ -131,7 +133,7 @@ const ptBR = {
   },
   inputs: {
     description:
-      'Campos nativos compartilham o estilo HUD. Rótulos, orientações e estados desabilitados permanecem explícitos.',
+      'Campos reutilizáveis com rótulos, orientações e estados desabilitados explícitos.',
     normalLabel: 'Campo normal',
     placeholder: 'Escreva algo…',
     normalHint: 'Seu texto continua aqui quando você muda o idioma da interface.',
@@ -164,9 +166,8 @@ const ptBR = {
     complete: 'Prévia de carregamento concluída.',
   },
   brand: {
-    description:
-      'A marca de galáxia aprovada segue a paleta compartilhada da interface. Mantenha sua arte consistente com a origem.',
-    wordmark: 'Marca de galáxia HackUniverse',
+    description: 'Uma marca fornecida pela aplicação. Mantenha a arte e suas proporções originais.',
+    wordmark: 'Marca da aplicação',
     rule: 'Mantenha as proporções do logo e dê espaço a ele. Não altere suas cores para representar estado ou seleção.',
   },
 } satisfies DesignSystemCopy;
