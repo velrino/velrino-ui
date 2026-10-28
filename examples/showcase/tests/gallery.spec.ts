@@ -52,6 +52,8 @@ test('dialog, sheet and loading use the selected portfolio theme', async ({ page
   await page.getByRole('button', { name: 'Open sheet: Right', exact: true }).click();
   const sheet = page.getByRole('dialog', { name: 'A little more space' });
   await expect(sheet).toBeVisible();
+  const footer = await sheet.locator('[data-slot="dialog-footer"]').boundingBox();
+  expect(footer!.y + footer!.height).toBeGreaterThan(page.viewportSize()!.height * 0.8);
   await page.keyboard.press('Escape');
   await expect(sheet).toBeHidden();
   await page.getByRole('button', { name: 'Preview loading screen', exact: true }).click();
