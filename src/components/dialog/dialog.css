@@ -5,6 +5,7 @@
   background: var(--vui-overlay);
 }
 .vui-dialog-content {
+  box-sizing: border-box;
   position: fixed;
   z-index: var(--vui-layer);
   top: 50%;
