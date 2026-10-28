@@ -9,3 +9,7 @@
 @import '../components/anchor-link/anchor-link.css' layer(components);
 @import '../components/typewriter-text/typewriter-text.css' layer(components);
 @import '../components/full-screen-loader/full-screen-loader.css' layer(components);
+@import '../components/accordion/accordion.css' layer(components);
+@import '../components/dropdown-menu/dropdown-menu.css' layer(components);
+@import '../components/sheet/sheet.css' layer(components);
+@import '../components/slider/slider.css' layer(components);

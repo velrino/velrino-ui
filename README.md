@@ -37,11 +37,24 @@ See [architecture](docs/architecture.md), [contributing](CONTRIBUTING.md) and [i
 | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | Actions    | `Button`, `buttonVariants`, `AnchorLink`                                                                                                  |
 | Surfaces   | `HudPanel`, `Dialog`, `DialogContent`, `DialogTrigger`, `DialogClose`, `DialogHeader`, `DialogFooter`, `DialogTitle`, `DialogDescription` |
-| Inputs     | `Input`                                                                                                                                   |
-| Navigation | `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`                                                                                          |
+| Inputs     | `Input`, `Slider`                                                                                                                         |
+| Navigation | `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`, `Accordion`, `DropdownMenu`                                                             |
+| Drawers    | `Sheet`, `SheetTrigger`, `SheetContent`, `SheetClose`, `SheetHeader`, `SheetFooter`, `SheetTitle`, `SheetDescription`                     |
 | Feedback   | `FullScreenLoader`, `TypewriterText`                                                                                                      |
 
 Dialogs support localized close controls, controlled state, custom portal containers and full-screen content. The loader clamps progress, supports indeterminate work and delegates cancellation to its caller. Typewriter animation preserves complete graphemes, final layout and accessible text.
+
+## Interactive gallery
+
+`@velrino/ui/showcase` exports `DesignSystemRoot` and its explicit brand/localization adapter types. Import typed English/Portuguese dictionaries from the server-safe `@velrino/ui/messages` export, and load `@velrino/ui/showcase.css` alongside the runtime stylesheet. Every component family has a live example; page and tab navigation preserve example state.
+
+```sh
+pnpm run demo:dev
+PLAYWRIGHT_SKIP_BROWSER_GC=1 pnpm exec playwright install chromium
+pnpm run test:browser
+```
+
+The standalone example runs at `http://127.0.0.1:4321` and previews HackUniverse plus the portfolio's cyan, purple and red palettes. Browser checks cover desktop and mobile emulation; they do not establish physical-device performance.
 
 ## Distribution
 

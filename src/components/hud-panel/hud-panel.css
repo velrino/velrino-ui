@@ -1,5 +1,6 @@
 /* Only decorative layers are clipped; content and focus rings remain intact. */
 .vui-panel {
+  box-sizing: border-box;
   isolation: isolate;
   border: 0;
   border-radius: 0;
