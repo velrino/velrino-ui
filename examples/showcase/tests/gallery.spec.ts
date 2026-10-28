@@ -86,3 +86,18 @@ test('slider keyboard controls and a nested menu remain usable', async ({ page }
     }),
   ).toBeVisible();
 });
+
+test('standard surfaces keep modal behavior without sci-fi decoration', async ({ page }, info) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Standard surfaces', exact: true }).click();
+  const trigger = page.getByRole('button', { name: 'Open example dialog', exact: true });
+  await trigger.click();
+  const dialog = page.getByRole('dialog', { name: 'A focused decision' });
+  await expect(dialog).toBeVisible();
+  await expect(dialog).toHaveAttribute('data-appearance', 'default');
+  await expect(dialog.locator('[data-slot="dialog-frame"]')).toHaveCount(0);
+  await page.screenshot({ path: info.outputPath('standard-dialog.png'), animations: 'disabled' });
+  await page.keyboard.press('Escape');
+  await expect(dialog).toBeHidden();
+  await expect(trigger).toBeFocused();
+});

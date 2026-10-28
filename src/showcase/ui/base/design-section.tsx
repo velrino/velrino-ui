@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { HudPanel } from '../../../components/hud-panel/index.js';
+import { Panel } from '../../../components/panel/index.js';
 import { TabsContent } from '../../../components/tabs/index.js';
 import type { ShowcaseSectionId } from '../../configs/showcase.js';
 
@@ -39,9 +39,9 @@ export function DesignSection({
           {title}
         </h2>
         <p className="vui-showcase-description">{description}</p>
-        <HudPanel as="div" className="vui-showcase-example">
+        <Panel as="div" className="vui-showcase-example">
           {children}
-        </HudPanel>
+        </Panel>
       </section>
     </TabsContent>
   );

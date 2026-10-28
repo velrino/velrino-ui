@@ -1,6 +1,8 @@
 const en = {
   panels: {
-    description: 'The same decorative sci-fi frame, with content and focus rings kept clear.',
+    standard: 'Standard surface',
+    scifi: 'Sci-fi surface',
+    description: 'A surface for grouping content, with standard or optional decorative framing.',
     title: 'Ready for your next idea',
     body: 'Colors and fonts belong to the application. The shared frame adapts to them.',
   },
@@ -53,7 +55,7 @@ const en = {
   typewriter: {
     description:
       'Animated text reserves its final layout, preserves full graphemes and respects reduced motion.',
-    text: 'Build once. Explore a universe of possibilities. 👩🏽‍🚀',
+    text: 'Build once. Create clear, accessible interfaces.',
     replay: 'Replay animation',
     motion: 'Enable animation',
   },
@@ -81,7 +83,7 @@ const en = {
     brand: 'Brand',
   },
   principles: {
-    description: 'A clear interface with a restrained science-fiction frame.',
+    description: 'A clear interface with optional decorative framing.',
     interaction:
       'The accent color marks interaction and selection. Reserve alert colors for meaningful feedback.',
     readability:
@@ -104,7 +106,7 @@ const en = {
   typography: {
     description: 'Strong sans-serif headings, readable body text and compact technical labels.',
     headingLabel: 'Heading',
-    headingSample: 'A universe of possibilities.',
+    headingSample: 'Interfaces that work together.',
     bodyLabel: 'Body',
     bodySample:
       'Write short, direct interface text. Let the frame support the task and keep the next action clear.',
@@ -127,8 +129,7 @@ const en = {
     feedback: 'Activated: {variant}',
   },
   inputs: {
-    description:
-      'Native inputs share the HUD treatment. Labels, helpful feedback and disabled states remain explicit.',
+    description: 'Reusable inputs with explicit labels, helpful feedback and disabled states.',
     normalLabel: 'Normal input',
     placeholder: 'Write something…',
     normalHint: 'Your input stays here when the interface language changes.',
@@ -156,13 +157,13 @@ const en = {
       'A full-screen planet loading component. This five-second preview simulates progress; it is not a real import or network request.',
     open: 'Preview loading screen',
     label: 'Loading screen demo',
-    detail: 'Simulated progress. No website is being imported.',
+    detail: 'Simulated progress. No background work is running.',
     cancel: 'Stop preview',
     complete: 'Loading preview complete.',
   },
   brand: {
     description:
-      'The approved galaxy mark follows the shared interface palette. Keep its artwork consistent with the source.',
+      'A brand mark supplied by the host application. Keep its original artwork and proportions.',
     wordmark: 'Application brand mark',
     rule: "Keep the logo's proportions and give it space. Do not recolor it to match status or selection.",
   },

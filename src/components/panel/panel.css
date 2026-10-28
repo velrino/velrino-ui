@@ -2,18 +2,24 @@
 .vui-panel {
   box-sizing: border-box;
   isolation: isolate;
+  border: 1px solid var(--vui-line);
+  border-radius: var(--vui-radius);
+  background: var(--vui-surface);
+  color: var(--vui-text);
+}
+
+.vui-panel[data-appearance='sci-fi'] {
   border: 0;
   border-radius: 0;
   background: transparent;
-  color: var(--vui-text);
 }
 
 .vui-panel:where(:not([data-slot='dialog-content'])) {
   position: relative;
 }
 
-.vui-panel::before,
-.vui-panel::after {
+.vui-panel[data-appearance='sci-fi']::before,
+.vui-panel[data-appearance='sci-fi']::after {
   position: absolute;
   pointer-events: none;
   content: '';
@@ -29,7 +35,7 @@
   );
 }
 
-.vui-panel::before {
+.vui-panel[data-appearance='sci-fi']::before {
   z-index: -2;
   inset: 0;
   background: linear-gradient(
@@ -42,7 +48,7 @@
   filter: drop-shadow(0 0 5px color-mix(in srgb, var(--vui-accent) 12%, transparent));
 }
 
-.vui-panel::after {
+.vui-panel[data-appearance='sci-fi']::after {
   z-index: -1;
   inset: 1px;
   background-color: var(--vui-surface);
@@ -63,14 +69,17 @@
 .vui-panel--dialog {
   position: fixed;
   overflow: visible;
+  box-shadow: 0 24px 90px var(--vui-shadow);
+}
+.vui-panel--dialog[data-appearance='sci-fi'] {
   box-shadow:
     0 24px 90px var(--vui-shadow),
     0 0 55px color-mix(in srgb, var(--vui-accent) 5%, transparent);
 }
 
 /* Modal borders are canonical here; no consumer needs to redraw the frame. */
-.vui-panel--dialog::before,
-.vui-panel--dialog::after {
+.vui-panel--dialog[data-appearance='sci-fi']::before,
+.vui-panel--dialog[data-appearance='sci-fi']::after {
   clip-path: polygon(
     var(--vui-dialog-cut) 0,
     calc(100% - 10px) 0,
@@ -83,7 +92,7 @@
   );
 }
 
-.vui-panel--dialog::before {
+.vui-panel--dialog[data-appearance='sci-fi']::before {
   background: linear-gradient(
     135deg,
     var(--vui-accent) 0%,
@@ -94,7 +103,7 @@
   );
 }
 
-.vui-panel--dialog::after {
+.vui-panel--dialog[data-appearance='sci-fi']::after {
   background-image:
     linear-gradient(
       135deg,
@@ -202,8 +211,8 @@
     color: CanvasText;
   }
 
-  .vui-panel--dialog::before,
-  .vui-panel--dialog::after,
+  .vui-panel--dialog[data-appearance='sci-fi']::before,
+  .vui-panel--dialog[data-appearance='sci-fi']::after,
   .vui-dialog-frame {
     display: none;
   }

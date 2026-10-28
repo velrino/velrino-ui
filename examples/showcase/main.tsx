@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Button } from '../../src/index.js';
+import { Button, UIProvider, type SurfaceAppearance } from '../../src/index.js';
 import {
   DesignSystemRoot,
   type DesignSystemAdapters,
@@ -48,6 +48,7 @@ function BrandLogo({ size = 96, alt, className }: DesignSystemBrandLogoProps) {
 function App() {
   const [locale, setLocale] = useState<Locale>('en');
   const [theme, setTheme] = useState('hackuniverse');
+  const [appearance, setAppearance] = useState<SurfaceAppearance>('sci-fi');
   useEffect(() => {
     document.documentElement.dataset.demoTheme = theme;
   }, [theme]);
@@ -92,7 +93,25 @@ function App() {
         </div>
         <LanguagePicker />
       </header>
-      <DesignSystemRoot adapters={adapters} />
+      <div className="demo-appearance-controls">
+        <Button
+          variant="outline"
+          aria-pressed={appearance === 'default'}
+          onClick={() => setAppearance('default')}
+        >
+          {locale === 'en' ? 'Standard surfaces' : 'Superfícies padrão'}
+        </Button>
+        <Button
+          variant="outline"
+          aria-pressed={appearance === 'sci-fi'}
+          onClick={() => setAppearance('sci-fi')}
+        >
+          {locale === 'en' ? 'Sci-fi surfaces' : 'Superfícies sci-fi'}
+        </Button>
+      </div>
+      <UIProvider appearance={appearance}>
+        <DesignSystemRoot adapters={adapters} />
+      </UIProvider>
     </LocaleContext>
   );
 }

@@ -12,6 +12,8 @@ Velrino UI is a framework-independent React package based on the evolved HackUni
 
 ## Styling
 
+Public components use application-agnostic names. `Panel` groups content; `Dialog` manages modal interaction. Standard surfaces are the default. `UIProvider` and per-surface `appearance` allow an explicit sci-fi opt-in independently of colors, fonts, brand or localization. Application adapters choose their own presentation once, including portal content.
+
 Publish ready-to-use, namespaced CSS. Never require a consumer Tailwind source scan, add a global reset, change body styles or download fonts. Clip decorative layers, never content or focus rings. Respect reduced motion and forced colors.
 
 Import `@velrino/ui/styles.css` once, then define an application adapter after it. Root-level tokens reach portal content; dialogs can accept a custom portal container for explicitly scoped surfaces.

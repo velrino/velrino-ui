@@ -80,3 +80,9 @@ body {
 .demo-toolbar [aria-pressed='true'] {
   border-color: var(--vui-accent);
 }
+.demo-appearance-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 1rem clamp(1rem, 4vw, 3rem) 0;
+}
