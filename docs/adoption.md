@@ -63,6 +63,8 @@ The provider adds no DOM wrapper and works through React portals. A per-componen
 
 Use `DesignSystemRoot` from `@velrino/ui/showcase` and import `@velrino/ui/showcase.css`. Host adapters provide the brand name/logo, a language control and a `DesignSystemCopy` dictionary. Built-in dictionaries come from the server-safe `@velrino/ui/messages` export; alternate languages can supply the same typed shape.
 
+The gallery defaults to a `main` landmark. Use `as="div"` or `as="section"` when embedding it inside an existing page landmark.
+
 ## Compatibility
 
 Supports React/React DOM 19.1 through 19.x. No Next.js dependency or source transpilation configuration is required; compiled client boundaries are preserved. Node.js 22+ and pinned pnpm are development/release requirements, not browser runtime dependencies.
