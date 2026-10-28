@@ -21,7 +21,67 @@
       "types": "./dist/showcase/messages/index.d.ts",
       "import": "./dist/showcase/messages/index.js"
     },
-    "./showcase.css": "./dist/showcase.css"
+    "./showcase.css": "./dist/showcase.css",
+    "./button": {
+      "types": "./dist/components/button/index.d.ts",
+      "import": "./dist/components/button/index.js"
+    },
+    "./dialog": {
+      "types": "./dist/components/dialog/index.d.ts",
+      "import": "./dist/components/dialog/index.js"
+    },
+    "./panel": {
+      "types": "./dist/components/panel/index.d.ts",
+      "import": "./dist/components/panel/index.js"
+    },
+    "./input": {
+      "types": "./dist/components/input/index.d.ts",
+      "import": "./dist/components/input/index.js"
+    },
+    "./tabs": {
+      "types": "./dist/components/tabs/index.d.ts",
+      "import": "./dist/components/tabs/index.js"
+    },
+    "./anchor-link": {
+      "types": "./dist/components/anchor-link/index.d.ts",
+      "import": "./dist/components/anchor-link/index.js"
+    },
+    "./typewriter-text": {
+      "types": "./dist/components/typewriter-text/index.d.ts",
+      "import": "./dist/components/typewriter-text/index.js"
+    },
+    "./full-screen-loader": {
+      "types": "./dist/components/full-screen-loader/index.d.ts",
+      "import": "./dist/components/full-screen-loader/index.js"
+    },
+    "./accordion": {
+      "types": "./dist/components/accordion/index.d.ts",
+      "import": "./dist/components/accordion/index.js"
+    },
+    "./dropdown-menu": {
+      "types": "./dist/components/dropdown-menu/index.d.ts",
+      "import": "./dist/components/dropdown-menu/index.js"
+    },
+    "./sheet": {
+      "types": "./dist/components/sheet/index.d.ts",
+      "import": "./dist/components/sheet/index.js"
+    },
+    "./slider": {
+      "types": "./dist/components/slider/index.d.ts",
+      "import": "./dist/components/slider/index.js"
+    },
+    "./provider": {
+      "types": "./dist/provider/ui-provider.d.ts",
+      "import": "./dist/provider/ui-provider.js"
+    },
+    "./utils": {
+      "types": "./dist/lib/classes.d.ts",
+      "import": "./dist/lib/classes.js"
+    },
+    "./button-variants": {
+      "types": "./dist/components/button/button-variants.d.ts",
+      "import": "./dist/components/button/button-variants.js"
+    }
   },
   "files": [
     "dist",

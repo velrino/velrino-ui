@@ -16,6 +16,8 @@ Install with the application's existing package manager and commit its lockfile.
 
 ## Styles and theme
 
+Root imports are convenient in client code. Component exports such as `@velrino/ui/button`, `@velrino/ui/dialog` and `@velrino/ui/provider` let framework consumers keep route bundles focused. Pure helpers are available from server-safe `@velrino/ui/utils` and `@velrino/ui/button-variants` exports.
+
 Import `@velrino/ui/styles.css` once in the application's global stylesheet, after framework imports and before application overrides. Styles live in the base/components layers, so application utilities can still override layout. No package source scan or Tailwind plugin is needed.
 
 Map application variables rather than copying a preset:

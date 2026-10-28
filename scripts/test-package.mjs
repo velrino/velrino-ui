@@ -40,11 +40,15 @@ try {
       `
       import { Panel, Button, UIProvider, type PanelProps, type SurfaceAppearance } from '@velrino/ui';
       import { designSystemEn, type DesignSystemCopy } from '@velrino/ui/messages';
+      import { Panel as GranularPanel } from '@velrino/ui/panel';
+      import { buttonVariants } from '@velrino/ui/button-variants';
       const appearance: SurfaceAppearance = 'sci-fi';
       const props = { as: 'section', appearance, 'aria-label': 'Portable example' } satisfies PanelProps;
       const copy: DesignSystemCopy = designSystemEn;
       const example = <UIProvider appearance={appearance}><Panel {...props}><Button>{copy.buttons.normal}</Button></Panel></UIProvider>;
       void example;
+      void GranularPanel;
+      void buttonVariants({ variant: 'outline' });
     `,
     );
     await writeFile(
