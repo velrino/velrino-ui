@@ -1,0 +1,131 @@
+.vui-button {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-radius: var(--vui-radius);
+  font-family: var(--vui-font);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition:
+    background-color 150ms,
+    color 150ms,
+    border-color 150ms;
+}
+.vui-button svg {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+.vui-button:focus-visible {
+  outline: 2px solid var(--vui-accent);
+  outline-offset: 3px;
+}
+.vui-button:disabled,
+.vui-button[aria-disabled='true'] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.vui-button--default {
+  background: var(--vui-accent);
+  color: var(--vui-on-accent);
+}
+.vui-button--default:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--vui-accent) 85%, var(--vui-text));
+}
+.vui-button--destructive {
+  background: var(--vui-danger);
+  color: var(--vui-on-danger);
+}
+.vui-button--destructive:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--vui-danger) 85%, var(--vui-text));
+}
+.vui-button--secondary {
+  background: var(--vui-secondary);
+  color: var(--vui-text);
+}
+.vui-button--outline {
+  border-color: var(--vui-line);
+  background: var(--vui-surface);
+  color: var(--vui-text);
+}
+.vui-button--ghost {
+  background: transparent;
+  color: var(--vui-text);
+}
+.vui-button--outline:hover:not(:disabled),
+.vui-button--secondary:hover:not(:disabled),
+.vui-button--ghost:hover:not(:disabled) {
+  border-color: var(--vui-accent);
+  background: color-mix(in srgb, var(--vui-accent) 12%, var(--vui-surface));
+}
+.vui-button--link {
+  min-width: 0;
+  background: transparent;
+  color: var(--vui-text-accent);
+  text-underline-offset: 4px;
+}
+.vui-button--link:hover {
+  text-decoration: underline;
+}
+.vui-button--xs {
+  min-height: 1.75rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+}
+.vui-button--sm {
+  min-height: 2rem;
+  padding: 0.375rem 0.75rem;
+}
+.vui-button--lg {
+  min-height: 3rem;
+  padding: 0.75rem 1.5rem;
+}
+.vui-button--icon {
+  width: 2.75rem;
+  padding: 0;
+}
+.vui-button--icon-xs {
+  width: 1.75rem;
+  min-width: 1.75rem;
+  min-height: 1.75rem;
+  padding: 0;
+}
+.vui-button--icon-sm {
+  width: 2rem;
+  min-width: 2rem;
+  min-height: 2rem;
+  padding: 0;
+}
+.vui-button--icon-lg {
+  width: 3rem;
+  min-height: 3rem;
+  padding: 0;
+}
+@media (pointer: coarse) {
+  .vui-button {
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vui-button {
+    transition: none;
+  }
+}
+@media (forced-colors: active) {
+  .vui-button {
+    border: 1px solid ButtonText;
+  }
+}

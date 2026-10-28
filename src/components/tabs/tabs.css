@@ -1,0 +1,48 @@
+.vui-tabs {
+  display: flex;
+  min-height: 0;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.vui-tabs-list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border: 1px solid var(--vui-line);
+  background: var(--vui-surface);
+}
+.vui-tabs-trigger {
+  display: inline-flex;
+  min-height: 2.75rem;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border: 0;
+  background: transparent;
+  color: var(--vui-muted);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+.vui-tabs-trigger[data-state='active'] {
+  background: var(--vui-secondary);
+  color: var(--vui-text-accent);
+}
+.vui-tabs-trigger:focus-visible,
+.vui-tabs-content:focus-visible {
+  outline: 2px solid var(--vui-accent);
+  outline-offset: 2px;
+}
+.vui-tabs-trigger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.vui-tabs-content {
+  min-height: 0;
+  min-width: 0;
+}

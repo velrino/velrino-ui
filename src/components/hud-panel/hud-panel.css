@@ -1,0 +1,209 @@
+/* Only decorative layers are clipped; content and focus rings remain intact. */
+.vui-panel {
+  isolation: isolate;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--vui-text);
+}
+
+.vui-panel:where(:not([data-slot='dialog-content'])) {
+  position: relative;
+}
+
+.vui-panel::before,
+.vui-panel::after {
+  position: absolute;
+  pointer-events: none;
+  content: '';
+  clip-path: polygon(
+    var(--vui-cut) 0,
+    calc(100% - 12px) 0,
+    100% 12px,
+    100% calc(100% - var(--vui-cut)),
+    calc(100% - var(--vui-cut)) 100%,
+    12px 100%,
+    0 calc(100% - 12px),
+    0 var(--vui-cut)
+  );
+}
+
+.vui-panel::before {
+  z-index: -2;
+  inset: 0;
+  background: linear-gradient(
+    125deg,
+    var(--vui-accent),
+    color-mix(in srgb, var(--vui-accent) 30%, transparent) 30%,
+    color-mix(in srgb, var(--vui-accent) 38%, transparent) 70%,
+    var(--vui-accent)
+  );
+  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--vui-accent) 12%, transparent));
+}
+
+.vui-panel::after {
+  z-index: -1;
+  inset: 1px;
+  background-color: var(--vui-surface);
+  background-image:
+    linear-gradient(130deg, color-mix(in srgb, var(--vui-accent) 9%, transparent), transparent 65%),
+    linear-gradient(color-mix(in srgb, var(--vui-accent) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--vui-accent) 4%, transparent) 1px,
+      transparent 1px
+    );
+  background-size:
+    auto,
+    44px 44px,
+    44px 44px;
+}
+
+.vui-panel--dialog {
+  position: fixed;
+  overflow: visible;
+  box-shadow:
+    0 24px 90px var(--vui-shadow),
+    0 0 55px color-mix(in srgb, var(--vui-accent) 5%, transparent);
+}
+
+/* Modal borders are canonical here; no consumer needs to redraw the frame. */
+.vui-panel--dialog::before,
+.vui-panel--dialog::after {
+  clip-path: polygon(
+    var(--vui-dialog-cut) 0,
+    calc(100% - 10px) 0,
+    100% 10px,
+    100% calc(100% - var(--vui-dialog-cut)),
+    calc(100% - var(--vui-dialog-cut)) 100%,
+    10px 100%,
+    0 calc(100% - 10px),
+    0 var(--vui-dialog-cut)
+  );
+}
+
+.vui-panel--dialog::before {
+  background: linear-gradient(
+    135deg,
+    var(--vui-accent) 0%,
+    color-mix(in srgb, var(--vui-accent) 65%, transparent) 23%,
+    color-mix(in srgb, var(--vui-accent) 38%, transparent) 50%,
+    color-mix(in srgb, var(--vui-accent) 65%, transparent) 78%,
+    var(--vui-accent) 100%
+  );
+}
+
+.vui-panel--dialog::after {
+  background-image:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--vui-accent) 12%, transparent),
+      transparent 60%
+    ),
+    linear-gradient(color-mix(in srgb, var(--vui-accent) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--vui-accent) 4%, transparent) 1px,
+      transparent 1px
+    );
+}
+
+.vui-dialog-frame {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  color: var(--vui-accent);
+}
+
+.vui-dialog-frame > span,
+.vui-dialog-frame::before,
+.vui-dialog-frame::after {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  background: currentColor;
+}
+
+.vui-dialog-frame::before,
+.vui-dialog-frame::after {
+  width: var(--vui-dialog-cut);
+  height: var(--vui-dialog-cut);
+  content: '';
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--vui-accent) 35%, transparent));
+}
+
+.vui-dialog-frame::before {
+  top: 0;
+  left: 0;
+  clip-path: polygon(0 100%, 0 calc(100% - 5px), calc(100% - 5px) 0, 100% 0);
+}
+
+.vui-dialog-frame::after {
+  right: 0;
+  bottom: 0;
+  clip-path: polygon(100% 0, 100% 5px, 5px 100%, 0 100%);
+}
+
+.vui-dialog-frame__top {
+  top: 0;
+  left: calc(var(--vui-dialog-cut) + 18px);
+  width: clamp(54px, 26%, 128px);
+  height: 4px;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 5px) 100%, 5px 100%);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--vui-accent) 20%, transparent);
+}
+
+.vui-dialog-frame__left {
+  top: 22%;
+  left: 0;
+  width: 4px;
+  height: min(23%, 84px);
+  clip-path: polygon(0 0, 100% 5px, 100% calc(100% - 5px), 0 100%);
+}
+
+.vui-dialog-frame__right {
+  top: 14%;
+  right: 0;
+  width: 3px;
+  height: min(15%, 54px);
+  clip-path: polygon(0 4px, 100% 0, 100% 100%, 0 calc(100% - 4px));
+}
+
+.vui-dialog-frame__bottom {
+  bottom: 0;
+  left: 18%;
+  width: 35%;
+  height: 5px;
+  clip-path: polygon(5px 0, calc(100% - 5px) 0, 100% 100%, 0 100%);
+}
+
+.vui-dialog-frame > .vui-dialog-frame__dots {
+  right: calc(var(--vui-dialog-cut) + 12px);
+  bottom: 10px;
+  width: 27px;
+  height: 8px;
+  background: radial-gradient(circle, currentColor 1px, transparent 1.3px) 0 0 / 6px 6px;
+  opacity: 0.65;
+}
+
+/* The dedicated loading screen already draws its own full-viewport reticle. */
+.vui-panel--dialog.vui-full-screen-loader::before,
+.vui-panel--dialog.vui-full-screen-loader::after,
+.vui-panel--dialog.vui-full-screen-loader > .vui-dialog-frame {
+  display: none;
+}
+
+@media (forced-colors: active) {
+  .vui-panel--dialog:not(.vui-full-screen-loader) {
+    border: 1px solid CanvasText;
+    background: Canvas;
+    color: CanvasText;
+  }
+
+  .vui-panel--dialog::before,
+  .vui-panel--dialog::after,
+  .vui-dialog-frame {
+    display: none;
+  }
+}

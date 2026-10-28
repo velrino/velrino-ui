@@ -31,6 +31,18 @@ docs/               # Architecture, adoption and release guidance
 
 See [architecture](docs/architecture.md), [contributing](CONTRIBUTING.md) and [issues #1–#6](https://github.com/velrino/velrino-ui/issues).
 
+## Components
+
+| Family     | Public API                                                                                                                                |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| Actions    | `Button`, `buttonVariants`, `AnchorLink`                                                                                                  |
+| Surfaces   | `HudPanel`, `Dialog`, `DialogContent`, `DialogTrigger`, `DialogClose`, `DialogHeader`, `DialogFooter`, `DialogTitle`, `DialogDescription` |
+| Inputs     | `Input`                                                                                                                                   |
+| Navigation | `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`                                                                                          |
+| Feedback   | `FullScreenLoader`, `TypewriterText`                                                                                                      |
+
+Dialogs support localized close controls, controlled state, custom portal containers and full-screen content. The loader clamps progress, supports indeterminate work and delegates cancellation to its caller. Typewriter animation preserves complete graphemes, final layout and accessible text.
+
 ## Distribution
 
 The first release will distribute `@velrino/ui@0.0.1` as a compiled GitHub Release tarball. The `private` package flag prevents accidental npm publication while permitting packed GitHub release installation. No npm registry release exists yet.
