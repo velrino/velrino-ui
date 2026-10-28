@@ -60,7 +60,7 @@ The standalone example runs at `http://127.0.0.1:4321` and previews HackUniverse
 
 ## Distribution
 
-The first release will distribute `@velrino/ui@0.0.1` as a compiled GitHub Release tarball. The `private` package flag prevents accidental npm publication while permitting packed GitHub release installation. No npm registry release exists yet.
+Distribution uses a compiled GitHub Release tarball for `@velrino/ui@0.0.1`. The `private` package flag prevents accidental npm publication while permitting packed GitHub release installation. No npm registry release exists.
 
 Import the package stylesheet once in the application's global entry, then map application-owned palettes onto `--vui-*` tokens. Component styles use namespaced `vui-` classes; structural styles never hard-code a brand accent or apply a global CSS reset.
 
