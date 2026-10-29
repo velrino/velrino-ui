@@ -2,6 +2,22 @@
 
 Velrino UI is a framework-independent React package based on the evolved HackUniverse design system. The portfolio is a second consumer with its existing palette.
 
+## Design system map
+
+[![Velrino UI design-system map: shared foundations, React components, optional documentation, packaged releases and application consumers](assets/diagrams/design-system-map.png)](assets/diagrams/design-system-map.svg)
+
+Follow the solid arrows from shared foundations to components, documentation and packaged releases. Dotted arrows show verification. Applications keep their own colors, fonts, routing and state; `UIProvider` selects surface appearance. The documentation site is optional and opens separately from consuming applications.
+
+[Full-size PNG](assets/diagrams/design-system-map.png) · [Self-contained SVG](assets/diagrams/design-system-map.svg) · [Graphviz source](assets/diagrams/design-system-map.dot)
+
+To regenerate the map, install Graphviz (`dot`) and `uv`, then run from the repository root:
+
+```sh
+uv run --locked scripts/diagrams/design-system-map.py --output-dir docs/assets/diagrams
+```
+
+The renderer declares its Python dependencies inline, pins them in the adjacent lockfile and keeps icons, labels and descriptions in separate rows. Keep the `symbols/` sidecars beside the DOT source; the SVG embeds its icons. This is a map of selected composition and distribution relationships; the boundaries below remain the detailed guide.
+
 ## Boundaries
 
 - `components/<family>/` owns implementation, types, CSS, exports and relevant behavior tests. Compose accessible Radix or Base UI primitives rather than rebuilding keyboard or focus handling.
