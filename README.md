@@ -8,10 +8,9 @@ The starting point is HackUniverse's evolved gallery, dialog frame, accessible p
 
 ## Who uses Velrino UI?
 
-| Name              | Link                                                        | Image                                                                                                                                                                     |
-| ----------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| HackUniverse      | [hackuniverse.vercel.app](https://hackuniverse.vercel.app/) | [<img src="docs/assets/demo/hackuniverse.png" alt="HackUniverse's interactive universe with the Cyan interface" width="360" />](docs/assets/demo/hackuniverse.png)        |
-| Velrino Portfolio | [velrino.co](https://velrino.co/)                           | [<img src="docs/assets/demo/velrino-portfolio.png" alt="Velrino's portfolio welcome dialog with the Purple theme" width="360" />](docs/assets/demo/velrino-portfolio.png) |
+|                                                                                                       Portfolio                                                                                                        |                                                                                                               HackUniverse                                                                                                                |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| [velrino.co](https://velrino.co/)<br /><br />[<img src="docs/assets/demo/velrino-portfolio.png" alt="Velrino's portfolio welcome dialog with the Purple theme" width="360" />](docs/assets/demo/velrino-portfolio.png) | [hackuniverse.vercel.app](https://hackuniverse.vercel.app/)<br /><br />[<img src="docs/assets/demo/hackuniverse.png" alt="HackUniverse's interactive universe with the Cyan interface" width="360" />](docs/assets/demo/hackuniverse.png) |
 
 ## Development
 
