@@ -4,6 +4,8 @@ Accessible, themeable React components with optional sci-fi surfaces. Built for 
 
 The starting point is HackUniverse's evolved gallery, dialog frame, accessible primitives and globe loader. Applications keep their own colors, fonts, brand, localization and business logic.
 
+[![Velrino UI component gallery with the Cyan theme and semantic color tokens](docs/assets/images/velrino-ui-showcase.png)](https://velrino.github.io/velrino-ui/)
+
 ## Development
 
 Use Node.js 22 or newer and the pinned `pnpm@10.29.3`.
