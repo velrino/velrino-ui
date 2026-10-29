@@ -10,3 +10,7 @@
 - `pnpm run validate` is the default check. Verify relevant layout and keyboard behavior in the example and actual consumers.
 - Release tested tarballs through GitHub. Do not publish to npm unless explicitly requested.
 - Preserve unrelated changes and user-owned active servers; use isolated consumer checkouts when needed.
+
+## Reviews
+
+- For requested code, diff, pull-request or repository reviews, use the [review skill](.agents/skills/review/SKILL.md). A review request alone does not authorize edits, commits, pushes or posting findings externally.
