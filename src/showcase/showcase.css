@@ -200,7 +200,8 @@
 }
 .vui-showcase code.vui-showcase-color-value {
   color: var(--vui-text);
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 0.8125rem;
 }
 .vui-showcase code {
   color: var(--vui-muted);
@@ -288,4 +289,31 @@
   .vui-showcase-spinner {
     animation: none;
   }
+}
+
+.vui-showcase--custom-navigation .vui-showcase-header {
+  margin-bottom: 2.5rem;
+}
+.vui-showcase-section-search {
+  display: grid;
+  min-height: 0;
+  gap: 0.75rem;
+}
+.vui-showcase-section-results {
+  display: grid;
+  gap: 0.25rem;
+  max-height: min(35dvh, 20rem);
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.vui-showcase-section-results button {
+  width: 100%;
+  justify-content: flex-start;
+  text-align: left;
+}
+.vui-showcase-section-results [aria-current] {
+  background: var(--vui-secondary);
+  color: var(--vui-text-accent);
 }

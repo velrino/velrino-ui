@@ -31,6 +31,7 @@
   translate: none;
 }
 .vui-dialog-body {
+  box-sizing: border-box;
   display: grid;
   min-height: 0;
   min-width: 0;

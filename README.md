@@ -56,7 +56,7 @@ PLAYWRIGHT_SKIP_BROWSER_GC=1 pnpm exec playwright install chromium
 pnpm run test:browser
 ```
 
-The standalone example runs at `http://127.0.0.2:4321`. Its menu opens centered settings with theme, surface and language tabs. Options have matching widths, and English/Portuguese selection shows local flag artwork. Portfolio Cyan uses the same palette as HackUniverse; Purple and Red are also available. Browser checks cover desktop and mobile emulation; they do not establish physical-device performance.
+The standalone example runs at `http://127.0.0.2:4321`. Its fixed navbar opens a centered menu with Go to, Language, Theme and Surfaces tabs. Go to opens first and keeps component search beside the section index. The example uses single-page content without inline catalog controls. Options have matching widths, and English/Portuguese selection shows local flag artwork. Portfolio Cyan uses the same palette as HackUniverse; Purple and Red are also available. Browser checks cover desktop and mobile emulation; they do not establish physical-device performance.
 
 ## Distribution
 
@@ -67,3 +67,5 @@ Import the package stylesheet once in the application's global entry, then map a
 ## Attribution
 
 Adapted from the author's HackUniverse design system and portfolio primitives. Accessible interaction primitives remain dependencies of their original authors. See [source attribution](docs/source-attribution.md) and the [MIT license](LICENSE).
+
+Client hosts can supply `DesignSystemRoot.renderNavigation` and embed the exported `SectionSearch` in their own menu. The navigation callback preserves queries and fragments, scrolls after a host modal closes and respects reduced motion. The built-in page/tab controls remain the default for other consumers.

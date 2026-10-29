@@ -1,16 +1,12 @@
 import { expect, test } from '@playwright/test';
 
-test('catalog preserves values across page/tab mode, keyboard dialogs and localization', async ({
-  page,
-}) => {
+test('catalog retains values through keyboard dialogs and language selection', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Design system', exact: true })).toBeVisible();
   await expect(page.locator('.vui-showcase-section')).toHaveCount(15);
   await page.getByLabel('Validation example', { exact: true }).fill('Orbit');
-  await page.getByRole('button', { name: 'Tabs', exact: true }).click();
-  await page.getByRole('tab', { name: 'Dialogs', exact: true }).click();
   const trigger = page.getByRole('button', { name: 'Open example dialog', exact: true });
   await trigger.click();
   const dialog = page.getByRole('dialog', { name: 'A focused decision' });
@@ -22,7 +18,6 @@ test('catalog preserves values across page/tab mode, keyboard dialogs and locali
   await page.keyboard.press('Escape');
   await expect(dialog).toBeHidden();
   await expect(trigger).toBeFocused();
-  await page.getByRole('button', { name: 'Single page', exact: true }).click();
   await expect(page.getByLabel('Validation example', { exact: true })).toHaveValue('Orbit');
   const languageTrigger = page.getByRole('button', {
     name: 'Change language: English',
@@ -32,6 +27,9 @@ test('catalog preserves values across page/tab mode, keyboard dialogs and locali
   const languages = page.getByRole('dialog', { name: 'Choose your language' });
   await expect(languages).toBeVisible();
   await expect(languages.locator('img')).toHaveCount(2);
+  await languages.locator('img').evaluateAll(async (images) => {
+    await Promise.all(images.map((image) => (image as HTMLImageElement).decode()));
+  });
   await expect(languages.getByRole('button', { name: 'English', exact: true })).toBeFocused();
   await expect(page.locator('h1')).toHaveText('Design system');
   await page.keyboard.press('Escape');
@@ -51,6 +49,7 @@ test('dialog, sheet and loading use the selected portfolio theme', async ({ page
   await page.goto('/');
   await page.getByRole('button', { name: 'Open preview settings', exact: true }).click();
   const settings = page.getByRole('dialog', { name: 'Preview settings', exact: true });
+  await settings.getByRole('tab', { name: 'Theme', exact: true }).click();
   const hackColors = await page.evaluate(() =>
     ['--vui-accent', '--vui-background', '--vui-surface', '--vui-text', '--vui-muted'].map((key) =>
       getComputedStyle(document.documentElement).getPropertyValue(key).trim(),
@@ -165,10 +164,9 @@ test('color values follow the host theme and keep transparency visible', async (
   await expect(value('--vui-accent')).toHaveText('#42E8F4');
   await expect(value('--vui-line')).toHaveText('rgba(66, 232, 244, 0.3)');
   await page.getByRole('button', { name: 'Open preview settings', exact: true }).click();
-  await page
-    .getByRole('dialog', { name: 'Preview settings', exact: true })
-    .getByRole('button', { name: 'Purple', exact: true })
-    .click();
+  const settings = page.getByRole('dialog', { name: 'Preview settings', exact: true });
+  await settings.getByRole('tab', { name: 'Theme', exact: true }).click();
+  await settings.getByRole('button', { name: 'Purple', exact: true }).click();
   await expect(value('--vui-accent')).toHaveText('#5B21B6');
   await expect(value('--vui-line')).toHaveText('rgba(91, 33, 182, 0.3)');
   await page.keyboard.press('Escape');
@@ -178,4 +176,57 @@ test('color values follow the host theme and keep transparency visible', async (
       (element as HTMLElement).style.setProperty('--vui-accent', 'rgb(20, 160, 90)'),
     );
   await expect(value('--vui-accent')).toHaveText('#14A05A');
+});
+
+test('menu index searches and jumps without inline navigation or lost fields', async ({
+  page,
+}, info) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/?keep=1');
+  await expect(page.getByRole('group', { name: 'Catalog view', exact: true })).toHaveCount(0);
+  await page.locator('#vui-example-validation').fill('Retained value');
+  const jump = async (query: string, label: string) => {
+    await page.getByRole('button', { name: 'Open preview settings', exact: true }).click();
+    const settings = page.getByRole('dialog', { name: 'Preview settings', exact: true });
+    await expect(settings.getByRole('tab', { name: 'Go to', exact: true })).toHaveAttribute(
+      'data-state',
+      'active',
+    );
+    await expect(settings.getByRole('tab')).toHaveText(['Go to', 'Language', 'Theme', 'Surfaces']);
+    await settings.getByRole('searchbox', { name: 'Search components', exact: true }).fill(query);
+    await settings.getByRole('button', { name: label, exact: true }).click();
+    await expect(settings).toBeHidden();
+    await expect(page).toHaveURL(new RegExp(`#${label.toLowerCase()}$`));
+  };
+  await jump('slider', 'Sliders');
+  await expect(page).toHaveURL(/\?keep=1#sliders$/);
+  await expect
+    .poll(() => page.locator('#sliders').evaluate((element) => element.getBoundingClientRect().top))
+    .toBeLessThan(250);
+  await jump('inputs', 'Inputs');
+  await expect(page.locator('#vui-example-validation')).toHaveValue('Retained value');
+  await page.goBack();
+  await expect(page).toHaveURL(/#sliders$/);
+  await jump('inputs', 'Inputs');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.getByRole('button', { name: 'Open preview settings', exact: true }).click();
+  const settings = page.getByRole('dialog', { name: 'Preview settings', exact: true });
+  await settings
+    .getByRole('searchbox', { name: 'Search components', exact: true })
+    .fill('no-such-component');
+  await expect(settings.getByRole('status')).toHaveText('No matching components.');
+  for (const name of ['Go to', 'Language', 'Theme', 'Surfaces']) {
+    await settings.getByRole('tab', { name, exact: true }).click();
+    const overflow = await settings.locator('[data-slot="dialog-body"]').evaluate((element) => ({
+      width: element.scrollWidth - element.clientWidth,
+      height: element.scrollHeight - element.clientHeight,
+    }));
+    expect(overflow.width).toBeLessThanOrEqual(1);
+    expect(overflow.height).toBeLessThanOrEqual(1);
+  }
+  await page.screenshot({ path: info.outputPath('menu-index.png'), animations: 'disabled' });
+  await page.keyboard.press('Escape');
+  await expect(
+    page.getByRole('button', { name: 'Open preview settings', exact: true }),
+  ).toBeFocused();
 });
