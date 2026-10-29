@@ -1,6 +1,9 @@
 # Changelog
 
-## Unreleased
+## 0.0.2 — 2026-10-28
+
+- Stack color rows and center Button/Sheet action examples one per line on mobile.
+- Show live resolved HEX values for opaque sRGB swatches and RGBA for transparency. Observe host theme changes without polling and preserve other CSS color spaces.
 
 - Move standalone preview controls into a centered, responsive settings dialog with theme, surface and language tabs. Use matching option widths, explicit English/Portuguese selection and local flag icons. Align Portfolio Cyan with the HackUniverse palette.
 

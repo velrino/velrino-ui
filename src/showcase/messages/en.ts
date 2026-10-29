@@ -93,7 +93,7 @@ const en = {
   },
   colors: {
     description:
-      'These swatches read the shared CSS variables directly. Change a token once to update every consumer.',
+      'These swatches read the active theme. Solid sRGB colors show HEX; transparency shows RGBA. Change a token to update its value.',
     accent: 'Interaction',
     surface: 'Panel surface',
     background: 'Application background',

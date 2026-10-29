@@ -1,6 +1,6 @@
 {
   "name": "@velrino/ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "description": "Accessible, themeable React components with optional sci-fi surfaces and a reusable design-system gallery.",
   "license": "MIT",

@@ -1,12 +1,7 @@
 'use client';
 import type { ReactNode } from 'react';
 import { useDesignSystemAdapters } from '../../adapters/hooks/useDesignSystemAdapters.js';
-import {
-  colorTokens,
-  sectionOrder,
-  type ShowcaseMode,
-  type ShowcaseSectionId,
-} from '../../configs/showcase.js';
+import { sectionOrder, type ShowcaseMode, type ShowcaseSectionId } from '../../configs/showcase.js';
 import { DesignSection } from '../../ui/base/design-section.js';
 import { ButtonExamples } from '../../ui/examples/button-examples.js';
 import { InputExamples } from '../../ui/examples/input-examples.js';
@@ -19,6 +14,7 @@ import { MenuExamples } from '../../ui/examples/menu-examples.js';
 import { SheetExamples } from '../../ui/examples/sheet-examples.js';
 import { SliderExamples } from '../../ui/examples/slider-examples.js';
 import { TypewriterExamples } from '../../ui/examples/typewriter-examples.js';
+import { ColorExamples } from '../../ui/examples/color-examples.js';
 
 export function Showcase({
   mode,
@@ -40,21 +36,7 @@ export function Showcase({
         <li>{copy.principles.density}</li>
       </ul>
     ),
-    colors: (
-      <div className="vui-showcase-swatches">
-        {colorTokens.map((token) => (
-          <div key={token.variable}>
-            <div
-              aria-hidden="true"
-              className="vui-showcase-swatch"
-              style={{ backgroundColor: `var(${token.variable})` }}
-            />
-            <h3>{copy.colors[token.key]}</h3>
-            <code>{token.variable}</code>
-          </div>
-        ))}
-      </div>
-    ),
+    colors: <ColorExamples />,
     typography: (
       <div className="vui-showcase-stack">
         <div>
