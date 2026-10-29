@@ -11,7 +11,6 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-  type SurfaceAppearance,
 } from '../../../src/index.js';
 import {
   SectionSearch,
@@ -19,30 +18,29 @@ import {
   type ShowcaseSectionId,
 } from '../../../src/showcase/index.js';
 import { useDemoLocale } from '../i18n.js';
-import { LanguageOptions } from './language-picker.js';
+import { SettingsPreferences, type SettingsPreferencesProps } from './settings-preferences.js';
+import { AboutPanel } from './about-panel.js';
+export type { DemoTheme } from './theme-picker.js';
 
-export const demoThemes = ['cyan', 'purple', 'red'] as const;
-export type DemoTheme = (typeof demoThemes)[number];
+type MenuTab = 'go-to' | 'settings' | 'about';
 
 export function ShowcaseSettings({
-  theme,
-  onThemeChange,
-  appearance,
-  onAppearanceChange,
   navigation,
-}: {
-  navigation: DesignSystemNavigation;
-  theme: DemoTheme;
-  onThemeChange: (theme: DemoTheme) => void;
-  appearance: SurfaceAppearance;
-  onAppearanceChange: (appearance: SurfaceAppearance) => void;
-}) {
+  ...preferences
+}: SettingsPreferencesProps & { navigation: DesignSystemNavigation }) {
   const { copy } = useDemoLocale();
   const [open, setOpen] = useState(false);
+  const [tab, setTab] = useState<MenuTab>('go-to');
   const pending = useRef<ShowcaseSectionId | null>(null);
   const text = copy.settings;
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={open}
+      onOpenChange={(value) => {
+        setOpen(value);
+        if (value) setTab('go-to');
+      }}
+    >
       <DialogTrigger asChild>
         <Button
           variant="outline"
@@ -77,50 +75,20 @@ export function ShowcaseSettings({
       >
         <DialogHeader>
           <DialogTitle>{text.title}</DialogTitle>
-          <DialogDescription>{text.description}</DialogDescription>
+          <DialogDescription>{text.descriptions[tab]}</DialogDescription>
         </DialogHeader>
-        <Tabs defaultValue="go-to" className="demo-settings-tabs">
+        <Tabs
+          value={tab}
+          onValueChange={(value) => {
+            if (value === 'go-to' || value === 'settings' || value === 'about') setTab(value);
+          }}
+          className="demo-settings-tabs"
+        >
           <TabsList aria-label={text.title}>
             <TabsTrigger value="go-to">{text.goTo}</TabsTrigger>
-            <TabsTrigger value="language">{text.language}</TabsTrigger>
-            <TabsTrigger value="theme">{text.theme}</TabsTrigger>
-            <TabsTrigger value="appearance">{text.appearance}</TabsTrigger>
+            <TabsTrigger value="settings">{text.preferences}</TabsTrigger>
+            <TabsTrigger value="about">{text.about}</TabsTrigger>
           </TabsList>
-          <TabsContent value="theme">
-            <div className="demo-settings-options">
-              {demoThemes.map((value) => (
-                <Button
-                  key={value}
-                  variant="outline"
-                  aria-pressed={theme === value}
-                  onClick={() => onThemeChange(value)}
-                >
-                  {value[0].toUpperCase() + value.slice(1)}
-                </Button>
-              ))}
-            </div>
-          </TabsContent>
-          <TabsContent value="appearance">
-            <div className="demo-settings-options">
-              <Button
-                variant="outline"
-                aria-pressed={appearance === 'default'}
-                onClick={() => onAppearanceChange('default')}
-              >
-                {copy.standard}
-              </Button>
-              <Button
-                variant="outline"
-                aria-pressed={appearance === 'sci-fi'}
-                onClick={() => onAppearanceChange('sci-fi')}
-              >
-                {copy.scifi}
-              </Button>
-            </div>
-          </TabsContent>
-          <TabsContent value="language" className="demo-settings-language">
-            <LanguageOptions />
-          </TabsContent>
           <TabsContent value="go-to" className="demo-settings-index">
             <SectionSearch
               activeSection={navigation.activeSection}
@@ -129,6 +97,12 @@ export function ShowcaseSettings({
                 setOpen(false);
               }}
             />
+          </TabsContent>
+          <TabsContent value="settings">
+            <SettingsPreferences {...preferences} />
+          </TabsContent>
+          <TabsContent value="about">
+            <AboutPanel />
           </TabsContent>
         </Tabs>
       </DialogContent>

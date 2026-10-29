@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.3 — 2026-10-28
+
+- Refine the standalone host menu into Go to, Settings and About. Group language, surfaces and theme preferences; use keyboard-accessible color circles and add localized author information and social/source links.
+- Center the Dialog, language and loading-preview actions on mobile; update the language example copy to match the current host. Make the wordmark return smoothly to the top, respecting reduced motion.
+- Type-check the example application and its browser suite as part of validation.
+
 ## 0.0.2 — 2026-10-28
 
 - Add host-supplied gallery navigation and a reusable searchable section index. The example moves navigation into the first menu tab, followed by Language, Theme and Surfaces; section jumps close the menu before smooth scrolling.

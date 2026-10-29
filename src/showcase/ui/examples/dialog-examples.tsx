@@ -18,9 +18,11 @@ export function DialogExamples() {
   return (
     <div className="vui-showcase-stack">
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogTrigger asChild>
-          <Button variant="outline">{copy.open}</Button>
-        </DialogTrigger>
+        <div className="vui-showcase-action">
+          <DialogTrigger asChild>
+            <Button variant="outline">{copy.open}</Button>
+          </DialogTrigger>
+        </div>
         <DialogContent closeLabel={closeLabel}>
           <DialogHeader>
             <DialogTitle>{copy.title}</DialogTitle>
@@ -42,7 +44,9 @@ export function DialogExamples() {
       <div className="vui-showcase-language-example">
         <h3>{copy.languageTitle}</h3>
         <p>{copy.languageDescription}</p>
-        <LanguagePicker />
+        <div className="vui-showcase-action">
+          <LanguagePicker />
+        </div>
       </div>
     </div>
   );

@@ -159,7 +159,7 @@ const ptBR = {
     confirmed: 'Exemplo confirmado. Nenhum dado foi enviado.',
     languageTitle: 'Seleção de idioma',
     languageDescription:
-      'Este é o mesmo controle de idioma do cabeçalho. Ele altera toda a interface sem atualizar a página.',
+      'Escolha um idioma para explorar o catálogo. Seus exemplos e textos continuam no lugar.',
   },
   loading: {
     description:
