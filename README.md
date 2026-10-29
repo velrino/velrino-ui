@@ -6,6 +6,13 @@ The starting point is HackUniverse's evolved gallery, dialog frame, accessible p
 
 [![Velrino UI component gallery with the Cyan theme and semantic color tokens](docs/assets/images/velrino-ui-showcase.png)](https://velrino.github.io/velrino-ui/)
 
+## Who uses Velrino UI?
+
+| Name              | Link                                                        | Image                                                                                                                                                                     |
+| ----------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| HackUniverse      | [hackuniverse.vercel.app](https://hackuniverse.vercel.app/) | [<img src="docs/assets/demo/hackuniverse.png" alt="HackUniverse's interactive universe with the Cyan interface" width="360" />](docs/assets/demo/hackuniverse.png)        |
+| Velrino Portfolio | [velrino.co](https://velrino.co/)                           | [<img src="docs/assets/demo/velrino-portfolio.png" alt="Velrino's portfolio welcome dialog with the Purple theme" width="360" />](docs/assets/demo/velrino-portfolio.png) |
+
 ## Development
 
 Use Node.js 22 or newer and the pinned `pnpm@10.29.3`.
