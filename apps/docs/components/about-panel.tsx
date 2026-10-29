@@ -5,6 +5,10 @@ const links = [
   { key: 'github', href: 'https://github.com/velrino/' },
   { key: 'linkedin', href: 'https://www.linkedin.com/in/velrino/' },
   { key: 'source', href: 'https://github.com/velrino/velrino-ui/' },
+  {
+    key: 'map',
+    href: new URL('../../../docs/assets/diagrams/design-system-map.png', import.meta.url).href,
+  },
 ] as const;
 
 export function AboutPanel() {

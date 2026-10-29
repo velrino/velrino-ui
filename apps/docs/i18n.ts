@@ -48,6 +48,10 @@ const en = {
         title: 'Velrino UI',
         description: 'Explore the source and help shape what comes next',
       },
+      map: {
+        title: 'Library map',
+        description: 'See how the components, documentation and releases connect',
+      },
     },
   },
 };
@@ -97,6 +101,10 @@ const ptBR: typeof en = {
       source: {
         title: 'Velrino UI',
         description: 'Explore o código e ajude a construir os próximos passos',
+      },
+      map: {
+        title: 'Mapa da biblioteca',
+        description: 'Veja como os componentes, a documentação e as versões se conectam',
       },
     },
   },

@@ -1,0 +1,68 @@
+digraph velrino_ui {
+	bgcolor=white compound=true dpi=192 fontname=Helvetica newrank=true nodesep=0.44 ordering=out pad=0.24 rankdir=LR ranksep=0.90 splines=spline
+	node [fontcolor="#211833" fontname=Helvetica margin=0 shape=plain]
+	edge [arrowsize=0.72 color="#06a6bb" fontcolor="#696278" fontname=Helvetica fontsize=11.5 penwidth=1.8]
+	subgraph cluster_app_input {
+		fillcolor="#f5fbfc" fontcolor="#696278" fontname="Helvetica-Bold" fontsize=13 label="APPLICATION PRESENTATION" labeljust=l margin=26 pencolor="#d9deeb" penwidth=1.2 style="rounded,filled"
+		palette [label=<<table border="0" cellborder="0" cellspacing="0" cellpadding="0"><tr><td width="180" height="74" fixedsize="true"><img src="symbols/palette.png" scale="true"/></td></tr><tr><td height="12"></td></tr><tr><td width="180"><font point-size="17"><b>App palettes</b></font></td></tr><tr><td height="5"></td></tr><tr><td><font point-size="12" color="#696278">Brand colors · fonts<br/>Override --vui-* tokens</font></td></tr></table>>]
+	}
+	subgraph cluster_foundations {
+		fillcolor="#f6f7fc" fontcolor="#696278" fontname="Helvetica-Bold" fontsize=13 label="LIBRARY FOUNDATIONS" labeljust=l margin=26 pencolor="#d9deeb" penwidth=1.2 style="rounded,filled"
+		tokens [label=<<table border="0" cellborder="0" cellspacing="0" cellpadding="0"><tr><td width="180" height="74" fixedsize="true"><img src="symbols/tokens.png" scale="true"/></td></tr><tr><td height="12"></td></tr><tr><td width="180"><font point-size="17"><b>Tokens + CSS</b></font></td></tr><tr><td height="5"></td></tr><tr><td><font point-size="12" color="#696278">Semantic contract<br/>Namespaced · accessible</font></td></tr></table>>]
+		provider [label=<<table border="0" cellborder="0" cellspacing="0" cellpadding="0"><tr><td width="180" height="74" fixedsize="true"><img src="symbols/provider.png" scale="true"/></td></tr><tr><td height="12"></td></tr><tr><td width="180"><font point-size="17"><b>UIProvider</b></font></td></tr><tr><td height="5"></td></tr><tr><td><font point-size="12" color="#696278">Default / sci-fi surfaces<br/>Per-surface overrides</font></td></tr></table>>]
+		primitives [label=<<table border="0" cellborder="0" cellspacing="0" cellpadding="0"><tr><td width="180" height="74" fixedsize="true"><img src="symbols/primitives.png" scale="true"/></td></tr><tr><td height="12"></td></tr><tr><td width="180"><font point-size="17"><b>Radix + Base UI</b></font></td></tr><tr><td height="5"></td></tr><tr><td><font point-size="12" color="#696278">Accessible interactions<br/>Used by relevant families</font></td></tr></table>>]
+	}
+	subgraph cluster_runtime {
+		fillcolor="#f6f7fc" fontcolor="#696278" fontname="Helvetica-Bold" fontsize=13 label="REUSABLE RUNTIME" labeljust=l margin=26 pencolor="#d9deeb" penwidth=1.2 style="rounded,filled"
+		labeljust=r
+		components [label=<<table border="0" cellborder="0" cellspacing="0" cellpadding="0"><tr><td width="180" height="74" fixedsize="true"><img src="symbols/react.png" scale="true"/></td></tr><tr><td height="12"></td></tr><tr><td width="180"><font point-size="17"><b>React components</b></font></td></tr><tr><td height="5"></td></tr><tr><td><font point-size="12" color="#696278">Panel · Dialog · controls<br/>Public + granular exports</font></td></tr></table>>]
+	}
+	subgraph cluster_docs {
+		fillcolor="#f8f5fd" fontcolor="#696278" fontname="Helvetica-Bold" fontsize=13 label="OPTIONAL SHOWCASE · CANONICAL DOCS" labeljust=l margin=26 pencolor="#d9deeb" penwidth=1.2 style="rounded,filled"
+		showcase [label=<<table border="0" cellborder="0" cellspacing="0" cellpadding="0"><tr><td width="180" height="74" fixedsize="true"><img src="symbols/gallery.png" scale="true"/></td></tr><tr><td height="12"></td></tr><tr><td width="180"><font point-size="17"><b>Optional showcase</b></font></td></tr><tr><td height="5"></td></tr><tr><td><font point-size="12" color="#696278">Real public components<br/>Separate export + typed copy</font></td></tr></table>>]
+		docs [label=<<table border="0" cellborder="0" cellspacing="0" cellpadding="0"><tr><td width="180" height="74" fixedsize="true"><img src="symbols/docs.png" scale="true"/></td></tr><tr><td height="12"></td></tr><tr><td width="180"><font point-size="17"><b>Docs website</b></font></td></tr><tr><td height="5"></td></tr><tr><td><font point-size="12" color="#696278">apps/docs · Vite<br/>Hosted on GitHub Pages</font></td></tr></table>>]
+	}
+	subgraph cluster_distribution {
+		fillcolor="#f6f7fc" fontcolor="#696278" fontname="Helvetica-Bold" fontsize=13 label="BUILD & DISTRIBUTION" labeljust=l margin=26 pencolor="#d9deeb" penwidth=1.2 style="rounded,filled"
+		artifact [label=<<table border="0" cellborder="0" cellspacing="0" cellpadding="0"><tr><td width="180" height="74" fixedsize="true"><img src="symbols/artifact.png" scale="true"/></td></tr><tr><td height="12"></td></tr><tr><td width="180"><font point-size="17"><b>Package artifacts</b></font></td></tr><tr><td height="5"></td></tr><tr><td><font point-size="12" color="#696278">ESM · declarations · CSS<br/>Preserves client boundaries</font></td></tr></table>>]
+		release [label=<<table border="0" cellborder="0" cellspacing="0" cellpadding="0"><tr><td width="180" height="74" fixedsize="true"><img src="symbols/release.png" scale="true"/></td></tr><tr><td height="12"></td></tr><tr><td width="180"><font point-size="17"><b>GitHub release</b></font></td></tr><tr><td height="5"></td></tr><tr><td><font point-size="12" color="#696278">Tested tarball<br/>Pinned release URL</font></td></tr></table>>]
+	}
+	subgraph cluster_consumers {
+		fillcolor="#f5fbfc" fontcolor="#696278" fontname="Helvetica-Bold" fontsize=13 label="APPLICATION OWNERSHIP" labeljust=l margin=26 pencolor="#d9deeb" penwidth=1.2 style="rounded,filled"
+		apps [label=<<table border="0" cellborder="0" cellspacing="0" cellpadding="0"><tr><td width="180" height="74" fixedsize="true"><img src="symbols/apps.png" scale="true"/></td></tr><tr><td height="12"></td></tr><tr><td width="180"><font point-size="17"><b>Consumer apps</b></font></td></tr><tr><td height="5"></td></tr><tr><td><font point-size="12" color="#696278">Own routes · locale · brand<br/>React + React DOM peers</font></td></tr></table>>]
+	}
+	subgraph cluster_verification {
+		fillcolor="#f3faf7" fontcolor="#696278" fontname="Helvetica-Bold" fontsize=13 label=VERIFICATION labeljust=l margin=26 pencolor="#d9deeb" penwidth=1.2 style="rounded,filled"
+		labeljust=r
+		checks [label=<<table border="0" cellborder="0" cellspacing="0" cellpadding="0"><tr><td width="180" height="74" fixedsize="true"><img src="symbols/checks.png" scale="true"/></td></tr><tr><td height="12"></td></tr><tr><td width="180"><font point-size="17"><b>Source + package checks</b></font></td></tr><tr><td height="5"></td></tr><tr><td><font point-size="12" color="#696278">Types · behavior · imports<br/>SSR · peers · bundled CSS</font></td></tr></table>>]
+	}
+	{
+		rank=same
+		palette
+		tokens
+		provider
+		primitives
+	}
+	{
+		rank=same
+		showcase
+		artifact
+		checks
+	}
+	palette -> tokens [style=invis weight=20]
+	tokens -> provider [style=invis weight=20]
+	provider -> primitives [style=invis weight=20]
+	showcase -> artifact [style=invis weight=20]
+	artifact -> checks [style=invis weight=20]
+	palette -> components [label="colors + fonts" headport=nw tailport=e weight=3]
+	tokens -> components [label="semantic CSS" weight=3]
+	provider -> components [label=appearance color="#8956dd" weight=3]
+	primitives -> components [label="where used" color="#8956dd" weight=3]
+	components -> showcase [label=compose color="#8956dd" weight=5]
+	showcase -> docs [label=render color="#8956dd" weight=5]
+	components -> artifact [label=compile weight=5]
+	artifact -> release [label=pack weight=5]
+	release -> apps [label="install + pin" weight=5]
+	components -> checks [label=behavior color="#159b75" constraint=false style=dotted]
+	artifact -> checks [color="#159b75" constraint=false style=dotted]
+}
