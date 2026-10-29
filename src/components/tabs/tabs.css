@@ -1,3 +1,9 @@
+.vui-tabs,
+.vui-tabs-list,
+.vui-tabs-trigger,
+.vui-tabs-content {
+  box-sizing: border-box;
+}
 .vui-tabs {
   display: flex;
   min-height: 0;

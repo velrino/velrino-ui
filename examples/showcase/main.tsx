@@ -62,18 +62,23 @@ function App() {
   return (
     <LocaleContext value={{ locale, setLocale }}>
       <UIProvider appearance={appearance}>
-        <header className="demo-toolbar">
-          <a href="#" className="demo-wordmark">
-            VELRINO UI<span>{packageInfo.version}</span>
-          </a>
-          <ShowcaseSettings
-            theme={theme}
-            onThemeChange={setTheme}
-            appearance={appearance}
-            onAppearanceChange={setAppearance}
-          />
-        </header>
-        <DesignSystemRoot adapters={adapters} />
+        <DesignSystemRoot
+          adapters={adapters}
+          renderNavigation={(navigation) => (
+            <header className="demo-toolbar">
+              <a href="#" className="demo-wordmark">
+                VELRINO UI<span>{packageInfo.version}</span>
+              </a>
+              <ShowcaseSettings
+                theme={theme}
+                onThemeChange={setTheme}
+                appearance={appearance}
+                onAppearanceChange={setAppearance}
+                navigation={navigation}
+              />
+            </header>
+          )}
+        />
       </UIProvider>
     </LocaleContext>
   );

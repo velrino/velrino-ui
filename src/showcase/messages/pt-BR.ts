@@ -67,6 +67,11 @@ const ptBR = {
   description:
     'Uma linguagem visual compartilhada entre aplicações. Componentes reais, estados interativos e padrões reutilizáveis.',
   navigation: 'Seções do sistema de design',
+  quickNavigation: {
+    searchLabel: 'Buscar componentes',
+    placeholder: 'Buscar componentes…',
+    empty: 'Nenhum componente encontrado.',
+  },
   viewMode: { label: 'Visualização do catálogo', page: 'Página única', tabs: 'Abas' },
   sections: {
     panels: 'Painéis',

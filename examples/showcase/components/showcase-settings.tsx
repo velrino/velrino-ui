@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import {
   Button,
   Dialog,
@@ -13,6 +13,11 @@ import {
   TabsTrigger,
   type SurfaceAppearance,
 } from '../../../src/index.js';
+import {
+  SectionSearch,
+  type DesignSystemNavigation,
+  type ShowcaseSectionId,
+} from '../../../src/showcase/index.js';
 import { useDemoLocale } from '../i18n.js';
 import { LanguageOptions } from './language-picker.js';
 
@@ -24,7 +29,9 @@ export function ShowcaseSettings({
   onThemeChange,
   appearance,
   onAppearanceChange,
+  navigation,
 }: {
+  navigation: DesignSystemNavigation;
   theme: DemoTheme;
   onThemeChange: (theme: DemoTheme) => void;
   appearance: SurfaceAppearance;
@@ -32,6 +39,7 @@ export function ShowcaseSettings({
 }) {
   const { copy } = useDemoLocale();
   const [open, setOpen] = useState(false);
+  const pending = useRef<ShowcaseSectionId | null>(null);
   const text = copy.settings;
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -55,16 +63,28 @@ export function ShowcaseSettings({
           </svg>
         </Button>
       </DialogTrigger>
-      <DialogContent className="demo-settings-dialog" closeLabel={copy.language.close}>
+      <DialogContent
+        className="demo-settings-dialog"
+        closeLabel={copy.language.close}
+        onCloseAutoFocus={(event) => {
+          if (pending.current) {
+            event.preventDefault();
+            const section = pending.current;
+            pending.current = null;
+            navigation.navigateTo(section);
+          }
+        }}
+      >
         <DialogHeader>
           <DialogTitle>{text.title}</DialogTitle>
           <DialogDescription>{text.description}</DialogDescription>
         </DialogHeader>
-        <Tabs defaultValue="theme" className="demo-settings-tabs">
+        <Tabs defaultValue="go-to" className="demo-settings-tabs">
           <TabsList aria-label={text.title}>
+            <TabsTrigger value="go-to">{text.goTo}</TabsTrigger>
+            <TabsTrigger value="language">{text.language}</TabsTrigger>
             <TabsTrigger value="theme">{text.theme}</TabsTrigger>
             <TabsTrigger value="appearance">{text.appearance}</TabsTrigger>
-            <TabsTrigger value="language">{text.language}</TabsTrigger>
           </TabsList>
           <TabsContent value="theme">
             <div className="demo-settings-options">
@@ -100,6 +120,15 @@ export function ShowcaseSettings({
           </TabsContent>
           <TabsContent value="language" className="demo-settings-language">
             <LanguageOptions />
+          </TabsContent>
+          <TabsContent value="go-to" className="demo-settings-index">
+            <SectionSearch
+              activeSection={navigation.activeSection}
+              onSelect={(section) => {
+                pending.current = section;
+                setOpen(false);
+              }}
+            />
           </TabsContent>
         </Tabs>
       </DialogContent>

@@ -64,6 +64,11 @@ const en = {
   description:
     'A shared visual language for your applications. Real components, live states and reusable defaults.',
   navigation: 'Design system sections',
+  quickNavigation: {
+    searchLabel: 'Search components',
+    placeholder: 'Search components…',
+    empty: 'No matching components.',
+  },
   viewMode: { label: 'Catalog view', page: 'Single page', tabs: 'Tabs' },
   sections: {
     panels: 'Panels',
