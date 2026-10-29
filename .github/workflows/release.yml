@@ -33,4 +33,6 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           PACKAGE_FILE=$(node -p "JSON.parse(require('node:fs').readFileSync('.local/artifacts/release.json','utf8')).filename")
-          gh release create "$RELEASE_TAG" ".local/artifacts/$PACKAGE_FILE" ".local/artifacts/$PACKAGE_FILE.sha256" --verify-tag --title "Velrino UI $RELEASE_TAG" --notes-file "docs/releases/${RELEASE_TAG#v}.md"
+          ALIAS_FILE=$(node -p "JSON.parse(require('node:fs').readFileSync('.local/artifacts/release.json','utf8')).aliasFilename")
+          gh release create "$RELEASE_TAG" ".local/artifacts/$PACKAGE_FILE" ".local/artifacts/$PACKAGE_FILE.sha256" ".local/artifacts/$ALIAS_FILE" ".local/artifacts/$ALIAS_FILE.sha256" --draft --verify-tag --title "Velrino UI $RELEASE_TAG" --notes-file "docs/releases/${RELEASE_TAG#v}.md"
+          gh release edit "$RELEASE_TAG" --draft=false --latest

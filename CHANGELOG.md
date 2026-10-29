@@ -2,6 +2,8 @@
 
 ## 0.0.3 — 2026-10-28
 
+- Generate a fixed-name archive/checksum alias beside each versioned package. Publish the release only after all assets upload, document latest-download lockfile behavior and verify the alias through packed consumers.
+
 - Refine the standalone host menu into Go to, Settings and About. Group language, surfaces and theme preferences; use keyboard-accessible color circles and add localized author information and social/source links.
 - Center the Dialog, language and loading-preview actions on mobile; update the language example copy to match the current host. Make the wordmark return smoothly to the top, respecting reduced motion.
 - Type-check the example application and its browser suite as part of validation.

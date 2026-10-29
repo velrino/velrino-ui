@@ -1,4 +1,4 @@
-import { readFile, mkdir, writeFile } from 'node:fs/promises';
+import { readFile, mkdir, writeFile, copyFile } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
@@ -35,11 +35,16 @@ export async function packPackage(directory = resolve(packageRoot, '.local/artif
     .update(await readFile(path))
     .digest('hex');
   await writeFile(`${path}.sha256`, `${sha256}  ${metadata.filename}\n`);
+  const aliasFilename = `${metadata.name.replace(/^@/, '').replaceAll('/', '-')}.tgz`;
+  const aliasPath = resolve(directory, aliasFilename);
+  await copyFile(path, aliasPath);
+  await writeFile(`${aliasPath}.sha256`, `${sha256}  ${aliasFilename}\n`);
   await writeFile(
     resolve(directory, 'release.json'),
     JSON.stringify(
       {
         filename: metadata.filename,
+        aliasFilename,
         sha256,
         integrity: metadata.integrity,
         size: metadata.size,
@@ -49,5 +54,5 @@ export async function packPackage(directory = resolve(packageRoot, '.local/artif
       2,
     ) + '\n',
   );
-  return { ...metadata, path, sha256 };
+  return { ...metadata, path, sha256, aliasFilename, aliasPath };
 }

@@ -14,6 +14,22 @@ Use the package asset, which contains compiled JavaScript, declarations and CSS.
 
 Install with the application's existing package manager and commit its lockfile. Update to a new immutable release explicitly. A public GitHub release asset requires no npm account; a private distribution needs build-time authentication.
 
+## Latest download alias
+
+Each release also provides `velrino-ui.tgz` and its matching SHA-256 file. GitHub's latest-release URL follows that fixed asset name:
+
+```json
+{
+  "dependencies": {
+    "@velrino/ui": "https://github.com/velrino/velrino-ui/releases/latest/download/velrino-ui.tgz"
+  }
+}
+```
+
+This is an opt-in mutable URL, useful when trying the newest release. A lockfile still records the installed version and integrity; it does not automatically follow new release contents. Adopting an update requires refreshing and committing the lockfile with the chosen package version. A fresh download can conflict with an old recorded checksum, so use versioned assets for repeatable application builds. See [GitHub release links](https://docs.github.com/en/repositories/releasing-projects-on-github/linking-to-releases) and [npm lockfiles](https://docs.npmjs.com/cli/v11/configuring-npm/package-lock-json/).
+
+The alias contains exactly the same bytes as its versioned archive. Verify its adjacent checksum when downloading manually. Versioned assets remain immutable.
+
 ## Styles and theme
 
 Root imports are convenient in client code. Component exports such as `@velrino/ui/button`, `@velrino/ui/dialog` and `@velrino/ui/provider` let framework consumers keep route bundles focused. Pure helpers are available from server-safe `@velrino/ui/utils` and `@velrino/ui/button-variants` exports.

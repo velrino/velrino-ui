@@ -1,10 +1,15 @@
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises';
+import { mkdtemp, mkdir, writeFile, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { packageRoot, packPackage, run } from './package-utils.mjs';
 
 const artifact = await packPackage();
+assert.deepEqual(await readFile(artifact.aliasPath), await readFile(artifact.path));
+assert.equal(
+  await readFile(`${artifact.aliasPath}.sha256`, 'utf8'),
+  `${artifact.sha256}  ${artifact.aliasFilename}\n`,
+);
 const temporary = await mkdtemp(join(tmpdir(), 'velrino-ui-consumers-'));
 try {
   // Match the two real consumers: portfolio uses pnpm/React 19.1; HackUniverse
@@ -23,7 +28,7 @@ try {
         private: true,
         type: 'module',
         dependencies: {
-          '@velrino/ui': `file:${artifact.path}`,
+          '@velrino/ui': `file:${manager === 'npm' ? artifact.aliasPath : artifact.path}`,
           react: version,
           'react-dom': version,
         },
