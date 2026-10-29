@@ -29,7 +29,7 @@ examples/           # Standalone visual verification host
 docs/               # Architecture, adoption and release guidance
 ```
 
-See [architecture](docs/architecture.md), [adoption](docs/adoption.md), [releases](docs/releases/0.0.2.md), [contributing](CONTRIBUTING.md) and [issues #1–#6](https://github.com/velrino/velrino-ui/issues).
+See [architecture](docs/architecture.md), [adoption](docs/adoption.md), [releases](docs/releases/0.0.3.md), [contributing](CONTRIBUTING.md) and [issues](https://github.com/velrino/velrino-ui/issues).
 
 ## Components
 
@@ -56,11 +56,11 @@ PLAYWRIGHT_SKIP_BROWSER_GC=1 pnpm exec playwright install chromium
 pnpm run test:browser
 ```
 
-The standalone example runs at `http://127.0.0.2:4321`. Its fixed navbar opens a centered menu with Go to, Language, Theme and Surfaces tabs. Go to opens first and keeps component search beside the section index. The example uses single-page content without inline catalog controls. Options have matching widths, and English/Portuguese selection shows local flag artwork. Portfolio Cyan uses the same palette as HackUniverse; Purple and Red are also available. Browser checks cover desktop and mobile emulation; they do not establish physical-device performance.
+The standalone example runs at `http://127.0.0.1:4321`. Its fixed navbar opens a centered menu with Go to, Settings and About tabs. Go to opens first with component search. Settings groups language, surface appearance and circular theme swatches; About introduces the author and links to his work and the library source. The example uses single-page content without inline catalog controls. Options have matching widths, and English/Portuguese selection shows local flag artwork. Portfolio Cyan uses the same palette as HackUniverse; Purple and Red are also available. Browser checks cover desktop and mobile emulation; they do not establish physical-device performance.
 
 ## Distribution
 
-Distribution uses a compiled GitHub Release tarball for `@velrino/ui@0.0.2`. The `private` package flag prevents accidental npm publication while permitting packed GitHub release installation. No npm registry release exists.
+Distribution uses a compiled GitHub Release tarball for `@velrino/ui@0.0.3`. The `private` package flag prevents accidental npm publication while permitting packed GitHub release installation. No npm registry release exists.
 
 Import the package stylesheet once in the application's global entry, then map application-owned palettes onto `--vui-*` tokens. Component styles use namespaced `vui-` classes; structural styles never hard-code a brand accent or apply a global CSS reset.
 
