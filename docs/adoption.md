@@ -70,3 +70,5 @@ The gallery defaults to a `main` landmark. Use `as="div"` or `as="section"` when
 Supports React/React DOM 19.1 through 19.x. No Next.js dependency or source transpilation configuration is required; compiled client boundaries are preserved. Node.js 22+ and pinned pnpm are development/release requirements, not browser runtime dependencies.
 
 Thin compatibility exports in an existing application are acceptable during migration. Shared implementations, focus behavior and decorative CSS belong in this package.
+
+A client host can provide `renderNavigation` to replace the built-in page/tab controls with its own menu. The render callback receives `mode`, `activeSection`, `changeMode` and `navigateTo`. Embed `SectionSearch` from `@velrino/ui/showcase` inside that menu; it reuses the host's typed dictionaries. Close the menu before calling `navigateTo` (for example from DialogContent's `onCloseAutoFocus`, preventing its default trigger focus for that selection). Examples remain mounted and fragment navigation preserves the route query. Standard built-in controls are unchanged when no render callback is supplied.

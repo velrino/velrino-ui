@@ -2,6 +2,9 @@
 
 ## 0.0.2 — 2026-10-28
 
+- Add host-supplied gallery navigation and a reusable searchable section index. The example moves navigation into the first menu tab, followed by Language, Theme and Surfaces; section jumps close the menu before smooth scrolling.
+- Correct Dialog body and Tabs box sizing so standalone hosts do not depend on a CSS reset. Use a two-column mobile menu tab grid to prevent horizontal overflow.
+
 - Stack color rows and center Button/Sheet action examples one per line on mobile.
 - Show live resolved HEX values for opaque sRGB swatches and RGBA for transparency. Observe host theme changes without polling and preserve other CSS color spaces.
 

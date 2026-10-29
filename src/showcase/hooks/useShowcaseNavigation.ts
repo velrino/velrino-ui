@@ -36,8 +36,10 @@ export function useShowcaseNavigation() {
         initial &&
         revision === navigationRevision.current &&
         window.location.hash === initialHash
-      )
+      ) {
         setActiveSection(initial);
+        setScrollRequest({ section: initial, revision });
+      }
     });
 
     const synchronize = () => {
@@ -69,7 +71,12 @@ export function useShowcaseNavigation() {
         section &&
         !section.closest('[hidden]')
       ) {
-        section.scrollIntoView({ block: 'start', behavior: 'auto' });
+        section.scrollIntoView({
+          block: 'start',
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            ? 'auto'
+            : 'smooth',
+        });
         section.focus({ preventScroll: true });
       }
       setScrollRequest((current) => (current === scrollRequest ? null : current));
@@ -116,10 +123,23 @@ export function useShowcaseNavigation() {
     );
   }, []);
 
+  const navigateTo = useCallback((section: ShowcaseSectionId) => {
+    const revision = ++navigationRevision.current;
+    const hash = `#${section}`;
+    if (window.location.hash !== hash)
+      window.history.pushState(
+        window.history.state,
+        '',
+        `${window.location.pathname}${window.location.search}${hash}`,
+      );
+    lastHash.current = hash;
+    setActiveSection(section);
+    setScrollRequest({ section, revision });
+  }, []);
+
   const onAnchorClick = useCallback(
     (event: MouseEvent<HTMLElement>) => {
       if (
-        mode !== 'tabs' ||
         event.defaultPrevented ||
         event.button !== 0 ||
         event.metaKey ||
@@ -141,26 +161,22 @@ export function useShowcaseNavigation() {
       const section = sectionFromHash(anchor.getAttribute('href') ?? '');
       if (!section) return;
       event.preventDefault();
-      const revision = ++navigationRevision.current;
-      const hash = `#${section}`;
-      if (window.location.hash !== hash) {
-        window.history.pushState(
-          window.history.state,
-          '',
-          `${window.location.pathname}${window.location.search}${hash}`,
-        );
-      }
-      lastHash.current = hash;
-      setActiveSection(section);
-      // The effect scrolls only after the requested panel is visible.
-      setScrollRequest({ section, revision });
+      navigateTo(section);
     },
-    [mode],
+    [navigateTo],
   );
 
   const onTabListMount = useCallback((element: HTMLDivElement | null) => {
     tabListRef.current = element;
   }, []);
 
-  return { mode, activeSection, changeMode, changeSection, onAnchorClick, onTabListMount };
+  return {
+    mode,
+    activeSection,
+    changeMode,
+    changeSection,
+    onAnchorClick,
+    onTabListMount,
+    navigateTo,
+  };
 }

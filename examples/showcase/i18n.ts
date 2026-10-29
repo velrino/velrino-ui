@@ -10,10 +10,11 @@ export const demoMessages = {
     settings: {
       trigger: 'Open preview settings',
       title: 'Preview settings',
-      description: 'Choose a theme, surface style and language for this preview.',
+      description: 'Choose a theme, surface style, language or component.',
       theme: 'Theme',
       appearance: 'Surfaces',
       language: 'Language',
+      goTo: 'Go to',
     },
     language: {
       trigger: 'Change language',
@@ -32,10 +33,11 @@ export const demoMessages = {
     settings: {
       trigger: 'Abrir configurações da prévia',
       title: 'Configurações da prévia',
-      description: 'Escolha o tema, o estilo das superfícies e o idioma desta prévia.',
+      description: 'Escolha o tema, o estilo, o idioma ou um componente.',
       theme: 'Tema',
       appearance: 'Aparência',
       language: 'Idioma',
+      goTo: 'Ir para',
     },
     language: {
       trigger: 'Mudar idioma',
@@ -60,6 +62,7 @@ export const demoMessages = {
       theme: string;
       appearance: string;
       language: string;
+      goTo: string;
     };
     language: {
       trigger: string;
