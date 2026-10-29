@@ -7,7 +7,7 @@ import { useButtonExamples } from '../../hooks/useButtonExamples.js';
 export function ButtonExamples() {
   const { copy, action, selected, onAction, onToggle } = useButtonExamples();
   return (
-    <div className="vui-showcase-stack">
+    <div className="vui-showcase-stack vui-showcase-mobile-actions">
       <div>
         <h3>{copy.variantsLabel}</h3>
         <div className="vui-showcase-row">
