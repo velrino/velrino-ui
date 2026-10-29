@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
 import packageInfo from '../../package.json';
-import { UIProvider, type SurfaceAppearance } from '../../src/index.js';
+import { UIProvider } from '../../src/index.js';
 import {
   DesignSystemRoot,
   type DesignSystemAdapters,
@@ -12,8 +12,9 @@ import '../../src/styles/index.css';
 import '../../src/styles/showcase.css';
 import './styles.css';
 import { LanguagePicker } from './components/language-picker.js';
-import { LocaleContext, type Locale } from './i18n.js';
-import { ShowcaseSettings, type DemoTheme } from './components/showcase-settings.js';
+import { LocaleContext } from './i18n.js';
+import { ShowcaseSettings } from './components/showcase-settings.js';
+import { useDocsPreferences } from './preferences.js';
 function BrandLogo({ size = 96, alt, className }: DesignSystemBrandLogoProps) {
   return (
     <svg
@@ -39,9 +40,7 @@ function BrandLogo({ size = 96, alt, className }: DesignSystemBrandLogoProps) {
   );
 }
 function App() {
-  const [locale, setLocale] = useState<Locale>('en');
-  const [theme, setTheme] = useState<DemoTheme>('cyan');
-  const [appearance, setAppearance] = useState<SurfaceAppearance>('sci-fi');
+  const { locale, setLocale, theme, setTheme, appearance, setAppearance } = useDocsPreferences();
   useEffect(() => {
     document.documentElement.dataset.demoTheme = theme;
   }, [theme]);

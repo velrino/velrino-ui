@@ -2,6 +2,7 @@ name: Validate
 
 on:
   pull_request:
+  workflow_dispatch:
   push:
     branches: [main]
 
@@ -10,7 +11,7 @@ permissions:
 
 concurrency:
   group: validate-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   validate:
@@ -28,12 +29,36 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm run validate
       - run: pnpm run test:package
-      - run: pnpm run demo:build
+      - run: pnpm run docs:build
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm run test:browser
+      - run: pnpm run test:pages
+      - uses: actions/upload-pages-artifact@v3
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        with:
+          path: apps/docs/dist
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: browser-results
           path: test-results/
           retention-days: 7
+
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy documentation
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -11,8 +11,18 @@ import {
 import { useDemoLocale, type Locale } from '../i18n.js';
 
 const languages = [
-  { locale: 'en', label: 'English', code: 'EN-US', flag: '/flags/us.svg' },
-  { locale: 'pt-BR', label: 'Português', code: 'PT-BR', flag: '/flags/br.svg' },
+  {
+    locale: 'en',
+    label: 'English',
+    code: 'EN-US',
+    flag: `${import.meta.env.BASE_URL}flags/us.svg`,
+  },
+  {
+    locale: 'pt-BR',
+    label: 'Português',
+    code: 'PT-BR',
+    flag: `${import.meta.env.BASE_URL}flags/br.svg`,
+  },
 ] as const satisfies readonly { locale: Locale; label: string; code: string; flag: string }[];
 
 export function LanguageOptions({

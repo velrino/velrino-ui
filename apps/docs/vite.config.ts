@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  base: command === 'build' ? '/velrino-ui/' : '/',
   build: {
     rolldownOptions: {
       onwarn(warning, defaultHandler) {
@@ -12,4 +13,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));

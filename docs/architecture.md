@@ -10,6 +10,8 @@ Velrino UI is a framework-independent React package based on the evolved HackUni
 - `styles/tokens.css` defines the semantic `--vui-*` contract. Concrete default colors belong here; component effects derive from these tokens.
 - Application adapters own routing, brand assets, language selection, persisted themes, authentication, analytics and 3D behavior.
 
+The canonical documentation host lives in `apps/docs/` and deploys to GitHub Pages after validation. Applications link to it in a new tab instead of bundling a second gallery. The optional gallery export remains available for independently branded hosts.
+
 ## Styling
 
 Public components use application-agnostic names. `Panel` groups content; `Dialog` manages modal interaction. Standard surfaces are the default. `UIProvider` and per-surface `appearance` allow an explicit sci-fi opt-in independently of colors, fonts, brand or localization. Application adapters choose their own presentation once, including portal content.
