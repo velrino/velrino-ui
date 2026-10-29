@@ -1,7 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-  testDir: './examples/showcase/tests',
+  testDir: './apps/docs/tests',
+  testIgnore: '**/hosting.spec.ts',
+  outputDir: './test-results/gallery',
   fullyParallel: false,
   retries: process.env.CI ? 1 : 0,
   workers: 1,

@@ -25,7 +25,7 @@ src/
   showcase/         # Optional gallery and typed localized copy
   styles/           # Semantic tokens and composed styles
 scripts/            # Build, validation and release tooling
-examples/           # Standalone visual verification host
+apps/docs/          # Canonical documentation site (GitHub Pages)
 docs/               # Architecture, adoption and release guidance
 ```
 
@@ -48,15 +48,19 @@ Dialogs support localized close controls, controlled state, custom portal contai
 
 ## Interactive gallery
 
+[Explore Velrino UI](https://velrino.github.io/velrino-ui/) — try every component, change the palette and compare surface styles.
+
 `@velrino/ui/showcase` exports `DesignSystemRoot` and its explicit brand/localization adapter types. Import typed English/Portuguese dictionaries from the server-safe `@velrino/ui/messages` export, and load `@velrino/ui/showcase.css` alongside the runtime stylesheet. Every component family has a live example; page and tab navigation preserve example state.
 
 ```sh
-pnpm run demo:dev
+pnpm run docs:dev
 PLAYWRIGHT_SKIP_BROWSER_GC=1 pnpm exec playwright install chromium
 pnpm run test:browser
 ```
 
-The standalone example runs at `http://127.0.0.1:4321`. Its fixed navbar opens a centered menu with Go to, Settings and About tabs. Go to opens first with component search. Settings groups language, surface appearance and circular theme swatches; About introduces the author and links to his work and the library source. The example uses single-page content without inline catalog controls. Options have matching widths, and English/Portuguese selection shows local flag artwork. Portfolio Cyan uses the same palette as HackUniverse; Purple and Red are also available. Browser checks cover desktop and mobile emulation; they do not establish physical-device performance.
+The documentation site runs at `http://127.0.0.1:4321`. Its fixed navbar opens a centered menu with Go to, Settings and About tabs. Go to opens first with component search. Settings groups language, surface appearance and circular theme swatches; About introduces the author and links to his work and the library source. The site uses single-page content without inline catalog controls. Options have matching widths, and English/Portuguese selection shows local flag artwork. Portfolio Cyan uses the same palette as HackUniverse; Purple and Red are also available. Browser checks cover desktop and mobile emulation; they do not establish physical-device performance.
+
+The `demo:*` scripts remain aliases for existing local workflows. See [site development and deployment](apps/docs/README.md) for the Pages build and shareable preference links.
 
 ## Distribution
 
