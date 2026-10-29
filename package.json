@@ -108,13 +108,18 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "node scripts/test.mjs",
-    "validate": "pnpm run format:check && pnpm run lint && pnpm run typecheck && pnpm run demo:typecheck && pnpm test && pnpm run build",
-    "demo:dev": "vite examples/showcase --host 127.0.0.1 --port 4321 --strictPort",
-    "demo:build": "vite build examples/showcase",
+    "validate": "pnpm run format:check && pnpm run lint && pnpm run typecheck && pnpm run docs:typecheck && pnpm test && pnpm run build",
+    "demo:dev": "pnpm run docs:dev",
+    "demo:build": "pnpm run docs:build",
     "test:browser": "playwright test",
     "pack:release": "pnpm run build && node scripts/pack.mjs",
     "test:package": "node scripts/test-package.mjs",
-    "demo:typecheck": "tsc -p examples/showcase/tsconfig.json --noEmit"
+    "demo:typecheck": "pnpm run docs:typecheck",
+    "docs:dev": "vite apps/docs --host 127.0.0.1 --port 4321 --strictPort",
+    "docs:build": "vite build apps/docs",
+    "docs:preview": "vite preview apps/docs --host 127.0.0.1 --port 4322 --strictPort --base=/velrino-ui/",
+    "docs:typecheck": "tsc -p apps/docs/tsconfig.json --noEmit",
+    "test:pages": "playwright test --config playwright.pages.config.ts"
   },
   "peerDependencies": {
     "react": ">=19.1.0 <20",
