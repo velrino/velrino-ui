@@ -47,15 +47,15 @@ test('catalog retains values through keyboard dialogs and language selection', a
 
 test('dialog, sheet and loading use the selected portfolio theme', async ({ page }, info) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Open preview settings', exact: true }).click();
-  const settings = page.getByRole('dialog', { name: 'Preview settings', exact: true });
-  await settings.getByRole('tab', { name: 'Theme', exact: true }).click();
+  await page.getByRole('button', { name: 'Open settings', exact: true }).click();
+  const settings = page.getByRole('dialog', { name: 'Settings', exact: true });
+  await settings.getByRole('tab', { name: 'Settings', exact: true }).click();
   const hackColors = await page.evaluate(() =>
     ['--vui-accent', '--vui-background', '--vui-surface', '--vui-text', '--vui-muted'].map((key) =>
       getComputedStyle(document.documentElement).getPropertyValue(key).trim(),
     ),
   );
-  await settings.getByRole('button', { name: 'Cyan', exact: true }).click();
+  await expect(settings.getByRole('radio', { name: 'Cyan', exact: true })).toBeChecked();
   expect(
     await page.evaluate(() =>
       ['--vui-accent', '--vui-background', '--vui-surface', '--vui-text', '--vui-muted'].map(
@@ -63,11 +63,9 @@ test('dialog, sheet and loading use the selected portfolio theme', async ({ page
       ),
     ),
   ).toEqual(hackColors);
-  const widths = await settings
-    .locator('.demo-settings-options > button')
-    .evaluateAll((elements) => elements.map((element) => element.getBoundingClientRect().width));
-  expect(Math.max(...widths) - Math.min(...widths)).toBeLessThan(1);
-  await settings.getByRole('button', { name: 'Purple', exact: true }).click();
+  await settings.getByRole('radio', { name: 'Cyan', exact: true }).focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(settings.getByRole('radio', { name: 'Purple', exact: true })).toBeChecked();
   await page.screenshot({ path: info.outputPath('settings-theme.png'), animations: 'disabled' });
   await page.keyboard.press('Escape');
   await page.getByRole('button', { name: 'Open example dialog', exact: true }).click();
@@ -126,19 +124,16 @@ test('slider keyboard controls and a nested menu remain usable', async ({ page }
 
 test('standard surfaces keep modal behavior without sci-fi decoration', async ({ page }, info) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Open preview settings', exact: true }).click();
-  const settings = page.getByRole('dialog', { name: 'Preview settings', exact: true });
-  await settings.getByRole('tab', { name: 'Surfaces', exact: true }).click();
-  await settings.getByRole('button', { name: 'Standard surfaces', exact: true }).click();
+  await page.getByRole('button', { name: 'Open settings', exact: true }).click();
+  const settings = page.getByRole('dialog', { name: 'Settings', exact: true });
+  await settings.getByRole('tab', { name: 'Settings', exact: true }).click();
+  await settings.getByRole('button', { name: 'Standard', exact: true }).click();
   await expect(settings).toHaveAttribute('data-appearance', 'default');
-  await settings.getByRole('tab', { name: 'Language', exact: true }).click();
   await expect(settings.locator('img')).toHaveCount(2);
   await settings.getByRole('button', { name: 'Português', exact: true }).click();
-  await expect(
-    page.getByRole('dialog', { name: 'Configurações da prévia', exact: true }),
-  ).toBeVisible();
+  await expect(page.getByRole('dialog', { name: 'Configurações', exact: true })).toBeVisible();
   await page
-    .getByRole('dialog', { name: 'Configurações da prévia', exact: true })
+    .getByRole('dialog', { name: 'Configurações', exact: true })
     .getByRole('button', { name: 'English', exact: true })
     .click();
   await page.keyboard.press('Escape');
@@ -163,10 +158,10 @@ test('color values follow the host theme and keep transparency visible', async (
       .locator('.vui-showcase-color-value');
   await expect(value('--vui-accent')).toHaveText('#42E8F4');
   await expect(value('--vui-line')).toHaveText('rgba(66, 232, 244, 0.3)');
-  await page.getByRole('button', { name: 'Open preview settings', exact: true }).click();
-  const settings = page.getByRole('dialog', { name: 'Preview settings', exact: true });
-  await settings.getByRole('tab', { name: 'Theme', exact: true }).click();
-  await settings.getByRole('button', { name: 'Purple', exact: true }).click();
+  await page.getByRole('button', { name: 'Open settings', exact: true }).click();
+  const settings = page.getByRole('dialog', { name: 'Settings', exact: true });
+  await settings.getByRole('tab', { name: 'Settings', exact: true }).click();
+  await settings.getByText('Purple', { exact: true }).click();
   await expect(value('--vui-accent')).toHaveText('#5B21B6');
   await expect(value('--vui-line')).toHaveText('rgba(91, 33, 182, 0.3)');
   await page.keyboard.press('Escape');
@@ -186,13 +181,13 @@ test('menu index searches and jumps without inline navigation or lost fields', a
   await expect(page.getByRole('group', { name: 'Catalog view', exact: true })).toHaveCount(0);
   await page.locator('#vui-example-validation').fill('Retained value');
   const jump = async (query: string, label: string) => {
-    await page.getByRole('button', { name: 'Open preview settings', exact: true }).click();
-    const settings = page.getByRole('dialog', { name: 'Preview settings', exact: true });
+    await page.getByRole('button', { name: 'Open settings', exact: true }).click();
+    const settings = page.getByRole('dialog', { name: 'Settings', exact: true });
     await expect(settings.getByRole('tab', { name: 'Go to', exact: true })).toHaveAttribute(
       'data-state',
       'active',
     );
-    await expect(settings.getByRole('tab')).toHaveText(['Go to', 'Language', 'Theme', 'Surfaces']);
+    await expect(settings.getByRole('tab')).toHaveText(['Go to', 'Settings', 'About']);
     await settings.getByRole('searchbox', { name: 'Search components', exact: true }).fill(query);
     await settings.getByRole('button', { name: label, exact: true }).click();
     await expect(settings).toBeHidden();
@@ -207,15 +202,19 @@ test('menu index searches and jumps without inline navigation or lost fields', a
   await expect(page.locator('#vui-example-validation')).toHaveValue('Retained value');
   await page.goBack();
   await expect(page).toHaveURL(/#sliders$/);
+  await page.locator('.demo-wordmark').click();
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+  await expect(page).toHaveURL(/\?keep=1#?$/);
+  await expect(page.locator('#vui-example-validation')).toHaveValue('Retained value');
   await jump('inputs', 'Inputs');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await page.getByRole('button', { name: 'Open preview settings', exact: true }).click();
-  const settings = page.getByRole('dialog', { name: 'Preview settings', exact: true });
+  await page.getByRole('button', { name: 'Open settings', exact: true }).click();
+  const settings = page.getByRole('dialog', { name: 'Settings', exact: true });
   await settings
     .getByRole('searchbox', { name: 'Search components', exact: true })
     .fill('no-such-component');
   await expect(settings.getByRole('status')).toHaveText('No matching components.');
-  for (const name of ['Go to', 'Language', 'Theme', 'Surfaces']) {
+  for (const name of ['Go to', 'Settings', 'About']) {
     await settings.getByRole('tab', { name, exact: true }).click();
     const overflow = await settings.locator('[data-slot="dialog-body"]').evaluate((element) => ({
       width: element.scrollWidth - element.clientWidth,
@@ -226,7 +225,45 @@ test('menu index searches and jumps without inline navigation or lost fields', a
   }
   await page.screenshot({ path: info.outputPath('menu-index.png'), animations: 'disabled' });
   await page.keyboard.press('Escape');
+  await expect(page.getByRole('button', { name: 'Open settings', exact: true })).toBeFocused();
+});
+
+test('grouped settings and author links remain usable after localization', async ({
+  page,
+}, info) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Open settings', exact: true }).click();
+  const dialog = page.getByRole('dialog', { name: 'Settings', exact: true });
+  await dialog.getByRole('tab', { name: 'Settings', exact: true }).click();
+  await expect(dialog.getByRole('group', { name: 'Language', exact: true })).toBeVisible();
+  await expect(dialog.getByRole('group', { name: 'Surfaces', exact: true })).toBeVisible();
+  await expect(dialog.getByRole('group', { name: 'Theme', exact: true })).toBeVisible();
+  await expect(dialog.getByRole('radio')).toHaveCount(3);
+  const centers = await dialog
+    .locator('.demo-theme-swatch')
+    .evaluateAll((elements) => elements.map((element) => element.getBoundingClientRect().top));
+  expect(Math.max(...centers) - Math.min(...centers)).toBeLessThan(1);
+  await dialog.getByRole('button', { name: 'Português', exact: true }).click();
+  const localized = page.getByRole('dialog', { name: 'Configurações', exact: true });
+  await expect(localized.getByRole('tab')).toHaveText(['Ir para', 'Ajustes', 'Sobre']);
+  await localized.getByRole('tab', { name: 'Sobre', exact: true }).click();
+  await expect(localized.getByText('Feito por Velrino', { exact: true })).toBeVisible();
+  for (const href of [
+    'https://github.com/velrino/',
+    'https://www.linkedin.com/in/velrino/',
+    'https://github.com/velrino/velrino-ui/',
+  ]) {
+    const link = localized.locator(`a[href="${href}"]`);
+    await expect(link).toHaveAttribute('target', '_blank');
+    await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+  }
+  await page.screenshot({ path: info.outputPath('about-portuguese.png'), animations: 'disabled' });
+  const overflow = await localized
+    .locator('[data-slot="dialog-body"]')
+    .evaluate((element) => element.scrollWidth - element.clientWidth);
+  expect(overflow).toBeLessThanOrEqual(1);
+  await page.keyboard.press('Escape');
   await expect(
-    page.getByRole('button', { name: 'Open preview settings', exact: true }),
+    page.getByRole('button', { name: 'Abrir configurações', exact: true }),
   ).toBeFocused();
 });

@@ -155,7 +155,7 @@ const en = {
     confirmed: 'Example confirmed. No data was sent.',
     languageTitle: 'Language selection',
     languageDescription:
-      'This is the same language control used in the header. It changes the entire interface without a refresh.',
+      'Choose a language to explore the catalog. Your examples and input stay in place.',
   },
   loading: {
     description:

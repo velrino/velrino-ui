@@ -7,9 +7,11 @@ export function LoadingExample() {
   const { copy, open, progress, complete, onStart, onCancel } = useLoadingPreview();
   return (
     <div className="vui-showcase-stack">
-      <Button variant="outline" onClick={onStart}>
-        {copy.open}
-      </Button>
+      <div className="vui-showcase-action">
+        <Button variant="outline" onClick={onStart}>
+          {copy.open}
+        </Button>
+      </div>
       {open && (
         <FullScreenLoader
           label={copy.label}

@@ -7,7 +7,7 @@ Use the package asset, which contains compiled JavaScript, declarations and CSS.
 ```json
 {
   "dependencies": {
-    "@velrino/ui": "https://github.com/velrino/velrino-ui/releases/download/v0.0.2/velrino-ui-0.0.2.tgz"
+    "@velrino/ui": "https://github.com/velrino/velrino-ui/releases/download/v0.0.3/velrino-ui-0.0.3.tgz"
   }
 }
 ```
