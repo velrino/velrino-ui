@@ -60,7 +60,7 @@ The standalone example runs at `http://127.0.0.1:4321`. Its fixed navbar opens a
 
 ## Distribution
 
-Distribution uses a compiled GitHub Release tarball for `@velrino/ui@0.0.3`. The `private` package flag prevents accidental npm publication while permitting packed GitHub release installation. No npm registry release exists.
+Distribution uses a compiled GitHub Release tarball for `@velrino/ui@0.0.3`. The `private` package flag prevents accidental npm publication while permitting packed GitHub release installation. No npm registry release exists. A [latest download](https://github.com/velrino/velrino-ui/releases/latest/download/velrino-ui.tgz) is available under a fixed asset name; use versioned archives for repeatable application builds and refresh lockfiles deliberately when updating. See [adoption](docs/adoption.md#latest-download-alias).
 
 Import the package stylesheet once in the application's global entry, then map application-owned palettes onto `--vui-*` tokens. Component styles use namespaced `vui-` classes; structural styles never hard-code a brand accent or apply a global CSS reset.
 
