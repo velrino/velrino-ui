@@ -13,3 +13,5 @@
 @import '../components/dropdown-menu/dropdown-menu.css' layer(components);
 @import '../components/sheet/sheet.css' layer(components);
 @import '../components/slider/slider.css' layer(components);
+@import '../components/select/select.css' layer(components);
+@import '../components/step-navigation/step-navigation.css' layer(components);
