@@ -5,7 +5,7 @@ test('catalog retains values through keyboard dialogs and language selection', a
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Design system', exact: true })).toBeVisible();
-  await expect(page.locator('.vui-showcase-section')).toHaveCount(15);
+  await expect(page.locator('.vui-showcase-section')).toHaveCount(17);
   await page.getByLabel('Validation example', { exact: true }).fill('Orbit');
   const trigger = page.getByRole('button', { name: 'Open example dialog', exact: true });
   await trigger.click();
@@ -120,6 +120,54 @@ test('slider keyboard controls and a nested menu remain usable', async ({ page }
       exact: true,
     }),
   ).toBeVisible();
+});
+
+test('selects and step navigation retain choices through navigation and localization', async ({
+  page,
+}) => {
+  await page.goto('/#selects');
+  const density = page.getByRole('combobox', { name: 'Display density', exact: true });
+  await density.click();
+  await expect(page.getByRole('option', { name: 'Unavailable', exact: true })).toHaveAttribute(
+    'aria-disabled',
+    'true',
+  );
+  await page.getByRole('option', { name: 'Compact', exact: true }).click();
+  await expect(density).toHaveText('Compact');
+  await expect(
+    page.getByRole('combobox', { name: 'Disabled selection', exact: true }),
+  ).toBeDisabled();
+  await density.focus();
+  await page.keyboard.press('ArrowDown');
+  await expect(page.getByRole('listbox')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(density).toBeFocused();
+
+  const steps = page.locator('#steps');
+  await steps.getByLabel('Display name', { exact: true }).fill('Aster');
+  await steps.getByRole('button', { name: 'Review', exact: true }).click();
+  await expect(steps.getByRole('heading', { name: 'Review', exact: true })).toBeVisible();
+  await expect(steps.getByText('Aster', { exact: true })).toBeVisible();
+  await steps.getByRole('button', { name: 'Preferences', exact: true }).click();
+  await steps.getByRole('combobox', { name: 'Update frequency', exact: true }).click();
+  await page.getByRole('option', { name: 'Monthly', exact: true }).click();
+  await steps.getByRole('button', { name: 'Continue', exact: true }).click();
+  await expect(steps.getByText('Monthly', { exact: true })).toBeVisible();
+
+  await page.getByRole('button', { name: 'Change language: English', exact: true }).click();
+  await page
+    .getByRole('dialog', { name: 'Choose your language' })
+    .getByRole('button', {
+      name: 'Português',
+      exact: true,
+    })
+    .click();
+  await expect(
+    page.getByRole('combobox', { name: 'Densidade da interface', exact: true }),
+  ).toHaveText('Compacta');
+  await expect(steps.getByText('Mensal', { exact: true })).toBeVisible();
+  await steps.getByRole('button', { name: 'Perfil', exact: true }).click();
+  await expect(steps.getByLabel('Nome de exibição', { exact: true })).toHaveValue('Aster');
 });
 
 test('standard surfaces keep modal behavior without sci-fi decoration', async ({ page }, info) => {

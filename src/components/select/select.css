@@ -1,0 +1,132 @@
+.vui-select-trigger {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  min-width: 0;
+  min-height: 2.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--vui-line);
+  border-radius: var(--vui-radius);
+  background: var(--vui-surface);
+  color: var(--vui-text);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.vui-select-value {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.vui-select-trigger[data-unselected] {
+  color: var(--vui-muted);
+}
+
+.vui-select-trigger:hover:not(:disabled),
+.vui-select-trigger[data-popup-open] {
+  border-color: var(--vui-accent);
+}
+
+.vui-select-trigger:focus-visible {
+  outline: 2px solid var(--vui-accent);
+  outline-offset: 3px;
+}
+
+.vui-select-trigger[aria-invalid='true'] {
+  border-color: var(--vui-danger);
+}
+
+.vui-select-trigger[aria-invalid='true']:focus-visible {
+  outline-color: var(--vui-danger);
+}
+
+.vui-select-trigger:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.vui-select-icon,
+.vui-select-indicator {
+  display: grid;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  place-items: center;
+  color: var(--vui-text-accent);
+}
+
+.vui-select-icon svg,
+.vui-select-indicator svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.vui-select-positioner {
+  z-index: calc(var(--vui-layer) + 1);
+  max-width: var(--available-width);
+  outline: none;
+}
+
+.vui-select-popup {
+  box-sizing: border-box;
+  min-width: var(--anchor-width);
+  max-width: var(--available-width);
+  overflow: hidden;
+  border: 1px solid var(--vui-line);
+  border-radius: var(--vui-radius);
+  background: var(--vui-surface);
+  color: var(--vui-text);
+  font-family: var(--vui-font);
+  box-shadow: 0 8px 28px var(--vui-shadow);
+  outline: none;
+}
+
+.vui-select-list {
+  box-sizing: border-box;
+  max-height: min(var(--available-height, 20rem), 20rem);
+  padding: 0.25rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  outline: none;
+}
+
+.vui-select-item {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: var(--vui-radius);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+  outline: none;
+  user-select: none;
+}
+
+.vui-select-item[data-highlighted] {
+  background: var(--vui-secondary);
+  color: var(--vui-text-accent);
+  outline: 1px solid var(--vui-accent);
+  outline-offset: -1px;
+}
+
+.vui-select-item[data-disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (forced-colors: active) {
+  .vui-select-trigger,
+  .vui-select-popup {
+    border-color: ButtonText;
+  }
+}

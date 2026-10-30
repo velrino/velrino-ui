@@ -5,6 +5,8 @@ import { sectionOrder, type ShowcaseMode, type ShowcaseSectionId } from '../../c
 import { DesignSection } from '../../ui/base/design-section.js';
 import { ButtonExamples } from '../../ui/examples/button-examples.js';
 import { InputExamples } from '../../ui/examples/input-examples.js';
+import { SelectExamples } from '../../ui/examples/select-examples.js';
+import { StepNavigationExamples } from '../../ui/examples/step-navigation-examples.js';
 import { DialogExamples } from '../../ui/examples/dialog-examples.js';
 import { LoadingExample } from '../../ui/examples/loading-example.js';
 import { PanelExamples } from '../../ui/examples/panel-examples.js';
@@ -61,6 +63,7 @@ export function Showcase({
     ),
     buttons: <ButtonExamples />,
     inputs: <InputExamples />,
+    selects: <SelectExamples />,
     dialogs: <DialogExamples />,
     loading: <LoadingExample />,
     brand: (
@@ -74,6 +77,7 @@ export function Showcase({
     ),
     panels: <PanelExamples />,
     tabs: <TabsExamples />,
+    steps: <StepNavigationExamples />,
     accordion: <AccordionExamples />,
     menus: <MenuExamples />,
     sheets: <SheetExamples />,

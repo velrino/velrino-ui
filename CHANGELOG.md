@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.4 — 2026-10-29
+
+- Add a controlled, accessible Select with themeable trigger and popup, keyboard navigation, disabled options and an explicit empty-string choice. Keep selection popups inside a surrounding dialog's focus scope.
+- Extract controlled StepNavigation with horizontal stages, mobile short labels, accessible full labels and caller-owned progression/validation.
+- Add English/Portuguese live gallery examples, bringing the gallery to 17 sections, and granular compiled package exports for both families.
+- Cover popup/dialog focus, keyboard selection, disabled states, empty-string options and controlled step changes. Extend packed consumer checks to the new imports, declarations, SSR and CSS.
+
 ## 0.0.3 — 2026-10-28
 
 - Generate a fixed-name archive/checksum alias beside each versioned package. Publish the release only after all assets upload, document latest-download lockfile behavior and verify the alias through packed consumers.
