@@ -1,5 +1,41 @@
 import { expect, test } from '@playwright/test';
 
+test('switches keep accessible state across appearance and language changes', async ({
+  page,
+}, info) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/?lang=en&appearance=sci-fi#inputs');
+  const control = page.getByRole('switch', { name: 'Enable notifications', exact: true });
+  await expect(control).not.toBeChecked();
+  await expect(control).toHaveCSS('cursor', 'pointer');
+  await expect(control.locator('.vui-switch-track')).toHaveCSS('border-radius', '0px');
+  await expect(control.locator('.vui-switch-thumb')).toHaveCSS('transition-duration', '0s');
+  const box = await control.boundingBox();
+  expect(box!.width).toBeGreaterThanOrEqual(44);
+  expect(box!.height).toBeGreaterThanOrEqual(44);
+  await control.focus();
+  await page.keyboard.press('Space');
+  await expect(control).toBeChecked();
+  await expect(control).toHaveCSS('outline-style', 'solid');
+  await expect(page.getByRole('switch', { name: 'Disabled switch', exact: true })).toBeDisabled();
+  await control.scrollIntoViewIfNeeded();
+  await page.screenshot({ path: info.outputPath('sci-fi-switch.png'), animations: 'disabled' });
+
+  await page.getByRole('button', { name: 'Open settings', exact: true }).click();
+  const settings = page.getByRole('dialog', { name: 'Settings', exact: true });
+  await settings.getByRole('tab', { name: 'Settings', exact: true }).click();
+  await settings.getByRole('button', { name: 'Standard', exact: true }).click();
+  await settings.getByRole('button', { name: 'Português', exact: true }).click();
+  await page.keyboard.press('Escape');
+  const localized = page.getByRole('switch', { name: 'Ativar notificações', exact: true });
+  await expect(localized).toBeChecked();
+  await expect(localized).toHaveAttribute('data-appearance', 'default');
+  await expect(localized.locator('.vui-switch-track')).toHaveCSS('border-radius', '999px');
+  await localized.click();
+  await expect(localized).not.toBeChecked();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
 test('catalog retains values through keyboard dialogs and language selection', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));

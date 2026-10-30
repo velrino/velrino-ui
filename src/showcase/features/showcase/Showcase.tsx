@@ -5,6 +5,7 @@ import { sectionOrder, type ShowcaseMode, type ShowcaseSectionId } from '../../c
 import { DesignSection } from '../../ui/base/design-section.js';
 import { ButtonExamples } from '../../ui/examples/button-examples.js';
 import { InputExamples } from '../../ui/examples/input-examples.js';
+import { SwitchExamples } from '../../ui/examples/switch-examples.js';
 import { SelectExamples } from '../../ui/examples/select-examples.js';
 import { StepNavigationExamples } from '../../ui/examples/step-navigation-examples.js';
 import { DialogExamples } from '../../ui/examples/dialog-examples.js';
@@ -62,7 +63,12 @@ export function Showcase({
       </div>
     ),
     buttons: <ButtonExamples />,
-    inputs: <InputExamples />,
+    inputs: (
+      <div className="vui-showcase-stack">
+        <InputExamples />
+        <SwitchExamples />
+      </div>
+    ),
     selects: <SelectExamples />,
     dialogs: <DialogExamples />,
     loading: <LoadingExample />,

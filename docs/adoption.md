@@ -7,7 +7,7 @@ Use the package asset, which contains compiled JavaScript, declarations and CSS.
 ```json
 {
   "dependencies": {
-    "@velrino/ui": "https://github.com/velrino/velrino-ui/releases/download/v0.0.4/velrino-ui-0.0.4.tgz"
+    "@velrino/ui": "https://github.com/velrino/velrino-ui/releases/download/v0.0.5/velrino-ui-0.0.5.tgz"
   }
 }
 ```
@@ -86,6 +86,29 @@ The gallery defaults to a `main` landmark. Use `as="div"` or `as="section"` when
 Supports React/React DOM 19.1 through 19.x. No Next.js dependency or source transpilation configuration is required; compiled client boundaries are preserved. Node.js 22+ and pinned pnpm are development/release requirements, not browser runtime dependencies.
 
 Thin compatibility exports in an existing application are acceptable during migration. Shared implementations, focus behavior and decorative CSS belong in this package.
+
+## Switch
+
+`Switch` and `SwitchProps` are available from `@velrino/ui/switch` and the package root in v0.0.5. Load the existing runtime stylesheet; there are no new dependencies, resets or source-scanning requirements.
+
+```tsx
+import { Switch } from '@velrino/ui/switch';
+
+<label htmlFor="notifications">Enable notifications</label>
+<Switch
+  id="notifications"
+  checked={notifications}
+  onCheckedChange={setNotifications}
+  aria-describedby="notifications-help"
+/>
+<p id="notifications-help">Choose whether to receive updates.</p>;
+```
+
+Use `checked` with `onCheckedChange` for application-owned state, or `defaultChecked` for an uncontrolled setting. The callback receives the next boolean and Base UI change details; `details.cancel()` cancels an uncontrolled change. Supply a visible associated label, `aria-label` or `aria-labelledby`, plus an optional `aria-describedby`. A forwarded ref accesses the native button, while `inputRef` accesses the form input.
+
+Space/Enter toggle the setting without submitting an enclosing form. `disabled` blocks changes and keyboard focus; `readOnly` retains focus without allowing changes. Native form properties include `name`, `value` (default `on`), `uncheckedValue`, `form` and `required`. Unchecked switches omit their field unless `uncheckedValue` is supplied; disabled fields do not submit. Required validation belongs to the form input. Applications own persistence, asynchronous work, permission checks and error messages.
+
+The default appearance uses a rounded track and thumb. `appearance="sci-fi"` uses a square track and a subtly chamfered thumb, inheriting `UIProvider` when no override is supplied. Colors follow existing semantic tokens; reduced motion removes the short state transition. The control reserves a 44-by-44-pixel target and keeps keyboard focus outside the decorative layers. Built-in EN/PT examples live in Inputs without changing the 17 section IDs. Custom `DesignSystemCopy` dictionaries need the additional `inputs.switches` fields. See [v0.0.5 release notes](releases/0.0.5.md).
 
 ## Select and step navigation
 

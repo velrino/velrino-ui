@@ -1,0 +1,124 @@
+.vui-switch {
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--vui-radius);
+  background: transparent;
+  color: var(--vui-text);
+  font: inherit;
+  vertical-align: middle;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.vui-switch-track {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 2.75rem;
+  height: 1.5rem;
+  padding: 3px;
+  border: 1px solid var(--vui-line);
+  border-radius: 999px;
+  background: var(--vui-secondary);
+  transition:
+    background-color 150ms,
+    border-color 150ms;
+}
+
+.vui-switch-thumb {
+  box-sizing: border-box;
+  display: block;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: var(--vui-muted);
+  transition:
+    transform 150ms,
+    background-color 150ms;
+}
+
+.vui-switch[data-checked] .vui-switch-track {
+  border-color: var(--vui-accent);
+  background: color-mix(in srgb, var(--vui-accent) 18%, var(--vui-surface));
+}
+
+.vui-switch[data-checked] .vui-switch-thumb {
+  transform: translateX(1.25rem);
+  background: var(--vui-accent);
+}
+
+.vui-switch:dir(rtl)[data-checked] .vui-switch-thumb {
+  transform: translateX(-1.25rem);
+}
+
+.vui-switch:hover:not([data-disabled]):not([data-readonly]) .vui-switch-track {
+  border-color: var(--vui-accent);
+}
+
+.vui-switch:focus-visible {
+  outline: 2px solid var(--vui-accent);
+  outline-offset: 3px;
+}
+
+.vui-switch[aria-invalid='true'] .vui-switch-track,
+.vui-switch[data-invalid] .vui-switch-track {
+  border-color: var(--vui-danger);
+}
+
+.vui-switch[aria-invalid='true']:focus-visible,
+.vui-switch[data-invalid]:focus-visible {
+  outline-color: var(--vui-danger);
+}
+
+.vui-switch[data-disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.vui-switch[data-readonly] {
+  cursor: default;
+}
+
+.vui-switch[data-appearance='sci-fi'] .vui-switch-track,
+.vui-switch[data-appearance='sci-fi'] .vui-switch-thumb {
+  border-radius: 0;
+}
+
+.vui-switch[data-appearance='sci-fi'] .vui-switch-thumb {
+  clip-path: polygon(2px 0, 100% 0, 100% calc(100% - 2px), calc(100% - 2px) 100%, 0 100%, 0 2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vui-switch-track,
+  .vui-switch-thumb {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .vui-switch-track {
+    border-color: ButtonText;
+    background: ButtonFace;
+  }
+  .vui-switch-thumb {
+    background: ButtonText;
+  }
+  .vui-switch[data-checked] .vui-switch-track {
+    border-color: Highlight;
+    background: ButtonFace;
+  }
+  .vui-switch[data-checked] .vui-switch-thumb {
+    background: Highlight;
+  }
+}
