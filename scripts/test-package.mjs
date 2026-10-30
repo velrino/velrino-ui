@@ -48,6 +48,7 @@ try {
       import { Panel as GranularPanel } from '@velrino/ui/panel';
       import { Select, type SelectOption } from '@velrino/ui/select';
       import { StepNavigation, type NavigationStep } from '@velrino/ui/step-navigation';
+      import { Switch, type SwitchProps } from '@velrino/ui/switch';
       import { buttonVariants } from '@velrino/ui/button-variants';
       const appearance: SurfaceAppearance = 'sci-fi';
       const props = { as: 'section', appearance, 'aria-label': 'Portable example' } satisfies PanelProps;
@@ -60,6 +61,8 @@ try {
       const stages: readonly NavigationStep[] = [{ id: 'details', label: 'Details' }];
       void <Select id="density" value="" onValueChange={() => {}} options={options} />;
       void <StepNavigation label="Steps" current="details" onStepChange={() => {}} steps={stages} />;
+      const toggle = { checked: true, onCheckedChange: (_checked: boolean) => {}, appearance: 'sci-fi' } satisfies SwitchProps;
+      void <Switch id="updates" aria-label="Updates" {...toggle} />;
     `,
     );
     await writeFile(
@@ -94,6 +97,7 @@ try {
       import { designSystemEn } from '@velrino/ui/messages';
       import { Select } from '@velrino/ui/select';
       import { StepNavigation } from '@velrino/ui/step-navigation';
+      import { Switch } from '@velrino/ui/switch';
       const content = createElement(Panel, {as:'section', 'aria-label':'Portable example'}, createElement(Button, null, designSystemEn.buttons.normal));
       const html = renderToStaticMarkup(createElement(UIProvider, {appearance:'sci-fi'}, content));
       assert.match(html, /data-slot="panel"/);
@@ -105,6 +109,10 @@ try {
       assert.match(select, /Automatic/);
       const steps = renderToStaticMarkup(createElement(StepNavigation, {label:'Steps', current:'details', onStepChange() {}, steps:[{id:'details', label:'Details'}]}));
       assert.match(steps, /aria-current="step"/);
+      const toggle = renderToStaticMarkup(createElement(Switch, {defaultChecked:true, name:'updates', 'aria-label':'Updates'}));
+      assert.match(toggle, /role="switch"/);
+      assert.match(toggle, /aria-checked="true"/);
+      assert.match(toggle, /type="button"/);
       const entry = readFileSync(new URL(import.meta.resolve('@velrino/ui')), 'utf8');
       assert.match(entry, /^['"]use client['"];?/);
       for (const name of ['styles.css','showcase.css']) {
@@ -115,6 +123,7 @@ try {
         if (name === 'styles.css') {
           assert.ok(css.includes('.vui-select-trigger'));
           assert.ok(css.includes('.vui-step-navigation'));
+          assert.ok(css.includes('.vui-switch'));
         }
       }
     `,

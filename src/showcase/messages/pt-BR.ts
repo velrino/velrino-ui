@@ -176,6 +176,15 @@ const ptBR = {
     validHint: 'O valor atende ao requisito deste exemplo.',
     disabledLabel: 'Campo desabilitado',
     disabledValue: 'Indisponível neste estado',
+    switches: {
+      title: 'Switch',
+      hint: 'Uma opção binária com suporte a teclado. Mude a aparência das superfícies para comparar controles arredondados e quadrados.',
+      label: 'Ativar notificações',
+      on: 'As notificações estão ativadas neste exemplo.',
+      off: 'As notificações estão desativadas neste exemplo.',
+      disabled: 'Switch desabilitado',
+      disabledHint: 'Esta opção não pode mudar no estado atual.',
+    },
   },
   dialogs: {
     description:

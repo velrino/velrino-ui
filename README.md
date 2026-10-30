@@ -37,7 +37,7 @@ apps/docs/          # Canonical documentation site (GitHub Pages)
 docs/               # Architecture, adoption and release guidance
 ```
 
-See [architecture](docs/architecture.md), [adoption](docs/adoption.md), [v0.0.4 release notes](docs/releases/0.0.4.md), [contributing](CONTRIBUTING.md) and [issues](https://github.com/velrino/velrino-ui/issues).
+See [architecture](docs/architecture.md), [adoption](docs/adoption.md), [v0.0.5 release notes](docs/releases/0.0.5.md), [contributing](CONTRIBUTING.md) and [issues](https://github.com/velrino/velrino-ui/issues).
 
 ## Components
 
@@ -45,7 +45,7 @@ See [architecture](docs/architecture.md), [adoption](docs/adoption.md), [v0.0.4 
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | Actions    | `Button`, `buttonVariants`, `AnchorLink`                                                                                               |
 | Surfaces   | `Panel`, `Dialog`, `DialogContent`, `DialogTrigger`, `DialogClose`, `DialogHeader`, `DialogFooter`, `DialogTitle`, `DialogDescription` |
-| Inputs     | `Input`, `Slider`, `Select`                                                                                                            |
+| Inputs     | `Input`, `Slider`, `Select`, `Switch`                                                                                                  |
 | Navigation | `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`, `Accordion`, `DropdownMenu`, `StepNavigation`                                        |
 | Drawers    | `Sheet`, `SheetTrigger`, `SheetContent`, `SheetClose`, `SheetHeader`, `SheetFooter`, `SheetTitle`, `SheetDescription`                  |
 | Feedback   | `FullScreenLoader`, `TypewriterText`                                                                                                   |
@@ -54,13 +54,15 @@ Dialogs support localized close controls, controlled state, custom portal contai
 
 `Select` provides controlled string choices, keyboard navigation, disabled controls/options and a real empty-string option. Its popup respects an enclosing dialog's focus boundary. `StepNavigation` exposes accessible, controlled stages with optional mobile short labels; the application owns progression and validation. Both are available from the package root and their granular exports in v0.0.4; see [adoption examples](docs/adoption.md#select-and-step-navigation).
 
+`Switch` adds a labeled binary setting in v0.0.5, with controlled/uncontrolled state, native keyboard/form behavior and disabled/read-only support. Its standard appearance is rounded; `appearance="sci-fi"`, inherited from `UIProvider` or supplied directly, uses a square track and a subtly chamfered thumb. The 44-pixel interaction target and focus indicator remain outside the decorative layer. See [Switch adoption](docs/adoption.md#switch).
+
 `Panel` groups content; it is not a modal. `Dialog` owns modal focus, the overlay and dismissal. Both use standard surfaces by default. Choose `appearance="sci-fi"` for one surface, or wrap a tree in `<UIProvider appearance="sci-fi">` to opt into that presentation across panels, dialogs and sheets. Providers compose without adding DOM wrappers; application-owned CSS variables still control all colors and fonts.
 
 ## Interactive gallery
 
 [Explore Velrino UI](https://velrino.github.io/velrino-ui/) — try every component, change the palette and compare surface styles.
 
-`@velrino/ui/showcase` exports `DesignSystemRoot` and its explicit brand/localization adapter types. Import typed English/Portuguese dictionaries from the server-safe `@velrino/ui/messages` export, and load `@velrino/ui/showcase.css` alongside the runtime stylesheet. The 17 gallery sections include live Select and StepNavigation examples; page and tab navigation preserve example state.
+`@velrino/ui/showcase` exports `DesignSystemRoot` and its explicit brand/localization adapter types. Import typed English/Portuguese dictionaries from the server-safe `@velrino/ui/messages` export, and load `@velrino/ui/showcase.css` alongside the runtime stylesheet. The 17 gallery sections include live Select and StepNavigation examples and Switch controls under Inputs; page and tab navigation preserve example state.
 
 ```sh
 pnpm run docs:dev
@@ -74,7 +76,7 @@ The `demo:*` scripts remain aliases for existing local workflows. See [site deve
 
 ## Distribution
 
-Distribution uses a compiled GitHub Release tarball for `@velrino/ui@0.0.4`. The `private` package flag prevents accidental npm publication while permitting packed GitHub release installation. No npm registry release exists. A [latest download](https://github.com/velrino/velrino-ui/releases/latest/download/velrino-ui.tgz) uses a fixed asset name; use versioned archives for repeatable application builds and refresh lockfiles deliberately when updating. See [v0.0.4 release notes](docs/releases/0.0.4.md) and [adoption](docs/adoption.md#latest-download-alias).
+Distribution uses a compiled GitHub Release tarball for `@velrino/ui@0.0.5`. The `private` package flag prevents accidental npm publication while permitting packed GitHub release installation. No npm registry release exists. A [latest download](https://github.com/velrino/velrino-ui/releases/latest/download/velrino-ui.tgz) uses a fixed asset name; use versioned archives for repeatable application builds and refresh lockfiles deliberately when updating. See [v0.0.5 release notes](docs/releases/0.0.5.md) and [adoption](docs/adoption.md#latest-download-alias).
 
 Import the package stylesheet once in the application's global entry, then map application-owned palettes onto `--vui-*` tokens. Component styles use namespaced `vui-` classes; structural styles never hard-code a brand accent or apply a global CSS reset.
 
