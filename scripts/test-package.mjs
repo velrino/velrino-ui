@@ -46,6 +46,8 @@ try {
       import { Panel, Button, UIProvider, type PanelProps, type SurfaceAppearance } from '@velrino/ui';
       import { designSystemEn, type DesignSystemCopy } from '@velrino/ui/messages';
       import { Panel as GranularPanel } from '@velrino/ui/panel';
+      import { Select, type SelectOption } from '@velrino/ui/select';
+      import { StepNavigation, type NavigationStep } from '@velrino/ui/step-navigation';
       import { buttonVariants } from '@velrino/ui/button-variants';
       const appearance: SurfaceAppearance = 'sci-fi';
       const props = { as: 'section', appearance, 'aria-label': 'Portable example' } satisfies PanelProps;
@@ -54,6 +56,10 @@ try {
       void example;
       void GranularPanel;
       void buttonVariants({ variant: 'outline' });
+      const options: readonly SelectOption[] = [{ value: '', label: 'Automatic' }];
+      const stages: readonly NavigationStep[] = [{ id: 'details', label: 'Details' }];
+      void <Select id="density" value="" onValueChange={() => {}} options={options} />;
+      void <StepNavigation label="Steps" current="details" onStepChange={() => {}} steps={stages} />;
     `,
     );
     await writeFile(
@@ -86,12 +92,19 @@ try {
       import { Panel, Button, UIProvider } from '@velrino/ui';
       import { DesignSystemRoot } from '@velrino/ui/showcase';
       import { designSystemEn } from '@velrino/ui/messages';
+      import { Select } from '@velrino/ui/select';
+      import { StepNavigation } from '@velrino/ui/step-navigation';
       const content = createElement(Panel, {as:'section', 'aria-label':'Portable example'}, createElement(Button, null, designSystemEn.buttons.normal));
       const html = renderToStaticMarkup(createElement(UIProvider, {appearance:'sci-fi'}, content));
       assert.match(html, /data-slot="panel"/);
       assert.match(html, /data-appearance="sci-fi"/);
       assert.match(html, /Portable example/);
       assert.equal(typeof DesignSystemRoot, 'function');
+      const select = renderToStaticMarkup(createElement(Select, {value:'', onValueChange() {}, options:[{value:'', label:'Automatic'}], 'aria-label':'Density'}));
+      assert.match(select, /data-slot="select-trigger"/);
+      assert.match(select, /Automatic/);
+      const steps = renderToStaticMarkup(createElement(StepNavigation, {label:'Steps', current:'details', onStepChange() {}, steps:[{id:'details', label:'Details'}]}));
+      assert.match(steps, /aria-current="step"/);
       const entry = readFileSync(new URL(import.meta.resolve('@velrino/ui')), 'utf8');
       assert.match(entry, /^['"]use client['"];?/);
       for (const name of ['styles.css','showcase.css']) {
@@ -99,6 +112,10 @@ try {
         assert.ok(css.length > 100);
         assert.ok(!css.includes('@import'));
         assert.ok(!css.includes('/Users/'));
+        if (name === 'styles.css') {
+          assert.ok(css.includes('.vui-select-trigger'));
+          assert.ok(css.includes('.vui-step-navigation'));
+        }
       }
     `,
     );

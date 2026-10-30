@@ -7,7 +7,7 @@ Use the package asset, which contains compiled JavaScript, declarations and CSS.
 ```json
 {
   "dependencies": {
-    "@velrino/ui": "https://github.com/velrino/velrino-ui/releases/download/v0.0.3/velrino-ui-0.0.3.tgz"
+    "@velrino/ui": "https://github.com/velrino/velrino-ui/releases/download/v0.0.4/velrino-ui-0.0.4.tgz"
   }
 }
 ```
@@ -86,5 +86,43 @@ The gallery defaults to a `main` landmark. Use `as="div"` or `as="section"` when
 Supports React/React DOM 19.1 through 19.x. No Next.js dependency or source transpilation configuration is required; compiled client boundaries are preserved. Node.js 22+ and pinned pnpm are development/release requirements, not browser runtime dependencies.
 
 Thin compatibility exports in an existing application are acceptable during migration. Shared implementations, focus behavior and decorative CSS belong in this package.
+
+## Select and step navigation
+
+Select and StepNavigation are included in v0.0.4 through the root export and the granular entries below. Adopt the immutable release URL above and regenerate the consumer lockfile when upgrading; older archives do not gain new exports automatically. Do not commit local sibling paths as application dependencies.
+
+```tsx
+import { Select } from '@velrino/ui/select';
+import { StepNavigation } from '@velrino/ui/step-navigation';
+
+<label htmlFor="density">Density</label>
+<Select
+  id="density"
+  value={density}
+  onValueChange={setDensity}
+  options={[
+    { value: '', label: 'Automatic' },
+    { value: 'compact', label: 'Compact' },
+    { value: 'comfortable', label: 'Comfortable' },
+  ]}
+/>;
+
+<StepNavigation
+  label="Steps"
+  current={step}
+  onStepChange={setStep}
+  steps={[
+    { id: 'details', label: 'Details' },
+    { id: 'preferences', label: 'Preferences' },
+    { id: 'review', label: 'Review' },
+  ]}
+/>;
+```
+
+Keep selected values, localized option/step labels, required-field rules and submission in the application. An empty string is a real Select option, so an Automatic choice retains its own label instead of becoming a placeholder. Set `disabled` on the Select or an individual option to prevent selection. Keyboard users can navigate choices and return focus to the trigger; inside a Dialog, the first Escape closes only the popup and keeps its parent dialog open.
+
+StepNavigation only reports a requested stage; it does not validate, persist data or advance by itself. Its ordinary buttons use native Tab and Enter/Space interaction, and the current stage has `aria-current="step"`. Optional `shortLabel` text is visual on mobile while the full `label` remains accessible; `complete` supplies a decorative completion mark. Its `disabled` prop disables all stage buttons. Choosing a stage never submits an enclosing form.
+
+The gallery includes both families in its 17 English/Portuguese sections. Custom `DesignSystemCopy` dictionaries must provide the new `selects` and `steps` fields; the built-in dictionaries already include them. Existing runtime imports and the shared stylesheet path are unchanged. See the [v0.0.4 release notes](releases/0.0.4.md).
 
 A client host can provide `renderNavigation` to replace the built-in page/tab controls with its own menu. The render callback receives `mode`, `activeSection`, `changeMode` and `navigateTo`. Embed `SectionSearch` from `@velrino/ui/showcase` inside that menu; it reuses the host's typed dictionaries. Close the menu before calling `navigateTo` (for example from DialogContent's `onCloseAutoFocus`, preventing its default trigger focus for that selection). Examples remain mounted and fragment navigation preserves the route query. Standard built-in controls are unchanged when no render callback is supplied.

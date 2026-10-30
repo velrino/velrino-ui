@@ -14,3 +14,5 @@ export * from './components/accordion/index.js';
 export * from './components/dropdown-menu/index.js';
 export * from './components/sheet/index.js';
 export * from './components/slider/index.js';
+export * from './components/select/index.js';
+export * from './components/step-navigation/index.js';
