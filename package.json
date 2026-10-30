@@ -1,6 +1,6 @@
 {
   "name": "@velrino/ui",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "private": true,
   "description": "Accessible, themeable React components with optional sci-fi surfaces and a reusable design-system gallery.",
   "license": "MIT",
@@ -77,6 +77,10 @@
     "./step-navigation": {
       "types": "./dist/components/step-navigation/index.d.ts",
       "import": "./dist/components/step-navigation/index.js"
+    },
+    "./switch": {
+      "types": "./dist/components/switch/index.d.ts",
+      "import": "./dist/components/switch/index.js"
     },
     "./provider": {
       "types": "./dist/provider/ui-provider.d.ts",

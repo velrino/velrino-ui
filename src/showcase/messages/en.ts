@@ -172,6 +172,15 @@ const en = {
     validHint: "The value meets this example's requirement.",
     disabledLabel: 'Disabled input',
     disabledValue: 'Unavailable in this state',
+    switches: {
+      title: 'Switch',
+      hint: 'A binary setting with keyboard support. Change the surface appearance to compare rounded and square controls.',
+      label: 'Enable notifications',
+      on: 'Notifications are on in this example.',
+      off: 'Notifications are off in this example.',
+      disabled: 'Disabled switch',
+      disabledHint: 'This setting cannot change in its current state.',
+    },
   },
   dialogs: {
     description:

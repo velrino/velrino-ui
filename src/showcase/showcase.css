@@ -175,6 +175,17 @@
   color: var(--vui-muted);
   font-size: 0.8rem;
 }
+.vui-showcase-switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-width: 0;
+}
+.vui-showcase-switch-row label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
 .vui-showcase-field [data-invalid='true'] {
   color: var(--vui-danger);
 }

@@ -15,3 +15,4 @@
 @import '../components/slider/slider.css' layer(components);
 @import '../components/select/select.css' layer(components);
 @import '../components/step-navigation/step-navigation.css' layer(components);
+@import '../components/switch/switch.css' layer(components);

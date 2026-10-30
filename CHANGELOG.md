@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.5 — 2026-10-30
+
+- Add a reusable Switch with controlled/uncontrolled state, labeled native button interaction, form values/required validation, disabled/read-only states and forwarded button/input refs.
+- Inherit rounded default or square sci-fi presentation from UIProvider, with semantic theme colors, a 44-pixel interaction target, visible focus and reduced-motion support.
+- Add English/Portuguese examples to Inputs, preserving the 17 gallery section IDs, and publish root/granular imports with bundled styles and declarations.
+- Verify keyboard activation, controlled updates, cancellation, form ownership/submission and blocked states; extend packed consumer and desktop/mobile checks to the new family.
+
 ## 0.0.4 — 2026-10-29
 
 - Add a controlled, accessible Select with themeable trigger and popup, keyboard navigation, disabled options and an explicit empty-string choice. Keep selection popups inside a surrounding dialog's focus scope.
