@@ -17,3 +17,4 @@ export * from './components/slider/index.js';
 export * from './components/select/index.js';
 export * from './components/step-navigation/index.js';
 export * from './components/switch/index.js';
+export * from './components/sidebar-navigation/index.js';

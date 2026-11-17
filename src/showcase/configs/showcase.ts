@@ -9,6 +9,7 @@ export const sectionOrder = [
   'dialogs',
   'tabs',
   'steps',
+  'sidebar',
   'accordion',
   'menus',
   'sheets',

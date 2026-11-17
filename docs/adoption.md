@@ -149,3 +149,47 @@ StepNavigation only reports a requested stage; it does not validate, persist dat
 The gallery includes both families in its 17 English/Portuguese sections. Custom `DesignSystemCopy` dictionaries must provide the new `selects` and `steps` fields; the built-in dictionaries already include them. Existing runtime imports and the shared stylesheet path are unchanged. See the [v0.0.4 release notes](releases/0.0.4.md).
 
 A client host can provide `renderNavigation` to replace the built-in page/tab controls with its own menu. The render callback receives `mode`, `activeSection`, `changeMode` and `navigateTo`. Embed `SectionSearch` from `@velrino/ui/showcase` inside that menu; it reuses the host's typed dictionaries. Close the menu before calling `navigateTo` (for example from DialogContent's `onCloseAutoFocus`, preventing its default trigger focus for that selection). Examples remain mounted and fragment navigation preserves the route query. Standard built-in controls are unchanged when no render callback is supplied.
+
+## Sidebar navigation (unreleased)
+
+`SidebarNavigation` is available on the repository's current branch from the root export and `@velrino/ui/sidebar-navigation`. It is not part of the existing v0.0.5 release tarball. Load `@velrino/ui/styles.css` once, as for other components.
+
+```tsx
+import { SidebarNavigation, type SidebarNavigationItem } from '@velrino/ui/sidebar-navigation';
+
+const items: readonly SidebarNavigationItem[] = [
+  {
+    id: 'workspace',
+    label: 'Workspace',
+    badge: '3',
+    children: [{ id: 'overview', label: 'Overview', href: '/overview' }],
+  },
+];
+
+<SidebarNavigation
+  label="Project navigation"
+  items={items}
+  mode="multiple"
+  defaultExpandedIds={['workspace']}
+  currentId="overview"
+  disclosureLabel={(item, expanded) => `${expanded ? 'Collapse' : 'Expand'} ${item.label}`}
+/>;
+```
+
+Root items are level 1; descendants may reach level 5. Empty/duplicate IDs, cyclic input and deeper structures throw clear errors. Optional `icon` and `badge` are render slots; the consumer supplies their meaning. A disabled group disables its entire subtree. Content text wraps and indentation remains bounded.
+
+### Expansion and navigation
+
+- `single`: at most one expanded sibling group under each parent, preserving its open ancestor path. Opening a sibling closes the other sibling's expanded descendants. This permits five nested groups without treating every nested ancestor as a competing group.
+- `multiple` (default): branches open and close independently.
+- `all`: all groups stay visible with no disclosure controls. This presentation mode does not emit expansion changes or overwrite stored expansion choices.
+
+Use `expandedIds` with `onExpandedChange` for controlled expansion; omit `expandedIds` and supply `defaultExpandedIds` for an uncontrolled initial value. Changes return a new array and never mutate caller data. Nested expanded IDs imply expanded ancestors. Closing a group removes its descendant IDs. Unknown, leaf and disabled expansion IDs are ignored. In single mode, the latest requested sibling in the array wins. Mode changes derive a valid visible state from the supplied/stored choices; a subsequent toggle writes that normalized state. Switching back from `all` restores the stored collapsible choices. Prop changes do not emit synthetic change events.
+
+A group without `href` uses its label as a disclosure button in collapsible modes and a noninteractive label in all-open mode. A group with `href` has a separate link and disclosure button. Leaf items without `href` are action buttons. `onNavigate(item, event)` reports destination activation; use `event.preventDefault()` for a local preview or application-managed routing. Native links otherwise retain ordinary browser behavior, including modifier keys. `currentId` is independent of expansion and applies `aria-current="page"` to the selected destination. Selecting an item never implicitly collapses another branch.
+
+For a framework router, `renderLink(item, props)` can return the consumer's link component. Forward the supplied children, class, destination, ARIA attributes, tab index and click handler; the library imports no router. Apps own routing, authorization, CRUD, progress/count computation, persistence and any global Expand all/Collapse all controls.
+
+The component uses a labeled navigation landmark, nested lists, native buttons and links. Tab/Shift+Tab visit visible controls; Enter/Space activate disclosures. Hidden descendants leave the tab order. If a controlled update hides a focused descendant, focus returns to its nearest visible collapsed ancestor's disclosure. A removed focused item returns focus to the navigation landmark. Colors follow the existing dark/light tokens and standard/sci-fi appearance provider. No motion is required.
+
+The gallery adds `sidebar` as its eighteenth section, with a five-level original workspace example and all three modes. Custom `DesignSystemCopy` dictionaries must add `sidebar` content and `sections.sidebar`.

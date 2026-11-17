@@ -93,6 +93,10 @@
     "./button-variants": {
       "types": "./dist/components/button/button-variants.d.ts",
       "import": "./dist/components/button/button-variants.js"
+    },
+    "./sidebar-navigation": {
+      "types": "./dist/components/sidebar-navigation/index.d.ts",
+      "import": "./dist/components/sidebar-navigation/index.js"
     }
   },
   "files": [
