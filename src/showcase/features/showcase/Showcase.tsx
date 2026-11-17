@@ -1,4 +1,5 @@
-'use client';
+import { ComboboxExamples } from '../../ui/examples/combobox-examples.js';
+('use client');
 import type { ReactNode } from 'react';
 import { useDesignSystemAdapters } from '../../adapters/hooks/useDesignSystemAdapters.js';
 import { sectionOrder, type ShowcaseMode, type ShowcaseSectionId } from '../../configs/showcase.js';
@@ -71,6 +72,7 @@ export function Showcase({
       </div>
     ),
     selects: <SelectExamples />,
+    combobox: <ComboboxExamples />,
     dialogs: <DialogExamples />,
     loading: <LoadingExample />,
     brand: (

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.7 — 2026-11-17
+
+- Add a reusable searchable Combobox with controlled/uncontrolled selection, disabled items, localized empty/clear controls, keyboard access and form values.
+- Keep popups within enclosing dialogs/sheets and use one Escape press to dismiss the popup first.
+- Add English/Portuguese gallery examples and a public `@velrino/ui/combobox` entry point.
+
 ## 0.0.6 — 2026-11-17
 
 - Add an opt-in connected-progress StepNavigation variant with numbered circles, animated connectors, controlled navigation and reduced-motion support.

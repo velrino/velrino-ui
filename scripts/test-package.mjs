@@ -46,6 +46,7 @@ try {
       import { Panel, Button, UIProvider, type PanelProps, type SurfaceAppearance } from '@velrino/ui';
       import { designSystemEn, type DesignSystemCopy } from '@velrino/ui/messages';
       import { Panel as GranularPanel } from '@velrino/ui/panel';
+      import { Combobox, type ComboboxOption } from '@velrino/ui/combobox';
       import { Select, type SelectOption } from '@velrino/ui/select';
       import { StepNavigation, type NavigationStep } from '@velrino/ui/step-navigation';
       import { Switch, type SwitchProps } from '@velrino/ui/switch';
@@ -59,6 +60,8 @@ try {
       void GranularPanel;
       void buttonVariants({ variant: 'outline' });
       const options: readonly SelectOption[] = [{ value: '', label: 'Automatic' }];
+      const choices: readonly ComboboxOption[] = [{value: 'api', label: 'API'}];
+      void <Combobox options={choices} toggleLabel="Show choices" emptyMessage="No choices" />;
       const stages: readonly NavigationStep[] = [{ id: 'details', label: 'Details' }];
       void <Select id="density" value="" onValueChange={() => {}} options={options} />;
       void <StepNavigation label="Steps" current="details" onStepChange={() => {}} steps={stages} />;
@@ -99,6 +102,7 @@ try {
       import { DesignSystemRoot } from '@velrino/ui/showcase';
       import { designSystemEn } from '@velrino/ui/messages';
       import { Select } from '@velrino/ui/select';
+      import { Combobox } from '@velrino/ui/combobox';
       import { StepNavigation } from '@velrino/ui/step-navigation';
       import { Switch } from '@velrino/ui/switch';
       import { SidebarNavigation } from '@velrino/ui/sidebar-navigation';
@@ -111,6 +115,9 @@ try {
       const select = renderToStaticMarkup(createElement(Select, {value:'', onValueChange() {}, options:[{value:'', label:'Automatic'}], 'aria-label':'Density'}));
       assert.match(select, /data-slot="select-trigger"/);
       assert.match(select, /Automatic/);
+      const combo = renderToStaticMarkup(createElement(Combobox, {options:[{value:'api',label:'API'}], defaultValue:'api', toggleLabel:'Show choices', emptyMessage:'No choices', 'aria-label':'Type'}));
+      assert.match(combo, /role="combobox"/);
+      assert.match(combo, /API/);
       const steps = renderToStaticMarkup(createElement(StepNavigation, {label:'Steps', current:'details', onStepChange() {}, steps:[{id:'details', label:'Details'}]}));
       assert.match(steps, /aria-current="step"/);
       const toggle = renderToStaticMarkup(createElement(Switch, {defaultChecked:true, name:'updates', 'aria-label':'Updates'}));
@@ -129,6 +136,7 @@ try {
         assert.ok(!css.includes('/Users/'));
         if (name === 'styles.css') {
           assert.ok(css.includes('.vui-select-trigger'));
+          assert.ok(css.includes('.vui-combobox'));
           assert.ok(css.includes('.vui-step-navigation'));
           assert.ok(css.includes('.vui-switch'));
           assert.ok(css.includes('.vui-sidebar-navigation'));
