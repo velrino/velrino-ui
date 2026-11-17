@@ -18,6 +18,25 @@ export function ComboboxExamples() {
       <Combobox
         id={id}
         options={options}
+        renderOption={(option) => (
+          <>
+            <span
+              aria-hidden="true"
+              style={{
+                display: 'grid',
+                placeItems: 'center',
+                width: 28,
+                height: 28,
+                border: '1px solid var(--vui-line)',
+                borderRadius: 4,
+                color: 'var(--vui-text-accent)',
+              }}
+            >
+              {option.label.slice(0, 1)}
+            </span>
+            <span>{option.label}</span>
+          </>
+        )}
         value={value}
         onValueChange={setValue}
         placeholder={copy.placeholder}

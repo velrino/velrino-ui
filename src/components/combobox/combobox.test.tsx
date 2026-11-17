@@ -102,3 +102,32 @@ test('combobox inside a dialog keeps the popup in its focus boundary and consume
   await user.keyboard('{Escape}');
   await waitFor(() => assert.equal(screen.queryByRole('dialog'), null));
 });
+
+test('custom option content preserves plain-label search and keyboard selection', async () => {
+  const user = userEvent.setup();
+  const { container } = render(
+    <form>
+      <Combobox
+        {...copy}
+        options={options}
+        name="visual"
+        aria-label="Visual type"
+        renderOption={(option) => (
+          <>
+            <svg aria-hidden="true" data-testid="preview" />
+            <span>{option.label}</span>
+            <small aria-hidden="true">Decorative preview</small>
+          </>
+        )}
+      />
+    </form>,
+  );
+  const input = screen.getByRole('combobox', { name: 'Visual type' });
+  await user.type(input, 'cach');
+  const item = await screen.findByRole('option', { name: 'Cache' });
+  assert.ok(item.querySelector('svg'));
+  assert.equal(screen.queryByRole('option', { name: 'API gateway' }), null);
+  await user.keyboard('{ArrowDown}{Enter}');
+  await waitFor(() => assert.equal((input as HTMLInputElement).value, 'Cache'));
+  assert.equal(new window.FormData(container.querySelector('form')!).get('visual'), 'cache');
+});

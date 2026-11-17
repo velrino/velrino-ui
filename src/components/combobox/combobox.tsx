@@ -7,6 +7,7 @@ import type { ComboboxOption, ComboboxProps } from './types.js';
 export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(function Combobox(
   {
     options,
+    renderOption,
     value,
     defaultValue = null,
     onValueChange,
@@ -109,8 +110,11 @@ export const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(function Com
                   value={option}
                   disabled={option.disabled}
                   className="vui-combobox-item"
+                  aria-label={option.label}
                 >
-                  <span>{option.label}</span>
+                  <span className="vui-combobox-option-content">
+                    {renderOption ? renderOption(option) : option.label}
+                  </span>
                   <Primitive.ItemIndicator aria-hidden="true">✓</Primitive.ItemIndicator>
                 </Primitive.Item>
               )}

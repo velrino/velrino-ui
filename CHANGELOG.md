@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.8 — 2026-11-17
+
+- Add optional custom Combobox option content for icons and thumbnails, preserving plain-label filtering, accessible names, keyboard navigation and default behavior.
+
 ## 0.0.7 — 2026-11-17
 
 - Add a reusable searchable Combobox with controlled/uncontrolled selection, disabled items, localized empty/clear controls, keyboard access and form values.

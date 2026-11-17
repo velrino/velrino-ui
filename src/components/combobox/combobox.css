@@ -125,3 +125,15 @@
     border-color: ButtonText;
   }
 }
+
+@layer components {
+  .vui-combobox-option-content {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    min-width: 0;
+  }
+  .vui-combobox-option-content > :first-child {
+    flex-shrink: 0;
+  }
+}
