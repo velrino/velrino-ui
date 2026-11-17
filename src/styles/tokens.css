@@ -19,3 +19,21 @@
   --vui-dialog-cut: 24px;
   --vui-layer: 50;
 }
+
+/* Opt-in light colors; consumers retain ownership of their global theme. */
+[data-vui-color-scheme='light'] {
+  color-scheme: light;
+  --vui-accent: #007985;
+  --vui-on-accent: #fff;
+  --vui-background: #f4fafb;
+  --vui-surface: #fff;
+  --vui-text: #102a34;
+  --vui-muted: #49636e;
+  --vui-secondary: #e2eff2;
+  --vui-danger: #b42332;
+  --vui-on-danger: #fff;
+  --vui-text-accent: var(--vui-accent);
+  --vui-line: color-mix(in srgb, var(--vui-accent) 40%, transparent);
+  --vui-overlay: rgb(16 42 52 / 45%);
+  --vui-shadow: rgb(16 42 52 / 16%);
+}

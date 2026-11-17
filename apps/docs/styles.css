@@ -53,6 +53,31 @@ body {
   --vui-secondary: #301216;
   --vui-on-accent: #fff;
 }
+[data-vui-color-scheme='light'] {
+  color-scheme: light;
+  --vui-accent: #007985;
+  --vui-text-accent: var(--vui-accent);
+  --vui-background: #f4fafb;
+  --vui-surface: #fff;
+  --vui-text: #102a34;
+  --vui-muted: #49636e;
+  --vui-secondary: #e2eff2;
+  --vui-on-accent: #fff;
+}
+[data-vui-color-scheme='light'][data-demo-theme='purple'] {
+  --vui-accent: var(--demo-palette-purple);
+  --vui-background: #faf7ff;
+  --vui-text: #281a3d;
+  --vui-muted: #655573;
+  --vui-secondary: #eee5f8;
+}
+[data-vui-color-scheme='light'][data-demo-theme='red'] {
+  --vui-accent: var(--demo-palette-red);
+  --vui-background: #fff8f8;
+  --vui-text: #39181d;
+  --vui-muted: #79545b;
+  --vui-secondary: #f7e5e8;
+}
 .demo-toolbar {
   position: fixed;
   inset: 0 0 auto;
@@ -84,8 +109,11 @@ body {
   font-size: 0.65rem;
   letter-spacing: 0;
 }
-.demo-settings-trigger {
+.demo-toolbar-actions {
   margin-inline-start: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 .demo-settings-dialog {
   max-width: 36rem;
@@ -289,4 +317,14 @@ body {
 .demo-preferences .demo-language-option {
   min-height: 4.25rem;
   padding: 0.75rem;
+}
+
+@media (max-width: 380px) {
+  .demo-toolbar {
+    gap: 0.5rem;
+  }
+  .demo-wordmark {
+    gap: 0.4rem;
+    letter-spacing: 0.04em;
+  }
 }

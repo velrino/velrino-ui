@@ -3,7 +3,14 @@ import type { SurfaceAppearance } from '../../src/index.js';
 import type { DemoTheme } from './components/theme-picker.js';
 import type { Locale } from './i18n.js';
 
-type Preferences = { locale: Locale; theme: DemoTheme; appearance: SurfaceAppearance };
+export type ColorMode = 'dark' | 'light';
+
+type Preferences = {
+  locale: Locale;
+  theme: DemoTheme;
+  appearance: SurfaceAppearance;
+  mode: ColorMode;
+};
 
 function readPreferences(): Preferences {
   const query = new URLSearchParams(window.location.search);
@@ -13,6 +20,7 @@ function readPreferences(): Preferences {
     locale: single('lang') === 'pt-BR' ? 'pt-BR' : 'en',
     theme: theme === 'purple' || theme === 'red' ? theme : 'cyan',
     appearance: single('appearance') === 'default' ? 'default' : 'sci-fi',
+    mode: single('mode') === 'light' ? 'light' : 'dark',
   };
 }
 
@@ -38,5 +46,6 @@ export function useDocsPreferences() {
     (appearance: SurfaceAppearance) => update('appearance', appearance),
     [update],
   );
-  return { ...preferences, setLocale, setTheme, setAppearance };
+  const setMode = useCallback((mode: ColorMode) => update('mode', mode), [update]);
+  return { ...preferences, setLocale, setTheme, setAppearance, setMode };
 }
