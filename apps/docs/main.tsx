@@ -15,6 +15,7 @@ import { LanguagePicker } from './components/language-picker.js';
 import { LocaleContext } from './i18n.js';
 import { ShowcaseSettings } from './components/showcase-settings.js';
 import { useDocsPreferences } from './preferences.js';
+import { ColorModeToggle } from './components/color-mode-toggle.js';
 function BrandLogo({ size = 96, alt, className }: DesignSystemBrandLogoProps) {
   return (
     <svg
@@ -40,7 +41,11 @@ function BrandLogo({ size = 96, alt, className }: DesignSystemBrandLogoProps) {
   );
 }
 function App() {
-  const { locale, setLocale, theme, setTheme, appearance, setAppearance } = useDocsPreferences();
+  const { locale, setLocale, theme, setTheme, appearance, setAppearance, mode, setMode } =
+    useDocsPreferences();
+  useEffect(() => {
+    document.documentElement.dataset.vuiColorScheme = mode;
+  }, [mode]);
   useEffect(() => {
     document.documentElement.dataset.demoTheme = theme;
   }, [theme]);
@@ -68,13 +73,16 @@ function App() {
               <a href="#" className="demo-wordmark">
                 VELRINO UI<span>{packageInfo.version}</span>
               </a>
-              <ShowcaseSettings
-                theme={theme}
-                onThemeChange={setTheme}
-                appearance={appearance}
-                onAppearanceChange={setAppearance}
-                navigation={navigation}
-              />
+              <div className="demo-toolbar-actions">
+                <ColorModeToggle mode={mode} onChange={setMode} />
+                <ShowcaseSettings
+                  theme={theme}
+                  onThemeChange={setTheme}
+                  appearance={appearance}
+                  onAppearanceChange={setAppearance}
+                  navigation={navigation}
+                />
+              </div>
             </header>
           )}
         />

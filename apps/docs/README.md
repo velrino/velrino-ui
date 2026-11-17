@@ -15,13 +15,17 @@ Open `http://127.0.0.1:4321`. The previous `demo:dev`, `demo:build` and `demo:ty
 
 ## Share a view
 
-The URL accepts `lang=en|pt-BR`, `theme=cyan|purple|red` and `appearance=default|sci-fi`. A section fragment opens that component directly:
+The URL accepts `lang=en|pt-BR`, `theme=cyan|purple|red`, `appearance=default|sci-fi` and `mode=dark|light`. A section fragment opens that component directly:
 
 ```text
 https://velrino.github.io/velrino-ui/?lang=pt-BR&theme=purple&appearance=sci-fi#dialogs
 ```
 
-Missing, invalid or repeated preferences use English, Cyan and sci-fi surfaces. Settings update the current URL without reloading the document or clearing example inputs. No account, analytics or stored browser preference is needed.
+Missing, invalid or repeated preferences use English, Cyan, sci-fi surfaces and dark mode. Settings update the current URL without reloading the document or clearing example inputs. No account, analytics or stored browser preference is needed.
+
+The sun/moon button in the top toolbar switches immediately between dark and light while preserving the selected palette, surface style, language and example inputs. The current mode is included in the URL and survives reloading that URL.
+
+Consumers can opt into the library's reusable light tokens with `data-vui-color-scheme="light"` on their theme container. The gallery applies it to the document root so portaled overlays inherit the same colors.
 
 ## Build and deploy
 

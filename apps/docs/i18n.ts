@@ -5,6 +5,7 @@ export type Locale = 'en' | 'pt-BR';
 const en = {
   standard: 'Standard',
   scifi: 'Sci-fi',
+  colorMode: { light: 'Switch to light mode', dark: 'Switch to dark mode' },
   settings: {
     trigger: 'Open settings',
     title: 'Settings',
@@ -59,6 +60,7 @@ const en = {
 const ptBR: typeof en = {
   standard: 'Padrão',
   scifi: 'Sci-fi',
+  colorMode: { light: 'Ativar tema claro', dark: 'Ativar tema escuro' },
   settings: {
     trigger: 'Abrir configurações',
     title: 'Configurações',
