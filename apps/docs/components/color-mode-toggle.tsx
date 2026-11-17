@@ -14,8 +14,9 @@ export function ColorModeToggle({
   const label = copy.colorMode[next];
   return (
     <Button
-      variant="outline"
+      variant="ghost"
       size="icon"
+      className="demo-toolbar-action"
       aria-label={label}
       title={label}
       onClick={() => onChange(next)}

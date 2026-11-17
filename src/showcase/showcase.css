@@ -3,10 +3,10 @@
   width: 100%;
   max-width: 76rem;
   margin: 0 auto;
-  padding: clamp(2rem, 6vw, 5rem) clamp(1rem, 4vw, 3rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 3vw, 2rem);
   color: var(--vui-text);
   font-family: var(--vui-font);
-  line-height: 1.8;
+  line-height: 1.65;
 }
 .vui-showcase *,
 .vui-showcase *::before,
@@ -20,25 +20,25 @@
   max-width: 48rem;
 }
 .vui-showcase-kicker {
-  margin: 0 0 1rem;
+  margin: 0 0 0.625rem;
   color: var(--vui-text-accent);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 .vui-showcase-title {
   margin: 0;
-  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-size: clamp(1.75rem, 3vw, 2rem);
   font-weight: 600;
-  letter-spacing: -0.04em;
-  line-height: 1.1;
+  letter-spacing: -0.035em;
+  line-height: 1.25;
 }
 .vui-showcase-intro {
   max-width: 44rem;
-  margin: 1.25rem 0 0;
+  margin: 0.75rem 0 0;
   color: var(--vui-muted);
-  font-size: 1.05rem;
+  font-size: 0.8125rem;
 }
 .vui-showcase-view {
   display: flex;
@@ -101,7 +101,7 @@
 .vui-showcase-section-list {
   display: grid;
   min-width: 0;
-  gap: 3.5rem;
+  gap: 2rem;
 }
 .vui-showcase-section,
 .vui-showcase-section-panel {
@@ -114,23 +114,23 @@
 }
 .vui-showcase-section-title {
   margin: 0 0 0.5rem;
-  font-size: 1.5rem;
+  font-size: 1.1875rem;
   font-weight: 500;
 }
 .vui-showcase-description {
   max-width: 48rem;
-  margin: 0 0 1.5rem;
+  margin: 0 0 1rem;
   color: var(--vui-muted);
-  font-size: 0.9rem;
+  font-size: 0.8125rem;
 }
 .vui-showcase-example {
   min-width: 0;
-  padding: clamp(1.5rem, 4vw, 2.5rem);
+  padding: clamp(1rem, 2.5vw, 1.5rem);
 }
 .vui-showcase-stack {
   display: grid;
   min-width: 0;
-  gap: 1.75rem;
+  gap: 1.25rem;
   justify-items: start;
 }
 .vui-showcase-stack > div {
@@ -152,13 +152,13 @@
   margin: 0;
   padding-left: 1.1rem;
   color: var(--vui-muted);
-  font-size: 0.9rem;
+  font-size: 0.8125rem;
 }
 .vui-showcase-grid {
   display: grid;
   width: 100%;
   min-width: 0;
-  gap: 1.75rem;
+  gap: 1.25rem;
 }
 .vui-showcase-field {
   display: grid;
@@ -226,7 +226,7 @@
   overflow-wrap: anywhere;
 }
 .vui-showcase-heading-sample {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: clamp(1.375rem, 3vw, 1.75rem);
   line-height: 1.35;
 }
 .vui-showcase-brand {
@@ -248,10 +248,10 @@
 .vui-showcase-brand p,
 .vui-showcase-language-example p {
   color: var(--vui-muted);
-  font-size: 0.9rem;
+  font-size: 0.8125rem;
 }
 .vui-showcase-nested-panel {
-  padding: 2rem;
+  padding: 1.25rem;
 }
 .vui-showcase-typewriter {
   min-height: 4rem;
@@ -311,7 +311,7 @@
 }
 
 .vui-showcase--custom-navigation .vui-showcase-header {
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.75rem;
 }
 .vui-showcase-section-search {
   display: grid;

@@ -43,9 +43,9 @@ export function ShowcaseSettings({
     >
       <DialogTrigger asChild>
         <Button
-          variant="outline"
+          variant="ghost"
           size="icon"
-          className="demo-settings-trigger"
+          className="demo-settings-trigger demo-toolbar-action"
           aria-label={text.trigger}
         >
           <svg
