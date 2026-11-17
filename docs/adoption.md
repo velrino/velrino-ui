@@ -7,7 +7,7 @@ Use the package asset, which contains compiled JavaScript, declarations and CSS.
 ```json
 {
   "dependencies": {
-    "@velrino/ui": "https://github.com/velrino/velrino-ui/releases/download/v0.0.5/velrino-ui-0.0.5.tgz"
+    "@velrino/ui": "https://github.com/velrino/velrino-ui/releases/download/v0.0.6/velrino-ui-0.0.6.tgz"
   }
 }
 ```
@@ -150,9 +150,9 @@ The gallery includes both families in its 17 English/Portuguese sections. Custom
 
 A client host can provide `renderNavigation` to replace the built-in page/tab controls with its own menu. The render callback receives `mode`, `activeSection`, `changeMode` and `navigateTo`. Embed `SectionSearch` from `@velrino/ui/showcase` inside that menu; it reuses the host's typed dictionaries. Close the menu before calling `navigateTo` (for example from DialogContent's `onCloseAutoFocus`, preventing its default trigger focus for that selection). Examples remain mounted and fragment navigation preserves the route query. Standard built-in controls are unchanged when no render callback is supplied.
 
-## Sidebar navigation (unreleased)
+## Sidebar navigation (v0.0.6)
 
-`SidebarNavigation` is available on the repository's current branch from the root export and `@velrino/ui/sidebar-navigation`. It is not part of the existing v0.0.5 release tarball. Load `@velrino/ui/styles.css` once, as for other components.
+`SidebarNavigation` is available from the root export and `@velrino/ui/sidebar-navigation` in v0.0.6. Earlier release tarballs do not include it. Load `@velrino/ui/styles.css` once, as for other components.
 
 ```tsx
 import { SidebarNavigation, type SidebarNavigationItem } from '@velrino/ui/sidebar-navigation';

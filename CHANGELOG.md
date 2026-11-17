@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.6 — 2026-11-17
+
+- Add reusable five-level SidebarNavigation with single, multiple and all-expanded modes, controlled state, custom links, current destination, disabled subtrees, optional icons/badges and hidden-focus recovery.
+- Add mobile-first English/Portuguese examples and granular exports, declarations, bundled CSS and packed-consumer verification.
+- Add reusable light tokens and an icon-only dark/light toggle; refine gallery proportions while preserving the original font and sci-fi frames.
+
 ## 0.0.5 — 2026-10-30
 
 - Add a reusable Switch with controlled/uncontrolled state, labeled native button interaction, form values/required validation, disabled/read-only states and forwarded button/input refs.
