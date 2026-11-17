@@ -23,6 +23,10 @@ const en = {
     options: { comfortable: 'Comfortable', compact: 'Compact', unavailable: 'Unavailable' },
   },
   steps: {
+    presentation: 'Step presentation',
+    progress: 'Connected progress',
+    standard: 'Standard steps',
+
     description:
       'Reusable step navigation. The application owns the draft, content and validation policy.',
     navigation: 'Example setup steps',

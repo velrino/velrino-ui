@@ -25,6 +25,10 @@ const ptBR = {
     options: { comfortable: 'Confortável', compact: 'Compacta', unavailable: 'Indisponível' },
   },
   steps: {
+    presentation: 'Apresentação das etapas',
+    progress: 'Progresso conectado',
+    standard: 'Etapas padrão',
+
     description:
       'Navegação por etapas reutilizável. A aplicação controla o rascunho, o conteúdo e a validação.',
     navigation: 'Etapas da configuração de exemplo',

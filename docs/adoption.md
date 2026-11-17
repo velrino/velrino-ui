@@ -193,3 +193,7 @@ For a framework router, `renderLink(item, props)` can return the consumer's link
 The component uses a labeled navigation landmark, nested lists, native buttons and links. Tab/Shift+Tab visit visible controls; Enter/Space activate disclosures. Hidden descendants leave the tab order. If a controlled update hides a focused descendant, focus returns to its nearest visible collapsed ancestor's disclosure. A removed focused item returns focus to the navigation landmark. Colors follow the existing dark/light tokens and standard/sci-fi appearance provider. No motion is required.
 
 The gallery adds `sidebar` as its eighteenth section, with a five-level original workspace example and all three modes. Custom `DesignSystemCopy` dictionaries must add `sidebar` content and `sections.sidebar`.
+
+### Connected step progress (v0.0.6)
+
+Set `variant="progress"` on `StepNavigation` for connected numbered circles above labels. The default variant remains unchanged. The line animates for 450ms toward the controlled `current` step in either direction; the consumer still owns validation, navigation and completion. There is no autoplay or implicit progression. Native keyboard activation, full accessible labels, mobile short labels and disabled state remain available. Long sequences scroll inside the component rather than widening the page. Reduced motion disables line/marker transitions; colors derive from existing semantic tokens. A decorative line does not create a second progress announcement alongside the current-step navigation semantics.
