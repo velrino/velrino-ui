@@ -38,3 +38,7 @@ pnpm run docs:preview
 The build uses `/velrino-ui/` as its Vite base, including local flag assets. Preview at `http://127.0.0.1:4322/velrino-ui/`. Browser checks exercise both the development host and the built artifact at the real Pages prefix on desktop and mobile emulation.
 
 The Validate workflow checks pull requests without deploying. On `main`, the same checks must pass before the generated `apps/docs/dist` artifact can deploy to the `github-pages` environment. A manual workflow dispatch on `main` retries the full validated deployment. No generated site files or deployment branch are committed, and no package release is needed for documentation-only updates.
+
+## Gallery proportions
+
+The gallery uses a compact 52px toolbar, the original system font family, restrained headings, and tighter section/example spacing. Touch controls retain 44px targets. Sci-fi cut corners, fine grids and accent frames remain intact; light/dark mode and palette selection are independent of the layout. The toolbar height token also controls fragment scrolling offsets.

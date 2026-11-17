@@ -2,7 +2,9 @@
   --demo-palette-cyan: #42e8f4;
   --demo-palette-purple: #5b21b6;
   --demo-palette-red: #980002;
-  --demo-navbar-height: 5.25rem;
+  --demo-navbar-height: 3.25rem;
+  --vui-cut: 12px;
+  --vui-dialog-cut: 18px;
   --vui-anchor-offset: calc(var(--demo-navbar-height) + 1rem);
   color-scheme: dark;
   font-family: system-ui, sans-serif;
@@ -89,7 +91,7 @@ body {
   flex-wrap: nowrap;
   align-items: center;
   gap: 1rem;
-  padding: 1.25rem clamp(1rem, 4vw, 3rem);
+  padding: 0.25rem clamp(1rem, 3vw, 2rem);
   border-bottom: 1px solid var(--vui-line);
 }
 .demo-wordmark {
@@ -99,8 +101,9 @@ body {
   gap: 0.75rem;
   color: var(--vui-text);
   font-weight: 600;
+  font-size: 0.8125rem;
   text-decoration: none;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
 }
 .demo-wordmark span {
   padding: 0.15rem 0.4rem;
@@ -116,7 +119,7 @@ body {
   gap: 0.5rem;
 }
 .demo-settings-dialog {
-  max-width: 36rem;
+  max-width: 32rem;
 }
 .demo-settings-tabs > .vui-tabs-list {
   display: grid;
@@ -139,9 +142,9 @@ body {
   display: grid;
   grid-template-columns: 32px minmax(0, 1fr) 24px;
   width: 100%;
-  min-height: 5rem;
+  min-height: 4rem;
   gap: 1rem;
-  padding: 1rem;
+  padding: 0.75rem;
   text-align: left;
 }
 .demo-language-option[aria-pressed='true'] {
@@ -281,7 +284,7 @@ body {
 }
 .demo-about h3 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 .demo-about-role {
   margin: 0.25rem 0 1rem;
@@ -327,4 +330,19 @@ body {
     gap: 0.4rem;
     letter-spacing: 0.04em;
   }
+}
+
+.demo-toolbar .vui-button {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+}
+
+.demo-toolbar .demo-toolbar-action,
+.demo-toolbar .demo-toolbar-action:hover:not(:disabled) {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.demo-toolbar .demo-toolbar-action:hover:not(:disabled) {
+  color: var(--vui-text-accent);
 }
