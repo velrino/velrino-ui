@@ -16,3 +16,4 @@
 @import '../components/select/select.css' layer(components);
 @import '../components/step-navigation/step-navigation.css' layer(components);
 @import '../components/switch/switch.css' layer(components);
+@import '../components/sidebar-navigation/sidebar-navigation.css' layer(components);

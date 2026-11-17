@@ -1,6 +1,6 @@
 {
   "name": "@velrino/ui",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "private": true,
   "description": "Accessible, themeable React components with optional sci-fi surfaces and a reusable design-system gallery.",
   "license": "MIT",
@@ -93,6 +93,10 @@
     "./button-variants": {
       "types": "./dist/components/button/button-variants.d.ts",
       "import": "./dist/components/button/button-variants.js"
+    },
+    "./sidebar-navigation": {
+      "types": "./dist/components/sidebar-navigation/index.d.ts",
+      "import": "./dist/components/sidebar-navigation/index.js"
     }
   },
   "files": [

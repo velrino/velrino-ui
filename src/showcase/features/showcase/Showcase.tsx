@@ -17,6 +17,7 @@ import { MenuExamples } from '../../ui/examples/menu-examples.js';
 import { SheetExamples } from '../../ui/examples/sheet-examples.js';
 import { SliderExamples } from '../../ui/examples/slider-examples.js';
 import { TypewriterExamples } from '../../ui/examples/typewriter-examples.js';
+import { SidebarNavigationExamples } from '../../ui/examples/sidebar-navigation-examples.js';
 import { ColorExamples } from '../../ui/examples/color-examples.js';
 
 export function Showcase({
@@ -84,6 +85,7 @@ export function Showcase({
     panels: <PanelExamples />,
     tabs: <TabsExamples />,
     steps: <StepNavigationExamples />,
+    sidebar: <SidebarNavigationExamples />,
     accordion: <AccordionExamples />,
     menus: <MenuExamples />,
     sheets: <SheetExamples />,

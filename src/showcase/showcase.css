@@ -336,3 +336,18 @@
   background: var(--vui-secondary);
   color: var(--vui-text-accent);
 }
+
+.vui-showcase-sidebar-example {
+  display: grid;
+  min-width: 0;
+  gap: 1.5rem;
+}
+.vui-showcase-sidebar-example > .vui-sidebar-navigation {
+  max-width: 23rem;
+}
+@media (min-width: 900px) {
+  .vui-showcase-sidebar-example {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 23rem);
+    align-items: start;
+  }
+}

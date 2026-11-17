@@ -41,7 +41,7 @@ test('catalog retains values through keyboard dialogs and language selection', a
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Design system', exact: true })).toBeVisible();
-  await expect(page.locator('.vui-showcase-section')).toHaveCount(17);
+  await expect(page.locator('.vui-showcase-section')).toHaveCount(18);
   await page.getByLabel('Validation example', { exact: true }).fill('Orbit');
   const trigger = page.getByRole('button', { name: 'Open example dialog', exact: true });
   await trigger.click();
@@ -350,4 +350,37 @@ test('grouped settings and author links remain usable after localization', async
   await expect(
     page.getByRole('button', { name: 'Abrir configurações', exact: true }),
   ).toBeFocused();
+});
+
+test('five-level sidebar supports independent, exclusive and all-open navigation', async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/?mode=light#sidebar');
+  const section = page.locator('#sidebar');
+  const sidebar = page.getByRole('navigation', { name: 'Example workspace navigation' });
+  const overview = sidebar.getByRole('link', { name: 'Overview', exact: true });
+  await expect(overview).toBeVisible();
+  await expect(overview).toHaveAttribute('aria-current', 'page');
+  await sidebar.getByRole('button', { name: 'Expand Resources', exact: true }).click();
+  await expect(overview).toBeVisible();
+  await expect(sidebar.getByRole('link', { name: 'Guidelines', exact: true })).toBeVisible();
+  await sidebar.getByRole('link', { name: 'Patterns', exact: true }).click();
+  await expect(sidebar.getByRole('link', { name: 'Patterns', exact: true })).toHaveAttribute(
+    'aria-current',
+    'page',
+  );
+  await section.getByRole('button', { name: 'Single', exact: true }).click();
+  await expect(overview).toBeHidden();
+  await sidebar.getByRole('button', { name: 'Expand Workspace', exact: true }).click();
+  await expect(sidebar.getByRole('link', { name: 'Guidelines', exact: true })).toBeHidden();
+  await section.getByRole('button', { name: 'All expanded', exact: true }).click();
+  await expect(overview).toBeVisible();
+  await expect(sidebar.getByRole('link', { name: 'Guidelines', exact: true })).toBeVisible();
+  await expect(sidebar.locator('[aria-expanded]')).toHaveCount(0);
+  await expect(sidebar.getByText('Archive', { exact: true }).locator('..')).toHaveAttribute(
+    'aria-disabled',
+    'true',
+  );
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });

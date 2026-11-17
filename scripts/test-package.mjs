@@ -49,6 +49,7 @@ try {
       import { Select, type SelectOption } from '@velrino/ui/select';
       import { StepNavigation, type NavigationStep } from '@velrino/ui/step-navigation';
       import { Switch, type SwitchProps } from '@velrino/ui/switch';
+      import { SidebarNavigation, type SidebarNavigationItem } from '@velrino/ui/sidebar-navigation';
       import { buttonVariants } from '@velrino/ui/button-variants';
       const appearance: SurfaceAppearance = 'sci-fi';
       const props = { as: 'section', appearance, 'aria-label': 'Portable example' } satisfies PanelProps;
@@ -63,6 +64,8 @@ try {
       void <StepNavigation label="Steps" current="details" onStepChange={() => {}} steps={stages} />;
       const toggle = { checked: true, onCheckedChange: (_checked: boolean) => {}, appearance: 'sci-fi' } satisfies SwitchProps;
       void <Switch id="updates" aria-label="Updates" {...toggle} />;
+      const destinations: readonly SidebarNavigationItem[] = [{ id: 'home', label: 'Home', href: '/' }];
+      void <SidebarNavigation items={destinations} label="Navigation" disclosureLabel={(item) => item.label} />;
     `,
     );
     await writeFile(
@@ -98,6 +101,7 @@ try {
       import { Select } from '@velrino/ui/select';
       import { StepNavigation } from '@velrino/ui/step-navigation';
       import { Switch } from '@velrino/ui/switch';
+      import { SidebarNavigation } from '@velrino/ui/sidebar-navigation';
       const content = createElement(Panel, {as:'section', 'aria-label':'Portable example'}, createElement(Button, null, designSystemEn.buttons.normal));
       const html = renderToStaticMarkup(createElement(UIProvider, {appearance:'sci-fi'}, content));
       assert.match(html, /data-slot="panel"/);
@@ -113,6 +117,9 @@ try {
       assert.match(toggle, /role="switch"/);
       assert.match(toggle, /aria-checked="true"/);
       assert.match(toggle, /type="button"/);
+      const sidebar = renderToStaticMarkup(createElement(SidebarNavigation, {label:'Navigation', mode:'all', items:[{id:'group', label:'Group', children:[{id:'home',label:'Home',href:'/'}]}], currentId:'home', disclosureLabel:(item) => item.label}));
+      assert.match(sidebar, /aria-current="page"/);
+      assert.match(sidebar, /data-slot="sidebar-navigation"/);
       const entry = readFileSync(new URL(import.meta.resolve('@velrino/ui')), 'utf8');
       assert.match(entry, /^['"]use client['"];?/);
       for (const name of ['styles.css','showcase.css']) {
@@ -124,6 +131,7 @@ try {
           assert.ok(css.includes('.vui-select-trigger'));
           assert.ok(css.includes('.vui-step-navigation'));
           assert.ok(css.includes('.vui-switch'));
+          assert.ok(css.includes('.vui-sidebar-navigation'));
         }
       }
     `,
