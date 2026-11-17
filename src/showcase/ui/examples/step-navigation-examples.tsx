@@ -13,6 +13,7 @@ type ExampleStep = (typeof exampleSteps)[number];
 export function StepNavigationExamples() {
   const { steps: copy } = useDesignSystemCopy();
   const id = useId();
+  const [progressStyle, setProgressStyle] = useState(true);
   const [current, setCurrent] = useState<ExampleStep>('profile');
   const [visited, setVisited] = useState<readonly ExampleStep[]>([]);
   const [name, setName] = useState('');
@@ -36,7 +37,24 @@ export function StepNavigationExamples() {
 
   return (
     <div className="vui-showcase-stack">
+      <div className="vui-showcase-row" role="group" aria-label={copy.presentation}>
+        <Button
+          variant="outline"
+          aria-pressed={progressStyle}
+          onClick={() => setProgressStyle(true)}
+        >
+          {copy.progress}
+        </Button>
+        <Button
+          variant="outline"
+          aria-pressed={!progressStyle}
+          onClick={() => setProgressStyle(false)}
+        >
+          {copy.standard}
+        </Button>
+      </div>
       <StepNavigation
+        variant={progressStyle ? 'progress' : 'default'}
         label={copy.navigation}
         current={current}
         onStepChange={navigate}

@@ -384,3 +384,20 @@ test('five-level sidebar supports independent, exclusive and all-open navigation
   );
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
+
+test('connected steps animate progress and respect reduced motion', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/?mode=light#steps');
+  const section = page.locator('#steps');
+  const progress = section.locator('.vui-step-navigation__track > span');
+  await expect(progress).toHaveCSS('transform', 'matrix(0, 0, 0, 1, 0, 0)');
+  await section.getByRole('button', { name: 'Review', exact: true }).click();
+  await expect(progress).toHaveCSS('transform', 'matrix(1, 0, 0, 1, 0, 0)');
+  await section.getByRole('button', { name: 'Profile', exact: true }).click();
+  await expect(progress).toHaveCSS('transform', 'matrix(0, 0, 0, 1, 0, 0)');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(progress).toHaveCSS('transition-duration', '0s');
+  await section.getByRole('button', { name: 'Standard steps', exact: true }).click();
+  await expect(progress).toHaveCount(0);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
