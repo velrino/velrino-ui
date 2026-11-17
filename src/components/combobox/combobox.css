@@ -1,0 +1,127 @@
+.vui-combobox {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  min-width: 0;
+  width: 100%;
+  border: 1px solid var(--vui-line);
+  border-radius: var(--vui-radius);
+  background: var(--vui-surface);
+  color: var(--vui-text);
+}
+.vui-combobox:focus-within {
+  outline: 2px solid var(--vui-accent);
+  outline-offset: 3px;
+}
+.vui-combobox:has([aria-invalid='true']) {
+  border-color: var(--vui-danger);
+}
+.vui-combobox-input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 2.75rem;
+  flex: 1;
+  padding: 0.625rem 0.75rem;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 1rem;
+}
+.vui-combobox-input::placeholder {
+  color: var(--vui-muted);
+}
+.vui-combobox-action {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0.5rem;
+  border: 0;
+  background: transparent;
+  color: var(--vui-text-accent);
+  font: inherit;
+  cursor: pointer;
+}
+.vui-combobox-action svg {
+  width: 1rem;
+  height: 1rem;
+}
+.vui-combobox-action:focus-visible {
+  outline: 2px solid var(--vui-accent);
+  outline-offset: -3px;
+}
+.vui-combobox[data-disabled] {
+  opacity: 0.55;
+}
+.vui-combobox[data-disabled] * {
+  cursor: not-allowed;
+}
+.vui-combobox-positioner {
+  z-index: calc(var(--vui-layer) + 1);
+  max-width: var(--available-width);
+  outline: none;
+}
+.vui-combobox-popup {
+  box-sizing: border-box;
+  width: var(--anchor-width);
+  max-width: var(--available-width);
+  max-height: var(--available-height);
+  overflow: hidden;
+  border: 1px solid var(--vui-line);
+  border-radius: var(--vui-radius);
+  background: var(--vui-surface);
+  color: var(--vui-text);
+  font-family: var(--vui-font);
+  box-shadow: 0 8px 28px var(--vui-shadow);
+  outline: none;
+}
+.vui-combobox-list {
+  box-sizing: border-box;
+  max-height: min(var(--available-height, 20rem), 20rem);
+  padding: 0.25rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  outline: none;
+}
+.vui-combobox-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: var(--vui-radius);
+  font-size: 0.875rem;
+  cursor: pointer;
+  outline: none;
+  overflow-wrap: anywhere;
+}
+.vui-combobox-item[data-highlighted] {
+  background: var(--vui-secondary);
+  color: var(--vui-text-accent);
+  outline: 1px solid var(--vui-accent);
+  outline-offset: -1px;
+}
+.vui-combobox-item[data-disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.vui-combobox-empty {
+  padding: 0.75rem;
+  color: var(--vui-muted);
+  font-size: 0.875rem;
+}
+.vui-combobox-empty:empty {
+  display: none;
+}
+@media (forced-colors: active) {
+  .vui-combobox,
+  .vui-combobox-popup {
+    border-color: ButtonText;
+  }
+}

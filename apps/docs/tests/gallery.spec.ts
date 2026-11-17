@@ -41,7 +41,7 @@ test('catalog retains values through keyboard dialogs and language selection', a
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Design system', exact: true })).toBeVisible();
-  await expect(page.locator('.vui-showcase-section')).toHaveCount(18);
+  await expect(page.locator('.vui-showcase-section')).toHaveCount(19);
   await page.getByLabel('Validation example', { exact: true }).fill('Orbit');
   const trigger = page.getByRole('button', { name: 'Open example dialog', exact: true });
   await trigger.click();
@@ -400,4 +400,17 @@ test('connected steps animate progress and respect reduced motion', async ({ pag
   await section.getByRole('button', { name: 'Standard steps', exact: true }).click();
   await expect(progress).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+test('combobox searches labels and supports selection and empty states', async ({ page }) => {
+  await page.goto('/#combobox');
+  const input = page.getByRole('combobox', { name: 'Technology', exact: true });
+  await input.fill('Vue');
+  await page.getByRole('option', { name: 'Vue', exact: true }).click();
+  await expect(input).toHaveValue('Vue');
+  await page.getByRole('button', { name: 'Clear technology', exact: true }).click();
+  await input.fill('unknown technology');
+  await expect(page.getByText('No technologies found.', { exact: true })).toBeVisible();
+  await input.press('Escape');
+  await expect(page.getByRole('listbox')).toHaveCount(0);
 });

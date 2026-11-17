@@ -5,6 +5,7 @@ export const sectionOrder = [
   'buttons',
   'inputs',
   'selects',
+  'combobox',
   'panels',
   'dialogs',
   'tabs',
